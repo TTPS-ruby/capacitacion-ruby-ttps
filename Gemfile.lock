@@ -1,0 +1,38 @@
+GIT
+  remote: git://github.com/schacon/showoff.git
+  revision: 0e712271eceac2b4551438bdd0ec97f8345a1e2d
+  specs:
+    showoff (0.7.0)
+      gli (~> 2)
+      json
+      nokogiri
+      parslet
+      redcarpet
+      sinatra (~> 1.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    blankslate (2.1.2.4)
+    gli (2.7.0)
+    json (1.8.0)
+    mini_portile (0.5.1)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    parslet (1.5.0)
+      blankslate (~> 2.0)
+    rack (1.5.2)
+    rack-protection (1.5.0)
+      rack
+    redcarpet (3.0.0)
+    sinatra (1.4.3)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    tilt (1.4.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  showoff!
