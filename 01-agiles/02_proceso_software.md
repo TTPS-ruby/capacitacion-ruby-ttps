@@ -38,15 +38,51 @@
   aceptación
 * <span class="letter_box" style="background-color: #B0B0B0">D</span> Despliegue
   (deployment)
-!SLIDE smbullets transition=uncover
+!SLIDE transition=uncover
 # Proceso secuencial
-<div class="center">
+## En este ejemplo no hay solapamiento
 ![proceso secuencial](01-proceso-secuencial.png)
-<div>
-!SLIDE smbullets transition=uncover
+
+!SLIDE transition=uncover
 # Proceso en cascada
 ## Es mejor solapar trabajo
-<div class="center">
 ![proceso en cascada](02-proceso-cascada.png)
-<div>
 
+!SLIDE transition=uncover
+# Proceso incremental
+![proceso incremental](03-proceso-incremental.png)
+
+!SLIDE transition=uncover
+# Proceso incremental 
+## Mejor hacer *todo* incremental
+![proceso incremental](04-proceso-incremental-completo.png)
+
+*Pero... ¿Cómo planificar sin saber qué hacer?*
+
+!SLIDE transition=uncover
+# Proceso incremental con fase de exploración
+![proceso incremental](05-proceso-incremental-exploracion.png)
+
+*¿Si deseamos obtener validaciones frecuentes con el cliente?*
+
+!SLIDE transition=uncover
+# Proceso iterativo e incremental
+![proceso incremental](06-proceso-iterativo-incremental.png)
+*¿Y con pruebas de regresión entre iteraciones?*
+
+!SLIDE center transition=uncover
+![proceso incremental](07-proceso-iterativo-incremental-regresion.png)
+
+!SLIDE bullets transition=uncover
+# Modelos de proceso y metodologías
+* Aportan disciplina a la Ingeniería de Software
+* Un modelo de proceso es una estrategia *global* respecto de cómo
+  abordar un proyecto
+* Una **metodología** define **Quién** debe hacer **Qué**, **Cuándo** y **Cómo**
+  debe hacerlo
+  * Metodologías tradicionales
+  * Metodologías ágiles
+
+!SLIDE center transition=uncover
+# Actividad
+## The Hard Choice Game
