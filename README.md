@@ -7,7 +7,7 @@ El material fue desarrollado empleando [showoff](https://github.com/schacon/show
 
 # Para acceder al material en línea
 
-Ingrese en http://chrodriguez.github.io/capacitacion-ruby-ttps
+Ingrese en http://TTPS-ruby.github.io/capacitacion-ruby-ttps
 
 # Para iniciar la presentación en forma local:
 
