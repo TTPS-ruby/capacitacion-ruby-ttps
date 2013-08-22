@@ -1,3 +1,5 @@
+!SLIDE center transition=uncover
+# Introducción al proceso del software
 !SLIDE bullets transition=uncover
 # Mejora de los procesos de producción
 * Todo proyecto necesita ser ejecutado y entregado bajo ciertas restricciones
