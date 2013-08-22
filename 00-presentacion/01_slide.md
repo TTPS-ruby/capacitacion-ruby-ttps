@@ -39,10 +39,12 @@
 
 !SLIDE smbullets transition=uncover
 # Programa
-* Rake
 * TDD
-* Gemas: rubygems, bundler
-* Ruby en la web
+* Gemas: rubygems
+* Rake
+* Bundler
+* HTTP
+* La web
   * Rack
   * Sinatra
   * ORMs
