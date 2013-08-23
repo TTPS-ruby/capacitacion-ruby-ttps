@@ -6,11 +6,11 @@
 !SLIDE smbullets transition=uncover
 # La cátedra 
 * **Profesor:** Lic. Christian A. Rodríguez 
-  [![car@info.unlp.edu.ar](mail.png)](mailto:car@info.unlp.edu.ar "car@info.unlp.edu.ar") 
+  [![car@info.unlp.edu.ar](mail.png)](mailto:car@info.unlp.edu.ar "car@info.unlp.edu.ar")
   [![twitter](twitter.png)](https://twitter.com/car_unlp "twitter")
   [![github](github.png)](https://github.com/chrodriguez "github")
 * **JTP:** Lic. Patricio Mac Adden
-  [![pmacadden@cespi.unlp.edu.ar](mail.png)](mailto:pmacadden@cespi.unlp.edu.ar "pmacadden@cespi.unlp.edu.ar") 
+  [![patriciomacadden@gmail.com](mail.png)](mailto:patriciomacadden@gmail.com "patriciomacadden@gmail.com")
   [![twitter](twitter.png)](https://twitter.com/maxawen "twitter")
   [![github](github.png)](https://github.com/patriciomacadden "github")
 * **Ayudantes:** 
