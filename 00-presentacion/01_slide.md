@@ -16,6 +16,7 @@
 * **Ayudantes:** 
   * APU Fernando López
   * Fernando Martinez
+  * Francisco Raposeiras
 
 !SLIDE bullets transition=uncover
 # Horarios de cursada
