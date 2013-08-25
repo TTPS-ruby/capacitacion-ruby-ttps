@@ -8,7 +8,7 @@ http://www.sei.cmu.edu/architecture/tools/hardchoices/
 ## Materiales
 
 * El tablero que puede descargarse [aqui](HardChoices.pdf)
-* En cada tablero podrán jugar 4-5 personas. Prever suficientes tableros según la
+* En cada tablero podrán jugar entre 2 y 5 personas. Prever suficientes tableros según la
 cantidad de participantes. Imprimir los tableros de juego. Recortar las tarjetas
 de herramientas y puentes.
 
@@ -19,7 +19,7 @@ alrededor de la cual sentarse para jugar.
 
 ## Reglas:
 
-Establecer grupos de 4-5 jugadores en cada tablero. Proporcionarles dos dados,
+Establecer grupos de 2,3,4 o 5 jugadores en cada tablero. Proporcionarles dos dados,
 fichas y tarjetas de herramientas y puentes. Explicar brevemente las siguientes
 reglas del juego, SIN detallar el objetivo.
 
@@ -29,10 +29,11 @@ cuenta.
 * No es necesario caer exactamente en la celda de la meta.
 * Cuando se cae en una celda de herramienta se recoge una tarjeta de herramienta.
 * Las tarjetas de herramienta darán un punto adicional en el cómputo del jugador.
-* Cuando se cae o pasa por un puente se coge una tarjeta de puente. Las tarjetas
+* Cuando se cae o pasa por un puente se recoge una tarjeta de puente. Las tarjetas
 de puente restarán un punto en el cómputo del jugador.
-* Un jugador en su turno puede cambiar de dirección, es decir, puede devolverse
-(para intentar caer en una celda de herramienta).
+* Un jugador en su turno puede cambiar de dirección, es decir, puede volver
+  hacia atrás para intentar caer en una celda de herramienta luego de haber
+lanzado los dados
 * Caer sobre la ficha de otro jugador le devuelve al inicio :-).
 
 ## Primera Ronda
