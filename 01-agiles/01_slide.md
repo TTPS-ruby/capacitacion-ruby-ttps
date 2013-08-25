@@ -1,4 +1,4 @@
-!SLIDE center
+!SLIDE center transition=uncover
 # Metodologías Ágiles
 
 !SLIDE smbullets transition=uncover
