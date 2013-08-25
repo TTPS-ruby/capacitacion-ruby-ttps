@@ -88,3 +88,8 @@
 !SLIDE center transition=uncover
 # Actividad
 ## The Hard Choice Game
+.notes Se requieren unos 40 minutos para realizar la actividad. Se trata de una
+sencilla e interesante actividad para ilustrar el concepto de Deuda Técnica.
+Pero más allá de dicho propósito, esta actividad permite motivar al inicio de un curso, 
+lo diferente que es una estrategia de trabajo en equipo respecto de una estrategia 
+de trabajo individual. Ver más en https://github.com/TTPS-ruby/capacitacion-ruby-ttps/blob/master/actividades/01-agiles/hard_choices.md
