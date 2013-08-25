@@ -7,7 +7,8 @@ http://www.sei.cmu.edu/architecture/tools/hardchoices/
 
 ## Materiales
 
-* El tablero que puede descargarse (aqui)[./HardChoices.pdf]
+* El tablero que puede descargarse
+  (aqui)[capacitacion-ruby-ttps/blob/master/actividades/01-agiles/HardChoices.pdf]
 * En cada tablero podrán jugar 4-5 personas. Prever suficientes tableros según la
 cantidad de participantes. Imprimir los tableros de juego. Recortar las tarjetas
 de herramientas y puentes.
