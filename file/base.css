@@ -88,3 +88,9 @@ code code {
   text-align: center;
   border: 2px solid black;
 }
+
+#bottom #notes 
+{
+  font-size: 0.9em;
+  font-weight: bold;
+}
