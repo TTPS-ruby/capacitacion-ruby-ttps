@@ -74,3 +74,29 @@ Process](http://books.google.com.ar/books/about/The_Unified_Software_Development
 # Proceso Dirigido por los Casos de Uso
 ## ¿Como es el proceso?
 ![Proceso dirigido por los casos de uso](08-rup-casos-de-uso.png)
+
+!SLIDE bullets transition=uncover
+# Proceso Iterativo e Incremental
+* El ciclo de vida iterativo se basa en la evolución de prototipos ejecutables 
+que se muestran a los usuarios y clientes
+* En el ciclo de vida iterativo a cada iteración se reproduce el ciclo de vida 
+en cascada a menor escala
+* Los objetivos de una iteración se establecen en función de la evaluación de 
+las iteraciones precedentes
+
+!SLIDE bullets transition=uncover
+# Proceso Iterativo e Incremental
+Para cada caso de uso implementado en la iteración, sus actividades se encadenan
+en una mini cascada
+
+![mini cascada](09-rup-mini-cascada.png)
+
+!SLIDE bullets transition=uncover
+# Proceso Centrado en la arquitectura
+* La arquitectura de un sistema es la organización o estructura de sus partes más 
+relevantes
+* Una arquitectura ejecutable es una implementación parcial del sistema, construida 
+para demostrar algunas funciones y propiedades
+* RUP establece refinamientos sucesivos de una arquitectura ejecutable, construida 
+como un prototipo evolutivo
+
