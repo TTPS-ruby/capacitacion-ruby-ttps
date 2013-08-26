@@ -15,6 +15,8 @@
   [![github](github.png)](https://github.com/patriciomacadden "github")
 * **Ayudantes:** 
   * APU Fernando López
+  [![flopez@linti.unlp.edu.ar](mail.png)](mailto:flopez@linti.unlp.edu.ar "flopez@linti.unlp.edu.ar")
+  [![github](github.png)](https://github.com/fernandolopez "github")
   * Fernando Martinez
   * APU J. Francisco Raposeiras
   [![rapofran@gmail.com](mail.png)](mailto:rapofran@gmail.com "rapofran@gmail.com")
