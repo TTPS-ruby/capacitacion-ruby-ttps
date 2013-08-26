@@ -16,7 +16,10 @@
 * **Ayudantes:** 
   * APU Fernando López
   * Fernando Martinez
-  * Francisco Raposeiras
+  * APU J. Francisco Raposeiras
+  [![rapofran@gmail.com](mail.png)](mailto:rapofran@gmail.com "rapofran@gmail.com")
+  [![twitter](twitter.png)](https://twitter.com/rapofran "twitter")
+  [![github](github.png)](https://github.com/rapofran "github")
 
 !SLIDE bullets transition=uncover
 # Horarios de cursada
