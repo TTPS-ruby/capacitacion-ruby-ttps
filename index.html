@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>TTPS: ruby</title>
+
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+  <script type="text/javascript" src="./js/coffee-script.js"></script>
+
+  
+    
+  
+
+  
+    <link rel="stylesheet" href="./file/base.css" type="text/css"/>
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content center" ref="00-presentacion/01_slide/1">
+<p><img src="./file/00-presentacion/ruby.png" alt="Ruby logo"/>
+
+<h1>Tecnolog&#xED;as de Producci&#xF3;n de Software</h1>
+
+<h2>Opci&#xF3;n Ruby</h2>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover">
+  <div class="content smbullets" ref="00-presentacion/01_slide/2">
+<h1>La c&#xE1;tedra</h1>
+
+<ul>
+<li><strong>Profesor:</strong> Lic. Christian A. Rodr&#xED;guez 
+<a href="mailto:car@info.unlp.edu.ar" title="car@info.unlp.edu.ar"><img src="./file/00-presentacion/mail.png" alt="car@info.unlp.edu.ar"/>
+<a href="https://twitter.com/car_unlp" title="twitter"><img src="./file/00-presentacion/twitter.png" alt="twitter"/>
+<a href="https://github.com/chrodriguez" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a>
+<li><strong>JTP:</strong> Lic. Patricio Mac Adden
+<a href="mailto:patriciomacadden@gmail.com" title="patriciomacadden@gmail.com"><img src="./file/00-presentacion/mail.png" alt="patriciomacadden@gmail.com"/>
+<a href="https://twitter.com/maxawen" title="twitter"><img src="./file/00-presentacion/twitter.png" alt="twitter"/>
+<a href="https://github.com/patriciomacadden" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a>
+<li><strong>Ayudantes:</strong> 
+
+<ul>
+<li>APU Fernando L&#xF3;pez
+<a href="mailto:flopez@linti.unlp.edu.ar" title="flopez@linti.unlp.edu.ar"><img src="./file/00-presentacion/mail.png" alt="flopez@linti.unlp.edu.ar"/>
+<a href="https://github.com/fernandolopez" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a>
+<li>Fernando Martinez</li>
+<li>APU J. Francisco Raposeiras
+<a href="mailto:rapofran@gmail.com" title="rapofran@gmail.com"><img src="./file/00-presentacion/mail.png" alt="rapofran@gmail.com"/>
+<a href="https://twitter.com/rapofran" title="twitter"><img src="./file/00-presentacion/twitter.png" alt="twitter"/>
+<a href="https://github.com/rapofran" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a>
+</a></a>
+</li>
+</a>
+</li>
+</ul></li></a></a></li></a></a></li></ul></div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="00-presentacion/01_slide/3">
+<h1>Horarios de cursada</h1>
+
+<ul>
+<li><strong>Lunes de 19 a 21 Aula 1-1</strong></li>
+<li><strong>Jueves de 19 a 21 Aula 1-1</strong></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="00-presentacion/01_slide/4">
+<h1>Programa</h1>
+
+<ul>
+<li>Metodolog&#xED;as &#xE1;giles</li>
+<li>Sistemas de control de versiones: GIT</li>
+<li>El lenguaje Ruby
+
+<ul>
+<li>Introducci&#xF3;n</li>
+<li>VMs: MRI, Rubinius, jRuby</li>
+<li>Preparaci&#xF3;n del entorno</li>
+<li>Objetos, arreglos, hashes, s&#xED;mbolos, tipos est&#xE1;ndar</li>
+<li>Estructuras de control</li>
+<li>Bloques e iteradores</li>
+<li>E/S estandar</li>
+<li>Clases de objetos, m&#xE9;todos y variables</li>
+<li>M&#xF3;dulos y mixins</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="00-presentacion/01_slide/5">
+<h1>Programa</h1>
+
+<ul>
+<li>TDD</li>
+<li>Gemas: rubygems</li>
+<li>Rake</li>
+<li>Bundler</li>
+<li>HTTP</li>
+<li>La web
+
+<ul>
+<li>Rack</li>
+<li>Sinatra</li>
+<li>ORMs</li>
+<li>Rails</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="00-presentacion/01_slide/6">
+<h1>Modalidad de cursada</h1>
+
+<ul>
+<li>Clases te&#xF3;rico pr&#xE1;cticas</li>
+<li>Compromisos semanales con los alumnos</li>
+<li>Trabajo en grupo. Los grupos podr&#xE1;n ir cambiando a lo largo de la cursada</li>
+<li>Aprobaci&#xF3;n de la cursada mediante trabajo pr&#xE1;ctico y coloquio</li>
+<li>Aprobaci&#xF3;n de la materia mediante extensi&#xF3;n del trabajo pr&#xE1;ctico y coloquio</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="00-presentacion/01_slide/7">
+<h1>Bibliograf&#xED;a / Recursos</h1>
+
+<ul>
+<li>A medida que se presenten los temas se indicar&#xE1;n las fuentes apropiadas</li>
+<li>Todo el material se encuentra bajo licencia <strong>Creative Commons</strong>:</li>
+</ul>
+
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"/></a><br/><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">TTPS - Opcion
+Ruby</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Christian A. Rodriguez</span> se encuentra bajo
+una <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es">Licencia
+Creative Commons Atribuci&#xF3;n-NoComercial-CompartirIgual 3.0 Unported</a>.</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/01_slide/1">
+<h1>Metodolog&#xED;as &#xC1;giles</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/01_slide/2">
+<h1>Temas</h1>
+
+<ul>
+<li>Introducci&#xF3;n al proceso del software</li>
+<li>Metodolog&#xED;as Tradicionales</li>
+<li>Metodolog&#xED;as &#xC1;giles</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/02_proceso_software/1">
+<h1>Introducci&#xF3;n al proceso del software</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/02_proceso_software/2">
+<h1>Mejora de los procesos de producci&#xF3;n</h1>
+
+<ul>
+<li>Todo proyecto necesita ser ejecutado y entregado bajo ciertas restricciones</li>
+<li>Estas restricciones son:
+
+<ul>
+<li>Alcance</li>
+<li>Plazo</li>
+<li>Costo</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/02_proceso_software/3">
+<h1>Mejora de los procesos de producci&#xF3;n</h1>
+
+<p><img src="./file/01-agiles/triangulo-gestion-proyectos.png" alt="triangulo"/>
+
+<ul>
+<li>Tri&#xE1;ngulo de la Gesti&#xF3;n de Proyectos
+
+<ul>
+<li>Cada lado del tri&#xE1;ngulo representa una restricci&#xF3;n</li>
+<li>Un lado no podr&#xE1; ser modificado sin impactar a los otros</li>
+</ul></li>
+</ul>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets incremental" ref="01-agiles/02_proceso_software/4">
+<h1>&#xBF;Qu&#xE9; es lo que queremos conseguir?</h1>
+
+<ul>
+<li>Mayor <strong>productividad</strong>
+
+<ul>
+<li><em>Relaci&#xF3;n entre los resultados y el tiempo utilizado para obtenerlos</em></li>
+</ul></li>
+<li>Mayor <strong>calidad</strong>
+
+<ul>
+<li><em>Que el producto final satisfaga las necesidades del usuario</em></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets incremental" ref="01-agiles/02_proceso_software/5">
+<h1>&#xC1;mbitos de mejora en Ingenier&#xED;a de software</h1>
+
+<ul>
+<li><strong>Notaci&#xF3;n:</strong> lenguajes</li>
+<li><strong>Herramientas:</strong> IDEs, frameworks</li>
+<li><strong>Procesos:</strong> <em>metodolog&#xED;as</em></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/02_proceso_software/6">
+<h1>Un modelo de proceso a <em>medida</em></h1>
+
+<ul>
+<li><span class="letter_box" style="background-color: yellow">P</span> Planificaci&#xF3;n</li>
+<li><span class="letter_box" style="background-color: #FFCC33">R</span> Requisitos</li>
+<li><span class="letter_box" style="background-color: #FF3366">D</span>
+Arquitectura y dise&#xF1;o</li>
+<li><span class="letter_box" style="background-color: #CCCCFF">C</span>
+Codificaci&#xF3;n (programaci&#xF3;n)</li>
+<li><span class="letter_box" style="background-color: #66FF99">T</span> Testeo de
+aceptaci&#xF3;n</li>
+<li><span class="letter_box" style="background-color: #B0B0B0">D</span> Despliegue
+(deployment)</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/7">
+<h1>Proceso secuencial</h1>
+
+<h2>En este ejemplo no hay solapamiento</h2>
+
+<p><img src="./file/01-agiles/01-proceso-secuencial.png" alt="proceso secuencial"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/8">
+<h1>Proceso en cascada</h1>
+
+<h2>Es mejor solapar trabajo</h2>
+
+<p><img src="./file/01-agiles/02-proceso-cascada.png" alt="proceso en cascada"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/9">
+<h1>Proceso incremental</h1>
+
+<p><img src="./file/01-agiles/03-proceso-incremental.png" alt="proceso incremental"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/10">
+<h1>Proceso incremental</h1>
+
+<h2>Mejor hacer <em>todo</em> incremental</h2>
+
+<p><img src="./file/01-agiles/04-proceso-incremental-completo.png" alt="proceso incremental"/>
+
+<p><em>Pero... &#xBF;C&#xF3;mo planificar sin saber qu&#xE9; hacer?</em></p>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/11">
+<h1>Proceso incremental con fase de exploraci&#xF3;n</h1>
+
+<p><img src="./file/01-agiles/05-proceso-incremental-exploracion.png" alt="proceso incremental"/>
+
+<p><em>&#xBF;Si deseamos obtener validaciones frecuentes con el cliente?</em></p>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/02_proceso_software/12">
+<h1>Proceso iterativo e incremental</h1>
+
+<p><img src="./file/01-agiles/06-proceso-iterativo-incremental.png" alt="proceso incremental">
+<em>&#xBF;Y con pruebas de regresi&#xF3;n entre iteraciones?</em></img>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/02_proceso_software/13">
+<p><img src="./file/01-agiles/07-proceso-iterativo-incremental-regresion.png" alt="proceso incremental"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/02_proceso_software/14">
+<h1>Modelos de proceso y metodolog&#xED;as</h1>
+
+<ul>
+<li>Aportan disciplina a la Ingenier&#xED;a de Software</li>
+<li>Un modelo de proceso es una estrategia <em>global</em> respecto de c&#xF3;mo
+abordar un proyecto</li>
+<li>Una <strong>metodolog&#xED;a</strong> define <strong>Qui&#xE9;n</strong> debe hacer <strong>Qu&#xE9;</strong>, <strong>Cu&#xE1;ndo</strong> y <strong>C&#xF3;mo</strong>
+debe hacerlo
+
+<ul>
+<li>Metodolog&#xED;as tradicionales</li>
+<li>Metodolog&#xED;as &#xE1;giles</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/02_proceso_software/15">
+<h1>Actividad</h1>
+
+<h2>The Hard Choice Game</h2>
+
+<p class="notes">Se requieren unos 40 minutos para realizar la actividad. Se trata de una
+sencilla e interesante actividad para ilustrar el concepto de Deuda T&#xE9;cnica.
+Pero m&#xE1;s all&#xE1; de dicho prop&#xF3;sito, esta actividad permite motivar al inicio de un curso, 
+lo diferente que es una estrategia de trabajo en equipo respecto de una estrategia 
+de trabajo individual. Ver m&#xE1;s en https://github.com/TTPS-ruby/capacitacion-ruby-ttps/blob/master/actividades/01-agiles/hard_choices.md</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/02_proceso_software/16">
+<h1>Sobre el juego</h1>
+
+<h2>Reglas b&#xE1;sicas</h2>
+
+<ul>
+<li>Armar grupos de no m&#xE1;s de 5 personas y no menos de 2</li>
+<li>Cada persona utilizar&#xE1; una ficha y lanzar&#xE1; en turnos el los dados</li>
+<li>Arrancar&#xE1; el jugador que lance el n&#xFA;mero m&#xE1;s alto</li>
+<li>Los turnos son en sentido horario</li>
+<li>Al llegar a la meta:
+
+<ul>
+<li>El primer jugador en llegar obtiene <strong>5 puntos</strong></li>
+<li>El segundo <strong>2 puntos</strong></li>
+<li>El tercero <strong>1 punto</strong></li>
+</ul></li>
+<li>El juego termina cuando hayan llegado tres jugadores a la meta, el resto <strong>no
+cuenta</strong></li>
+<li>No es necesario caer exactamente en la celda de la meta para finalizar</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/02_proceso_software/17">
+<h1>Sobre el juego</h1>
+
+<h2>Puntuaci&#xF3;n</h2>
+
+<ul>
+<li>Cuando se cae en una celda de herramienta se <strong>recoge una tarjeta de
+herramienta</strong>
+
+<ul>
+<li><em>Las tarjetas de herramienta dar&#xE1;n un punto adicional en el c&#xF3;mputo del
+jugador</em></li>
+</ul></li>
+<li>Cuando se cae o pasa por un puente se recoge una tarjeta de puente. 
+
+<ul>
+<li><em>Las tarjetas de puente restar&#xE1;n un punto en el c&#xF3;mputo del jugador</em></li>
+</ul></li>
+<li>Un jugador en su turno puede <strong>cambiar de direcci&#xF3;n</strong>, es decir, puede volver
+hacia atr&#xE1;s para intentar caer en una celda de herramienta <em>luego de haber
+lanzado los dados</em></li>
+<li>Caer sobre la ficha de otro jugador le devuelve al inicio :-)</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/02_proceso_software/18">
+<h1>Empieza el juego</h1>
+
+<h2>Ronda 1</h2>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/02_proceso_software/19">
+<h1>Nueva jugada</h1>
+
+<h2>Ronda 2: cambian las reglas</h2>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/02_proceso_software/20">
+<h1>Nuevas reglas</h1>
+
+<ul>
+<li>Solo jugamos por 6 minutos</li>
+<li>Ajustamos el
+<a href="http://www.online-stopwatch.com/full-screen-stopwatch/">cron&#xF3;metro</a></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets incremental" ref="01-agiles/02_proceso_software/21">
+<h1>Conclusiones</h1>
+
+<ul>
+<li>&#xBF;Qu&#xE9; estrategias utilizaron?</li>
+<li>&#xBF;Como fu&#xE9; el comportamiento de los participantes en cada tablero?
+
+<ul>
+<li><strong>Ronda 1:</strong> relajaci&#xF3;n, apat&#xED;a y ego&#xED;smo. La argentinidad al palo...</li>
+<li><strong>Ronda 2:</strong> tensi&#xF3;n, colaboraci&#xF3;n e incluso sacrificio si alguien dej&#xF3; de 
+jugar</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets incremental small" ref="01-agiles/02_proceso_software/22">
+<h1>Comparamos con un proyecto de software</h1>
+
+<ul>
+<li>El tiempo establecido es el plazo del proyecto.
+
+<ul>
+<li>Hay muchas formas de llegar a la meta</li>
+</ul></li>
+<li>Recoger herramientas es aplicar buenas pr&#xE1;cticas de ingenier&#xED;a de software</li>
+<li>Utilizar puentes o atajos es saltarse dichas buenas pr&#xE1;cticas 
+
+<ul>
+<li>No esforzarse por conseguir una arquitectura ideal</li>
+</ul></li>
+<li><strong><em>Sin embargo, para el &#xE9;xito del proyecto puede que no sea tan determinante una
+buena arquitectura respecto de entregar un producto que cumple con las expectativas
+del cliente y en el plazo oportuno</em></strong>
+
+<ul>
+<li><em>No se puede estar eternamente eligiendo herramientas</em></li>
+<li><em>Tampoco tiene sentido llegar a la meta con un producto muy pobre en arquitectura lo cual
+puede ocasionar problemas en el posterior mantenimiento</em></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/03_intro_tradicional/1">
+<h1>Metodolog&#xED;as Tradicionales</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/2">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li><strong>RUP (Rational Unified Process)</strong> es la metodolog&#xED;a tardicional m&#xE1;s conocida
+y mejor documentada</li>
+<li>Actualmente es un producto de IBM, pero su esencia est&#xE1; descrita en el libro
+<em><a href="http://books.google.com.ar/books/about/The_Unified_Software_Development_Process.html?id=p6-KQlg9IVUC&amp;redir_esc=y">The Unified Software Development
+Process</a></em> </li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/03_intro_tradicional/3">
+<h1>Elementos RUP</h1>
+
+<h2>Workflows o disciplinas</h2>
+
+<ul>
+<li><strong>Workflows primarios</strong>
+
+<ul>
+<li>Business Modeling (Modado del Negocio)</li>
+<li>Requirements (Requisitos)</li>
+<li>Analysis &amp; Design (An&#xE1;lisis y Dise&#xF1;o)</li>
+<li>Implementation (Implementaci&#xF3;n)</li>
+<li>Test (Pruebas)</li>
+<li>Deployment (Despliegue)</li>
+</ul></li>
+<li><strong>Workflows de Apoyo</strong>
+
+<ul>
+<li>Environment (Entorno)</li>
+<li>Project Management (Gesti&#xF3;n del Proyecto)</li>
+<li>Configuration &amp; Change Management (Gesti&#xF3;n de
+Configuraci&#xF3;n y Cambios)</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="01-agiles/03_intro_tradicional/4">
+<h1>Elementos RUP</h1>
+
+<h2>Roles y actividades</h2>
+
+<ul>
+<li>Analyst
+
+<ul>
+<li>Business-Process Analyst</li>
+<li>Business Designer</li>
+<li>Business-Model Reviewer</li>
+<li>Requirements Reviewer</li>
+<li>System Analyst</li>
+<li>Use-Case Specifier</li>
+<li>User-Interface Designer</li>
+</ul></li>
+<li>Developer
+
+<ul>
+<li>Architect</li>
+<li>Architecture Reviewer</li>
+<li>Capsule Designer</li>
+<li>Code Reviewer</li>
+<li>Database Designer</li>
+<li>Design Reviewer</li>
+<li>Designer</li>
+<li>Implementer</li>
+<li>Integrator</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="01-agiles/03_intro_tradicional/5">
+<h1>Elementos RUP</h1>
+
+<h2>Roles y actividades</h2>
+
+<ul>
+<li>Testing professional
+
+<ul>
+<li>Test Designer</li>
+<li>Tester</li>
+</ul></li>
+<li>Manager
+
+<ul>
+<li>Change Control Manager</li>
+<li>Configuration Manager</li>
+<li>Deployment Manager</li>
+<li>Process Engineer</li>
+<li>Project Manager</li>
+<li>Project Reviewer</li>
+</ul></li>
+<li>Other
+
+<ul>
+<li>Course Developer</li>
+<li>Graphic Artist</li>
+<li>Stakeholder</li>
+<li>System Administrator</li>
+<li>Technical Writer</li>
+<li>Tool Specialist</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/6">
+<h1>Caracter&#xED;sticas esenciales de RUP</h1>
+
+<ul>
+<li>Proceso Dirigido por los Casos de Uso</li>
+<li>Proceso Iterativo e Incremental</li>
+<li>Proceso Centrado en la Arquitectura</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/7">
+<h1>Proceso Dirigido por los Casos de Uso</h1>
+
+<h2>&#xBF;Como es el proceso?</h2>
+
+<p><img src="./file/01-agiles/08-rup-casos-de-uso.png" alt="Proceso dirigido por los casos de uso"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/8">
+<h1>Proceso Iterativo e Incremental</h1>
+
+<ul>
+<li>El ciclo de vida iterativo se basa en la evoluci&#xF3;n de prototipos ejecutables 
+que se muestran a los usuarios y clientes</li>
+<li>En el ciclo de vida iterativo a cada iteraci&#xF3;n se reproduce el ciclo de vida 
+en cascada a menor escala</li>
+<li>Los objetivos de una iteraci&#xF3;n se establecen en funci&#xF3;n de la evaluaci&#xF3;n de 
+las iteraciones precedentes</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/9">
+<h1>Proceso Iterativo e Incremental</h1>
+
+<p>Para cada caso de uso implementado en la iteraci&#xF3;n, sus actividades se encadenan
+en una mini cascada</p>
+
+<p><img src="./file/01-agiles/09-rup-mini-cascada.png" alt="mini cascada"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/03_intro_tradicional/10">
+<h1>Proceso Centrado en la arquitectura</h1>
+
+<ul>
+<li>La arquitectura de un sistema es la organizaci&#xF3;n o estructura de sus partes m&#xE1;s 
+relevantes</li>
+<li>Una arquitectura ejecutable es una implementaci&#xF3;n parcial del sistema, construida 
+para demostrar algunas funciones y propiedades</li>
+<li>RUP establece refinamientos sucesivos de una arquitectura ejecutable, construida 
+como un prototipo evolutivo</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/04_intro_agiles/1">
+<h1>Metodolog&#xED;as &#xC1;giles</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/04_intro_agiles/2">
+<h1>Ser &#xE1;gile es actuar seg&#xFA;n el manifiesto &#xE1;gil</h1>
+
+<h2>Manifiesto por el Desarrollo &#xC1;gil de Software</h2>
+
+<p>Estamos descubriendo formas mejores de desarrollar
+software tanto por nuestra propia experiencia como
+ayudando a terceros. A trav&#xE9;s de este trabajo hemos
+aprendido a valorar:</p>
+
+<p><strong>Individuos e interacciones</strong> <em>sobre procesos y herramientas</em>
+<strong>Software funcionando</strong> <em>sobre documentaci&#xF3;n extensiva</em>
+<strong>Colaboraci&#xF3;n con el cliente</strong> <em>sobre negociaci&#xF3;n contractual</em>
+<strong>Respuesta ante el cambio</strong> <em>sobre seguir un plan</em></p>
+
+<p>Esto es, aunque valoramos los elementos de la derecha,
+valoramos m&#xE1;s los de la izquierda.</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/04_intro_agiles/3">
+<h1>Principios del Manifiesto &#xC1;gil</h1>
+
+<ul>
+<li><p>Nuestra mayor prioridad es satisfacer al cliente
+mediante la entrega temprana y continua de software
+con valor.</p></li>
+<li><p>Aceptamos que los requisitos cambien, incluso en etapas 
+tard&#xED;as del desarrollo. Los procesos &#xC1;giles aprovechan
+el cambio para proporcionar ventaja competitiva al 
+cliente.</p></li>
+<li><p>Entregamos software funcional frecuentemente, entre dos
+semanas y dos meses, con preferencia al periodo de 
+tiempo m&#xE1;s corto posible.</p></li>
+<li><p>Los responsables de negocio y los desarrolladores
+trabajamos juntos de forma cotidiana durante todo
+el proyecto.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/04_intro_agiles/4">
+<h1>Principios del Manifiesto &#xC1;gil</h1>
+
+<ul>
+<li><p>Los proyectos se desarrollan en torno a individuos 
+motivados. Hay que darles el entorno y el apoyo que 
+necesitan, y confiarles la ejecuci&#xF3;n del trabajo. </p></li>
+<li><p>El m&#xE9;todo m&#xE1;s eficiente y efectivo de comunicar 
+informaci&#xF3;n al equipo de desarrollo y entre sus 
+miembros es la conversaci&#xF3;n cara a cara.</p></li>
+<li><p>El software funcionando es la medida principal de 
+progreso.</p></li>
+<li><p>Los procesos &#xC1;giles promueven el desarrollo 
+sostenible. Los promotores, desarrolladores y usuarios
+debemos ser capaces de mantener un ritmo constante 
+de forma indefinida.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/04_intro_agiles/5">
+<h1>Principios del Manifiesto &#xC1;gil</h1>
+
+<ul>
+<li><p>La atenci&#xF3;n continua a la excelencia t&#xE9;cnica y al 
+buen dise&#xF1;o mejora la Agilidad.</p></li>
+<li><p>La simplicidad, o el arte de maximizar la cantidad de
+trabajo no realizado, es esencial.</p></li>
+<li><p>Las mejores arquitecturas, requisitos y dise&#xF1;os
+emergen de equipos auto-organizados.</p></li>
+<li><p>A intervalos regulares el equipo reflexiona sobre
+c&#xF3;mo ser m&#xE1;s efectivo para a continuaci&#xF3;n ajustar y
+perfeccionar su comportamiento en consecuencia.</p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="01-agiles/04_intro_agiles/6">
+<h1>&#xBF;Por qu&#xE9; surgen las metodolog&#xED;as &#xE1;giles?</h1>
+
+<ul>
+<li>Dificultades para implantar metodolog&#xED;as
+tradicionales. Procesos ceremoniosos, herramientas y
+notaciones de modelado sofisticadas (UML)</li>
+<li>El enfoque &#xE1;gil es una soluci&#xF3;n a medida para un
+segmento importante de proyectos de desarrollo de
+software</li>
+<li><em>"Aceptar el cambio" ...</em></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="01-agiles/04_intro_agiles/7">
+<h1>Metodolog&#xED;as y t&#xE9;cnicas &#xE1;giles m&#xE1;s populares</h1>
+
+<ul>
+<li><strong>Kanban</strong>, <em>Andrew J. Davison</em></li>
+<li><strong>Scrum</strong>, <em>Ken Schwaber &amp; Jeff Sutherland</em></li>
+<li><strong>Extreme Programming</strong>, <em>Kent Beck</em></li>
+<li><strong>Lean Software Development</strong>, <em>Mary Poppendieck</em></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="01-agiles/05_scrum/1">
+<h1>SCRUM</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/05_scrum/2">
+<h1>Introducci&#xF3;n</h1>
+
+<p>SCRUM se basa en lo que se conoce como <strong>Sprints</strong></p>
+
+<p><em>Un sprint concentra el esfuerzo durante un per&#xED;odo corto de tiempo hacia metas
+prefijadas</em></p>
+
+<p><img src="./file/01-agiles/10-scrum-01.png" alt="sprint"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/05_scrum/3">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li>El <strong>Product Owner (PO)</strong> compila todos los pedidos planificados para el producto y
+prioriza las funcionalidades</li>
+<li>El resultado del trabajo del PO es el <strong>Product Backlog</strong>, una lista de tareas
+o <strong>TODO</strong> que constantemente se prioriza. Antes de cada Sprint, las tareas de
+mayor prioridad son introducidas al <strong>Spring Backlog</strong></li>
+<li>En conjunto con el usuario, los miembros del proyecto forman un <strong>Scrum Team</strong>
+integrado por 5-9 personas. Luego de reuniones con el PO, se determina el
+objetivo del Sprint y la funcionalidad priorizada, se explota en tareas
+detalladas.
+
+<ul>
+<li>Notar que el cliente es parte del Scrum Team</li>
+<li>El Scrum Team es auto-organizado y los miembros tienen una
+responsabilidad conjunta en torno a los resultados</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/4">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li>El <strong>Scrum Master</strong> coordina al equipo de desarrollo, evitando cualquier
+posible impedimento, y constantemente trata de asegurar que el equipo se
+encuentre en las mejores circunstancias posibles de forma de poder cumplir con
+el objetivo fijado para el Sprint
+
+<ul>
+<li>No es necesario que sea t&#xE9;cnico</li>
+</ul></li>
+<li>Cada Sprint realza el valor del producto, agregando nuevas funcionalidades y
+mejoras que pueden entregarse al cliente</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/5">
+<h1>Roles</h1>
+
+<h2>Scrum Team</h2>
+
+<ul>
+<li>Son quienes resuelven problemas y dise&#xF1;an soluciones. Normalmente se compone de
+5 a 9 integrantes - <em>este n&#xFA;mero de personas en un grupo ha demostrado ser el
+adecuado para este tipo de trabajos</em></li>
+<li>Los miembros deciden c&#xF3;mo organizar el trabajo y c&#xF3;mo se realiza distribuci&#xF3;n
+de tareas. No hay roles fijados - <em>todos podr&#xE1;n cambiar de tareas con
+cualquier otro miembro</em>. Esto no implica que no existan miembros que sean
+expertos en determinado campo.</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/05_scrum/6">
+<h1>Roles</h1>
+
+<h2>Product Owner</h2>
+
+<ul>
+<li>Es la voz del cliente</li>
+<li>Asegura que el Scrum Team trabaje con una adecuada perspectiva del negocio</li>
+<li>Es quien administra el Product Backlog - <em>una lista de tareas pendientes donde
+todas las especificaciones para el producto son expresadas indicando cu&#xE1;n
+rentables considera que son</em>
+
+<ul>
+<li>El documento debe ser visible por toda la organizaci&#xF3;n de forma tal que
+<strong>todos</strong> est&#xE9;n al tanto de qu&#xE9; se espera en futuras versiones del producto</li>
+</ul></li>
+<li>El PO generalmente es el cliente, pero puede ser parte interna de la
+organizaci&#xF3;n. </li>
+<li>Es aconsejable que el PO tenga un perfil comercial y conozca bien los procesos
+de negocio</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/7">
+<h1>Roles</h1>
+
+<h2>Scrum Master</h2>
+
+<ul>
+<li>Es una combinaci&#xF3;n de los roles de: mentor, mediador, resolver problemas y portero.</li>
+<li>Debe tener breves reuniones diarias con el equipo - <em>Daily Scrums</em></li>
+<li>Cuando alguien externo al proyecto introduce un tema importante para discutir
+con el equipo, el Scrum Master trata de asegurar que los integrantes se distraigan 
+lo menos posible</li>
+<li>Debe mantener la postura de <em>aqu&#xED; y ahora</em> en relaci&#xF3;n al trabajo</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/8">
+<h1>Roles</h1>
+
+<h2>Scrum Master</h2>
+
+<ul>
+<li>Focaliza sus esfuerzos en facilitar al equipo con las mejores circunstancias
+para alcanzar las metas acordadas para el Sprint</li>
+<li>Luego de cada Sprint, el Scrum Master mantiene una reuni&#xF3;n de evaluaci&#xF3;n con
+el equipo completo - <em>Retrospectiva del Sprint</em>
+
+<ul>
+<li>Se analizan experiencias y obtienen conclusiones</li>
+<li>El objetivo es elevar el conocimiento global del equipo y motivar antes del
+pr&#xF3;ximo Sprint</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/9">
+<h1>Procesos</h1>
+
+<h2>Creando el backlog</h2>
+
+<ul>
+<li>El PO recompila todos los requerimientos y especificaciones que son la base
+de los cambios a introducir al producto: nuevas funcionalidades y correcci&#xF3;n
+de errores</li>
+<li>De aqu&#xED; se obtiene una lista priorizada de aquellos cambios que se desean
+porque tienen valor para la organizacion.</li>
+<li>Al inicio de cada Sprint el PO deber&#xED;a <em>congelar</em> los principales items de la
+lista y presentarlos al equipo de Scrum</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/10">
+<h1>Procesos</h1>
+
+<h2>El Sprint</h2>
+
+<ul>
+<li>De los d&#xED;as destinados a cada sprint (generalmente 15-30 d&#xED;as), los primeros
+se utilizan para crear el <em>Sprint Backlog</em></li>
+<li>Cuando se determian las tareas y tiempo para realizarlas, el PO deja de
+participar</li>
+<li>El equipo trabajar&#xE1; bajo su propia responsabilidad</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="01-agiles/05_scrum/11">
+<h1>Procesos</h1>
+
+<h2>Scrum diario</h2>
+
+<ul>
+<li>Cada d&#xED;a, a la misma hora, el Scrum Master con el equipo tienen una breve
+reunoi&#xF3;n</li>
+<li>El prop&#xF3;sito es el de <em>eliminar</em> todos los impedimentos de velocidad en el
+grupo</li>
+<li>Cada participante deber&#xED;a, de alguna manera, responder a las siguientes
+preguntas:
+
+<ul>
+<li>&#xBF;Qu&#xE9; es lo que hizo desde la &#xFA;ltima reuni&#xF3;n?</li>
+<li>&#xBF;Qu&#xE9; har&#xE1; desde ahora hasta la pr&#xF3;xima reuni&#xF3;n?</li>
+<li>&#xBF;Hay algo que no permita avanzar en lo planificado?</li>
+</ul></li>
+</ul>
+
+<p><em>Las dos primeras preguntas ofrecen a los participantes una visi&#xF3;n global del
+avance del proyecto. La tercera, sirve para solucionar problemas</em></p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/05_scrum/12">
+<h1>M&#xE9;tricas</h1>
+
+<ul>
+<li>Las tareas en el Sprint Backlog deben estimarse en cantidad de horas
+
+<ul>
+<li>El Sprint Backlog entonces tiene una cantidad de horas pendientes</li>
+</ul></li>
+<li>Diariamente podemos analizar el avance del equipo usando un gr&#xE1;fico conocido
+como <strong>burn-down</strong></li>
+</ul>
+
+<p><img src="./file/01-agiles/10-scrum-02.png" alt="burndown"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content" ref="01-agiles/05_scrum/13">
+<h1>SCRUM en 10 minutos</h1>
+
+<p><center>
+<iframe width="560" height="315" src="//www.youtube.com/embed/XU0llRltyFM" frameborder="0"/>
+</center></p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="01-agiles/99_referencias">
+<h1>Referencias</h1>
+
+<ul>
+<li>http://agilemanifesto.org/</li>
+<li>http://tastycupcakes.org/</li>
+<li>http://agilismoatwork.blogspot.com.ar/</li>
+<li>http://psw.tuneupprocess.com/</li>
+<li>http://softhouseeducation.com/en/produkt/scrum-five-minutes</li>
+<li>http://www.mountaingoatsoftware.com/</li>
+</ul>
+</div>
+</div></div>
+<div id="pauseScreen">
+  
+</div>
+
+</body>
+</html>
