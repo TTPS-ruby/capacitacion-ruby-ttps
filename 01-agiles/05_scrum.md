@@ -131,6 +131,5 @@ avance del proyecto. La tercera, sirve para solucionar problemas*
 # SCRUM en 10 minutos
 ## Un video ágil
 <div style="text-align: center">
-<iframe width="560" height="315" src="//www.youtube.com/embed/XU0llRltyFM"
-frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//www.youtube.com/embed/XU0llRltyFM" frameborder="0" allowfullscreen></iframe>
 </div>
