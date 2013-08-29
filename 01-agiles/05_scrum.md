@@ -129,7 +129,8 @@ avance del proyecto. La tercera, sirve para solucionar problemas*
 
 !SLIDE  transition=uncover
 # SCRUM en 10 minutos
-<center>
+## Un video ágil
+<div style="text-align: center">
 <iframe width="560" height="315" src="//www.youtube.com/embed/XU0llRltyFM"
 frameborder="0" allowfullscreen></iframe>
-</center>
+</div>
