@@ -23,7 +23,7 @@
 !SLIDE smbullets transition=uncover
 # Obteniendo un repositorio git
 
-* Iniciarlizar un repositorio en un directorio existente
+* Inicializar un repositorio en un directorio existente
 
 ```
 $ git init
@@ -209,3 +209,9 @@ $ git rebase master
 
 * La historia es más limpia
 * Simula una historia lineal
+
+!SLIDE smbullets transition=uncover
+# Juegos!
+
+* [GitHug](https://github.com/Gazler/githug)
+* [Learn git branching](http://pcottle.github.io/learnGitBranching)
