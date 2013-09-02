@@ -46,6 +46,25 @@ $ git clone https://github.com/rails/rails.git
 * Son repositorios externos (ejemplo: de coworkers).
 * Puede haber n remotos
 
+!SLIDE center transition=uncover
+# El workflow completo
+![workflow completo git](git-workflow.png)
+
+!SLIDE center transition=uncover
+# Actividad con GIT
+
+!SLIDE bullets transition=uncover
+# Interacción con GIT
+
+* Objetivo
+  * Instalar `git`
+  * Aprender el workflow simple de trabajo con git
+
+* Actividad
+  * Acceder a https://github.com/TTPS-ruby/sandbox
+  * Leer la actividad para el directorio `alumnos/` en el **README** del
+    proyecto **sandbox**
+
 !SLIDE smbullets transition=uncover
 # ¿Qué es un branch?
 
