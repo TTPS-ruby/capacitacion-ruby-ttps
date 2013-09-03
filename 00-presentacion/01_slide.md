@@ -18,6 +18,10 @@
   [![flopez@linti.unlp.edu.ar](mail.png)](mailto:flopez@linti.unlp.edu.ar "flopez@linti.unlp.edu.ar")
   [![github](github.png)](https://github.com/fernandolopez "github")
   * Fernando Martinez
+  [![fernando.martinez@live.com.ar](mail.png)](mailto:fernando.martinez@live.com.ar "rapofran@gmail.com")
+  [![twitter](twitter.png)](https://twitter.com/F_3r "twitter")
+  [![github](github.png)](https://github.com/f-3r "github")
+
   * APU J. Francisco Raposeiras
   [![rapofran@gmail.com](mail.png)](mailto:rapofran@gmail.com "rapofran@gmail.com")
   [![twitter](twitter.png)](https://twitter.com/rapofran "twitter")
