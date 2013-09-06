@@ -213,5 +213,11 @@ $ git rebase master
 !SLIDE smbullets transition=uncover
 # Juegos!
 
+* [tryGit](http://try.github.io/)
 * [GitHug](https://github.com/Gazler/githug)
 * [Learn git branching](http://pcottle.github.io/learnGitBranching)
+
+!SLIDE smbullets transition=uncover
+# Referencias
+
+* [Pro Git](http://git-scm.com/book)
