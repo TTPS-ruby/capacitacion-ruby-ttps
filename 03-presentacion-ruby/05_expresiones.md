@@ -1,7 +1,7 @@
 !SLIDE center transition=uncover
 # Expresiones
 !SLIDE center transition=uncover
-## En Ruby casi todo retorna un valor 
+## En Ruby toda expresión retorna un valor 
 
 !SLIDE execute transition=uncover
 # En estos casos retorna el valor esperado

@@ -6,7 +6,7 @@
 * Dinámico
 * Sintaxis concisa y expresiva 
 * Orientado a objetos
-* Capacidades de mteprogramación
+* Capacidades de metaprogramación
 * Carcterísticas funcionales
 
 !SLIDE center transition=uncover
