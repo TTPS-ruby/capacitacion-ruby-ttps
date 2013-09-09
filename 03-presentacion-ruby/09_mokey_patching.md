@@ -16,7 +16,7 @@
 	class Range
 		# Agregamos even a Range
 		def even
-		  self.select(&:even?)  
+		  self.select(& :even?)  
 		end
 	end
 	

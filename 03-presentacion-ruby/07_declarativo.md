@@ -8,7 +8,7 @@
 	
 	# o lo que es igual:
 	
-	(1..10).select(&:even?)
+	(1..10).select(& :even?)
 
 ## Procesando cada elemento
 	@@@ ruby
