@@ -7,7 +7,7 @@
 * Sintaxis concisa y expresiva 
 * Orientado a objetos
 * Capacidades de metaprogramación
-* Carcterísticas funcionales
+* Características funcionales
 
 !SLIDE center transition=uncover
 # Entendiendo Ruby
