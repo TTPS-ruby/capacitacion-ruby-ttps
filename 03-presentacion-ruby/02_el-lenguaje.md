@@ -6,8 +6,8 @@
 * Dinámico
 * Sintaxis concisa y expresiva 
 * Orientado a objetos
-* Capacidades de mteprogramación
-* Carcterísticas funcionales
+* Capacidades de metaprogramación
+* Características funcionales
 
 !SLIDE center transition=uncover
 # Entendiendo Ruby
