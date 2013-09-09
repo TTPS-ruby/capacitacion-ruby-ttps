@@ -118,7 +118,7 @@
 	
 	dos	= ->(n, m){ n * 2 + m }
 	
-	tres	= ->(n=0, m){ n * 2 + m}
+	tres	= ->(n, m=0){ n * 2 + m}
 	
 	# Entonces
 	uno.call 2 	 		# => 4
