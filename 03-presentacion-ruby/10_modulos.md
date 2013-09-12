@@ -38,6 +38,6 @@
 	class String; include MyLog; end
 	
 	"hola".log("pepe")
-	#Imprimira: pepe
+	#Log: pepe
 	# => nil 
 

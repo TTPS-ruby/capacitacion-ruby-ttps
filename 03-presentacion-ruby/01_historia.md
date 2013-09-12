@@ -11,11 +11,11 @@
 
 !SLIDE bullets transition=uncover
 # MATZ
-* [Yakihiro Matsumoto](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto)
+* [Yukihiro Matsumoto](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto)
   * En japonés: 松本行弘 (まつもとゆきひろ)
   * Matz más simple
   * Empezó el desarrollo de Ruby en 1993
-  * En 1995 lanzó la primer versión
+  * En 1995 lanzó la primera versión
   * Aún lidera el desarrollo de Ruby
 * Su célebre frase:
 

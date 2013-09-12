@@ -12,7 +12,7 @@
 	@@@ ruby
 	0b1000_1000 	#Binario => 132
 	010 				# Octal => 8
-	0x10 				# Decimal => 16
+	0x10 				# Hexadecimal => 16
 
 !SLIDE bullets execute transition=uncover
 # Strings literales
