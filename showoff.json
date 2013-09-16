@@ -5,6 +5,7 @@
     {"section":"01-agiles"},
     {"section":"02-git"},
     {"section":"03-presentacion-ruby"},
-    {"section":"04-VMs"}
+    {"section":"04-VMs"},
+    {"section":"05-clases-objetos-variables"}
   ]
 }
