@@ -78,3 +78,42 @@ nuevo `array`*
 * El rango indica los ínidces **desde** y **hasta**
 * Usando `..` se incluye el fin de rango
 * Usando `...` se **excluye** el extremo final
+
+!SLIDE smbullets transition=uncover
+# Arrays y `[]=`
+* El método `[]=` permite setear elementos de un array
+* Si se utiliza con un único índice, entonces reemplaza su valor por lo que esté
+  a la derecha de la asignación
+  * Cualquier gap que haya quedado luego de `[]=` se completa con nil
+
+## Un ejemplo
+
+	@@@ ruby
+	a = [ 1, 3, 5, 7, 9 ]
+	a[1] = 'bat'
+	a[-3] = 'cat'
+	a[3] = [ 9, 8 ]
+	a[6] = 99
+
+!SLIDE smbullets small transition=uncover
+# Arrays y `[]=`
+* Si se utiliza con dos valores (inicio, cantidad) o un rango, luego estos
+  elementos son reemplazados por lo que esté a la derecha de la asignación
+  * Si la cantidad de elementos a reemplazar es cero, entonces el valor 
+    es insertado en el array antes de la posición inicial: **no se eliminan 
+    elementos**
+  * Si el valor a la **derecha es un arreglo**, sus elementos se utilizan en el 
+    reemplazo: el tamaño del arreglo destino es actualizado si la cantidad de
+    elementos a la derecha difiere de los elementos a reemplazar
+
+## Ejemplo clarificador
+	@@@ ruby
+	a = [ 1, 3, 5, 7, 9 ]
+	a[2, 2] = 'cat'
+	a[2, 0] = 'dog'
+	a[1, 1] = [ 9, 8, 7 ]
+	a[0..3] = []
+	a[5..6] = 99, 98
+
+!SLIDE smbullets small transition=uncover
+# Arrays usados como pilas y colas
