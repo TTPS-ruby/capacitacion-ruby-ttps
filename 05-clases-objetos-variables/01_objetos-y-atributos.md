@@ -384,14 +384,14 @@ Lo probamos:
 !SLIDE bullets small transition=uncover
 # Niveles de protección
 * **Públicos:** los métodos públicos pueden invocarse por cualquiera (no hay
-  control de acceso. Los métodos son púvlicos por defecto excepto initialize que
+  control de acceso). Los métodos son públicos por defecto excepto initialize que
   siempre es privado.
 * **Protegidos:** pueden invocarse sólo por objetos de la clase que lo define y 
-  sus subclases. El acceso queda en la familia
+  sus subclases. El acceso queda en la familia.
 * **Privados:** estos métodos no pueden ser invocados con un receptor explícito: 
   *el receptor es siempre el objeto actual, mejor conocido como `self`*. Esto
   significa que tampoco puede invocar el método privado de otra instancia de la
-  misma clase
+  misma clase.
 
 !SLIDE bullets smaller transition=uncover
 # Aplicando accesos
