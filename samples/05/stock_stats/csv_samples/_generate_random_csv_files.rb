@@ -8,5 +8,5 @@ end
 puts "Date,ISBN,Amount"
 (365/7).times do |week|
   puts "#{start},#{isbn_numbers[rand 20]},#{(rand 500)+1}.#{rand 99}"
-  start += week
+  start += 7
 end
