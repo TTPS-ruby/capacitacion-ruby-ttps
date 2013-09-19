@@ -510,3 +510,196 @@ En cualquier lenguaje esto es natural
 
 	["H", "A", "L"].collect {|x| x.succ }
 
+!SLIDE smbullets smaller transition=uncover
+# Otros usos de iteradores 
+* Los iteradores no solo se usan con array y hash
+* Su lógica es muy utilizada en las clases de entrada / salida
+  * Estas clases implementan una interfaz de iteradir que retorna líneas
+    sucesivas o bytes si rabajamos en bajo nivel
+
+## Ejemplo
+	@@@ ruby
+	f = File.open("testfile")
+	f.each { |line| puts "The line is: #{line}"}
+	f.close
+
+## Y si necesitamos el índice
+	@@@ ruby
+	f = File.open("testfile")
+	f.each_with_index do |line, index| 
+		puts "Line #{index} is: #{line}" 
+	end
+	f.close
+
+!SLIDE smbullets small transition=uncover
+# El caso de `inject`
+* Este iterador tiene un nombre *raro*
+* Permite acumular un valor a lo largo de los miembros de una colección
+* Recibe un parámetro que es el valor inicial para comenzar a acumular
+	* Si no se especifica **toma el primer elemento de la colección**
+
+## Ejemplos
+	@@@ ruby
+	[1,3,5,7].inject(0) {|sum, element| sum+element}
+	[1,3,5,7].inject {|sum, element| sum+element}
+
+	[1,3,5,7].inject(1) {|prod, element| prod*element}
+	[1,3,5,7].inject {|prod, element| prod*element}
+
+!SLIDE smbullets small transition=uncover
+# El caso de `inject`
+## Generando más mística para `inject`
+
+	@@@ ruby
+
+	[1,3,5,7].inject(:+)
+
+
+	[1,3,5,7].inject 100, :+ 
+
+
+	[1,3,5,7].inject(:*)
+
+!SLIDE bullets transition=uncover
+# Enumerators
+* Los iteradores son muy cómodos pero:
+	* Son parte de la colección y no una clase a parte
+	* En otros lenguajes (como Java), las colecciones no implementan sus
+	  iteradores, sino que son clases separadas (como por ejemplo la interfaz 
+		Iterator de Java)
+	* Es complicado iterar dos colecciones simultáneamente
+
+!SLIDE bullets smaller transition=uncover
+# Enumerators
+
+* La solución: clase `Enumerator`
+	* Se obtiene de una colección con el método `to_enum` o `enum_for`
+
+## Ejemplo
+
+	@@@ ruby
+	a = [ 1, 3, "cat" ]
+	h = { dog: "canine", fox: "lupine" }
+	# Create Enumerators
+	enum_a = a.to_enum
+	enum_h = h.to_enum
+	enum_a.next 	# => 1
+	enum_h.next 	# => [ :dog, "canine" ]
+	enum_a.next 	# => 3
+	enum_h.next 	# => [ :fox, "lupine" ]
+
+*Si un iterador se utiliza sin bloque, entonces retorna un iterador*
+
+	@@@ ruby
+	a = [1,2,3].each
+	a.next
+
+!SLIDE smbullets smaller transition=uncover
+# El método `loop`
+* Ejecuta el código que se encuentra dentro del bloque
+* Se puede salir con break cuando se cumple una condición
+* Si hay iteradores, `loop` terminará cuando el Enumerator se quede sin valores
+
+## Ejemplos
+	@@@ ruby
+	loop { puts "Hola" }
+
+	i=0
+	loop do
+		puts i += 1
+		break if i >= 10
+	end
+
+	short_enum = [1, 2, 3].to_enum
+	long_enum = ('a'..'z').to_enum
+	loop { puts "#{short_enum.next} - #{long_enum.next}" }
+
+!SLIDE bullets small transition=uncover
+# Usando `Enumerator` como objetos
+*  Sabemos que es posible usar `each_with_index` en `Array`
+
+## Ejemplo
+
+	@@@ ruby
+	result = []
+	[ 'a', 'b', 'c' ].each_with_index do |item, index| 
+		result << [item, index] 
+	end
+
+!SLIDE smbullets smaller transition=uncover
+# Usando `Enumerator` como objetos
+
+## ¿Y si queremos hacer lo mismo con un `String`?
+* No existe `each_with_index` en `String`
+* Pero sí existe `each_char` que es como `each` de `Array` pero sobre cada
+	caracter del string
+	* Si no enviamos un bloque, retornará un `Enumerator`
+* La interfaz `Enumerable` define el método `each_with_index`
+
+## El código quedaría
+	@@@ ruby
+	result = []
+	"cat".each_char.each_with_index do |item, index| 
+			result << [item, index] 
+	end
+	# Incluso Matz nos simplifico mas...
+	result = []
+	"cat".each_char.with_index do |item, index| 
+			result << [item, index] 
+	end
+
+!SLIDE smbullets small transition=uncover
+# `Enumerator` como generadores
+* Podemos crear objetos enumerator explícitamente en vez de hacerlo a partir de
+	una colección
+* Para ello es necesario utilizar un bloque en la creación
+	* El código del bloque se usará por el objeto Enumerator cada vez que el
+	  programa principal le solicite un nuevo valor
+	* Este bloque no se ejecutará como otros bloques dado que su ejecución
+	  se disparará cada vez que se solicita el siguiente valor
+  * La ejecución del bloque se pausa y vuelve al programa principal cuando se
+    encuentra `yield`
+  * Cuando se solicita el siguiente valor, el código del bloque continúa a
+    partir de la línea siguiente al `yield`
+* Esto permite generar **secuencias infinitas** 
+
+!SLIDE smbullets small transition=uncover
+# `Enumerator` como generadores
+	@@@ ruby
+	fibonacci = Enumerator.new do |caller|
+		prev = current = 0
+		loop do
+			aux = prev + current 
+			caller.yield aux
+			prev = current
+			current = aux == 0 ? 1: aux
+		end
+	end
+
+	6.times { puts fibonacci.next }
+
+## Como `Enumerator` es `Enumerable`
+
+	@@@ ruby
+	fibonacci.first(1000).last
+
+!SLIDE smbullets smaller transition=uncover
+# Hay que tener cuidado!!
+* Cuidado con los enumerators que generan listas infinitas
+* Los metodos comunes de los enumeradores como `count` y `select` tratarán de
+	leer todos los elementos antes de retornar un valor
+	* Podemos escribir la versión de `select` adecuada a nuestra lista
+	  infinito
+
+## Ejemplo
+	@@@ ruby
+	def infinite_select(enum, &block)
+		Enumerator.new do |caller|
+			enum.each do |value|
+				caller.yield(value) if block.call(value)
+			end
+		end
+	end
+	
+	p infinite_select(fibonacci) {|val| val % 2 == 0}.first(5)
+
