@@ -667,12 +667,10 @@ En cualquier lenguaje esto es natural
 # `Enumerator` como generadores
 	@@@ ruby
 	fibonacci = Enumerator.new do |caller|
-		prev = current = 0
+		i1, i2 = 1, 1
 		loop do
-			aux = prev + current 
-			caller.yield aux
-			prev = current
-			current = aux == 0 ? 1: aux
+			caller.yield i1
+			i1, i2 = i2, i1+i2
 		end
 	end
 
@@ -702,4 +700,233 @@ En cualquier lenguaje esto es natural
 	end
 	
 	p infinite_select(fibonacci) {|val| val % 2 == 0}.first(5)
+
+!SLIDE smbullets smaller transition=uncover
+# Haciendo algo más conveniente
+* Podemos escribir filtros como `infinite_select` directamente en la clase
+  `Enumerator`
+* Esto nos permitirá encadenar filtros:
+
+## Ejemplo
+	@@@ ruby
+	class Enumerator
+		def infinite_select(&block)
+			Enumerator.new do |caller|
+				self.each do |value|
+					caller.yield(value) if block.call(value)
+				end
+			end
+		end
+	end
+	
+	p fibonacci.
+		infinite_select {|val| val % 2 == 0}.
+		infinite_select {|val| val.to_s =~ /13\d$/ }.
+		first(2)
+
+!SLIDE smbullets small transition=uncover
+# Bloques como transacciones
+* Podemos usar bloques para definir código que debe ejecutarse bajo ciertas
+	condiciones transaccionales.
+* Por ejemplo:
+	* Abrir un archivo
+	* Procesarlo
+	* Cerrarlo
+* Si bien esto podemos hacerlo secuencialmente, utilizando bloques simplificamos
+	mucho 
+
+## Ejemplo básico
+	@@@ ruby
+	class File
+		def self.open_and_process(*args)
+			f = File.open(*args)
+			yield f
+			f.close()
+		end
+	end
+
+!SLIDE smbullets small transition=uncover
+# Analizamos un poco...
+* El método de clase implementado fue desarrollado para que entienda los mismos
+	parámetros que `File.open` 
+* Para ello, lo que hicimos es pasar los parámetros tal cual se enviaron a
+	`File.open`
+	* Esto se logra definiendo como argumento al método `*args` que significa:
+	  *tomar todos los argumentos enviados al método actual y colocarlos en un
+		arreglo llamado args*
+	* Luego llamamos a `File.open(*args)`. Utilizar *args vuelve a expandir los
+	  elementos del arreglo a parámetros individuales
+* Esta técnica es tan útil, que `File.open` ya lo implementa
+	* Además de usar `File.open` para abrir un archivo, podemos usarlo para
+	  directamente procesarlo como lo hacíamos con `open_and_process`
+
+!SLIDE smbullets transition=uncover
+# Una versión más completa de `my_open`
+	@@@ ruby
+	class File
+		def self.my_open(*args)
+			result = file = File.new(*args)
+			if block_given?
+				result = yield file
+				file.close
+			end
+			return result
+		end
+	end
+
+* Podría suceder un error en el procesamiento
+* Para asegurar el cierre del archivo, se deben usar exepciones, que veremos 
+	más adelante
+
+!SLIDE smbullets smaller transition=uncover
+# Los bloques pueden ser objetos
+* Recordamos que anteriormente mencionamos que los bloques son como un parámetro
+	adicional pasado a un método
+* Además podremos hacer que los bloques sean parámetros explícitos
+	* Si el últmo parámetro en un método se prefija con ampersand (como 
+	&action), Ruby buscará el codigo de un bloque cuando el método es invocado
+	* Este parámetro podrá utilizarse como cualquier otro
+
+## Ejemplo
+	@@@ ruby
+	class ProcExample
+		def pass_in_block(&action)
+			@stored_proc = action
+		end
+		def use_proc(parameter)
+			@stored_proc.call(parameter)
+		end
+	end
+
+	eg = ProcExample.new
+	eg.pass_in_block { |param| puts "The parameter is #{param}" }
+	eg.use_proc(99)
+
+!SLIDE smbullets small transition=uncover
+# Avanzando un poco más...
+* Vemos que `call` invoca la ejecución del bloque 
+* Muchos programas utilizan esta idea para implementar **callbacks**
+* ¿Qué pasaría si retonamos el bloque?
+
+## Lo analizamos
+	@@@ ruby
+	def create_block_object(&block)
+		block
+	end
+
+	bo = create_block_object do |param| 
+		puts "You called me with #{param}"
+	end
+	bo.call 99
+	bo.call "cat"
+
+!SLIDE smbullets transition=uncover
+# `Proc` y `lambda`
+* Devolver un bloque es tan útil que en Ruby hay dos formas de hacerlo:
+	* `lamda` y `Proc.new` toman un bloque y retornan un objeto
+	* El objeto retornado es de la clase `Proc`
+	* La diferencia entre `lambda` y `Proc.new` la veremos más adelante, pero ya
+	  hemos mencionado que `lambda` controla los parámetros que requiere el
+		bloque, mientras que `Proc` no lo hace
+
+!SLIDE bullets small transition=uncover
+# Los bloques pueden ser Closures
+* Recordamos haber mencionamos que los bloques pueden utilizar variables que
+	están dentro del alcance del bloque
+* Veremos ahora un uso diferente de un bloque haciendo esto
+
+## Ejemplo
+	@@@ ruby
+	def n_times(thing)
+		lambda {|n| thing * n }
+	end
+	p1 = n_times(10)
+	p1.call(3)
+	p1.call(4)
+	p2 = n_times("Hola ")
+	p2.call(3)
+
+!SLIDE smbullets smaller transition=uncover
+# ¿Qué es un Closure?
+* El método `n_times` referencia el parámetro `thing` que es usado por el bloque
+* Aunque en las llamadas a `call` (y por ende en la ejecución del bloque) el 
+	parámetro `thing` está fuera del alcance, el parámetro se mantiene accesible
+	dentro del bloque
+* Esto es un closure:
+	* Variables en el alcance cercano que son referenciadas por el bloque se
+	  mantienen accesibles por la vida del bloque y la vida del objeto Proc creado
+		para este bloque
+
+## Otro ejemplo
+	@@@ ruby
+	def what_do_i_do?
+		value = 1
+		lambda { value += value }
+	end
+
+	let_me_see = what_do_i_do?
+	let_me_see.call
+	let_me_see.call
+
+!SLIDE smbullets small transition=uncover
+# Notación alternativa
+## A partir de ruby 1.9 
+	@@@ ruby
+	lambda { |params| ... }
+
+	# es equivalente a
+
+	->params { ... }
+
+	# Y con parámetros
+
+	proc1 = -> arg {puts "proc1:#{arg}" }
+	proc2 = -> arg1, arg2 {puts "proc2:#{arg1} y #{arg2}" }
+	proc3 = ->(arg1, arg2) {puts "proc3:#{arg1} y #{arg2}" }
+
+	proc1.call "ant"
+	proc2.call "bee", "cat"
+	proc3.call "dog", "elk"
+
+!SLIDE transition=uncover
+# Locas ideas
+## Reimplementamos un while usando bloques
+
+	@@@ ruby
+	def my_while(cond, &body)
+		while cond.call
+			body.call
+		end
+	end
+
+	a = 0
+	my_while -> { a < 3 } do
+		puts a
+		a += 1
+	end
+
+!SLIDE bullets smaller transition=uncover
+# Lista de parámetros a un bloque
+* Los argumentos a un bloque, al igual que los argumentos a un método podrán ser:
+	* Argumentos splat, que se reemplazan por un arreglo como vimos en un ejemplo
+	  previo (usando *)
+	* Inicializados con un valor por defecto
+	* Bloques como parámetro (usando & en el último parámetro)
+
+## Ejemplo
+	@@@ ruby
+	proc1 = lambda do |a, *b, &block|
+		puts "a = #{a.inspect}"
+		puts "b = #{b.inspect}"
+		block.call
+	end
+	proc1.call(1, 2, 3, 4) { puts "in block1" }
+
+	proc2 = -> a, *b, &block do
+		puts "a = #{a.inspect}"
+		puts "b = #{b.inspect}"
+		block.call
+	end
+	proc2.call(1, 2, 3, 4) { puts "in block2" }
+
 
