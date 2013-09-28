@@ -280,7 +280,7 @@
 			@string = string
 		end
 		def each
-			@string.scan(/[aeiou]/) do |vowel|
+			@string.scan(/[aeiou]/i) do |vowel|
 				yield vowel
 			end
 		end

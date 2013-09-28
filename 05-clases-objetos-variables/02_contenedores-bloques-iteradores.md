@@ -775,7 +775,7 @@ En cualquier lenguaje esto es natural
 	end
 
 * Podría suceder un error en el procesamiento
-* Para asegurar el cierre del archivo, se deben usar exepciones, que veremos 
+* Para asegurar el cierre del archivo, se deben usar excepciones, que veremos 
 	más adelante
 
 !SLIDE smbullets smaller transition=uncover
