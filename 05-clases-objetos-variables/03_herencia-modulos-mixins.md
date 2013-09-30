@@ -60,7 +60,7 @@
 * Agregaremos funcionalidad básica a nuestro servicio subclaseando GServer
 	* El servicio mostrará las últimas lineas del archivo de logs del sistema:
 	  `/var/log/syslog`
-* GServer manipula todo lo relacionado a sockets TPC. 
+* GServer manipula todo lo relacionado a sockets TCP. 
 	* Nosotros sólo indicaremos el puerto en la inicialización
 	* Cuando un cliente se conecte, el objeto GServer invocará al método `serve`
 	* GServer no hace nada en el método que implementa `serve`
@@ -449,7 +449,7 @@
 	  herencia estrictas
 * Dado que la herencia era el único mecanismo disponible para compartir código,
 	nos volvimos **vagos** y empezamos a afirmar cosas como: *Que una Persona* ***es un*** *DatabaseWrapper*
-	* Pero una persona no es un DatbaseWrapper
+	* Pero una persona no es un DatabaseWrapper
 	* Una Persona **usa** un DatabaseWrapper para proveer persistencia
 * La herencia además representa un gran acomplamiento entre dos componentes.
 	Cambiar la herencia sería algo complejo en cualquier programa mediano
