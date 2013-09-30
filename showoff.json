@@ -7,6 +7,8 @@
     {"section":"03-presentacion-ruby"},
     {"section":"04-VMs"},
     {"section":"05-clases-objetos-variables"},
-    {"section":"06-tipos-estandar"}
+    {"section":"06-tipos-estandar"},
+    {"section":"07-metodos"},
+    {"section":"08-expresiones"}
   ]
 }
