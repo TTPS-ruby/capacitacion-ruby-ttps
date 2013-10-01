@@ -59,8 +59,8 @@ Lo probamos:
 # Pero...
 
 * En el ejemplo anterior: 
-  * Se crean dos objetos  diferentes de la clase `BookInStock`. 
-  * Podríamos decir en esta primer instancia que son el mimo libro, o iguales porque nada los
+  * Se crean dos objetos diferentes de la clase `BookInStock`. 
+  * Podríamos decir en esta primer instancia que son el mismo libro, o iguales porque nada los
   distingue...
 
 * Lo solucionamos obligando que la inicialización indique aquellos datos que distinga al
@@ -77,7 +77,7 @@ Lo probamos:
 		end
 	end
 
-* El método `initialize` es especiale en Ruby 
+* El método `initialize` es especial en Ruby 
 * Cuando se invoca el método `new`, Ruby aloca memoria para alojar un objeto no
   inicializado y luego invoca al método `initialize` **pasándole cada parámetro
   que fue enviado a `new`**
@@ -138,7 +138,7 @@ Lo probamos:
 * Modificaremos nuestra clase de `BookInStock` con el fin de agregar atributos
   para `isbn` y `price` así podemos contabilizarlos
 
-## Deifinición de los atributos:
+## Definición de los atributos:
 
 	@@@ ruby
 	class BookInStock
