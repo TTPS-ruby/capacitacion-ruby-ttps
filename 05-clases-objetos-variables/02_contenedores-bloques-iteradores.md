@@ -75,7 +75,7 @@ nuevo `array`*
 	a[3..3]
 	a[-3..-1]
 
-* El rango indica los ínidces **desde** y **hasta**
+* El rango indica los índices **desde** y **hasta**
 * Usando `..` se incluye el fin de rango
 * Usando `...` se **excluye** el extremo final
 
@@ -136,7 +136,7 @@ nuevo `array`*
 
 !SLIDE bullets transition=uncover
 # Arrays usados como colas
-* Podomos invocar los siguientes métodos de `Array`
+* Podemos invocar los siguientes métodos de `Array`
   * `unshift`
   * `shift`
 
@@ -163,7 +163,7 @@ nuevo `array`*
   * Símbolos, strings, expresiones regulares, etc
 * Cuando se almacena un valor en un hash, deben proveerse dos objetos:
   * El índice, generalmente llamado *key*
-  * La entrada a almacenar en dicho índice, generalmente llamdo *valor*
+  * La entrada a almacenar en dicho índice, generalmente llamado *valor*
 * El acceso a los valores referenciados por un hash se realiza por medio de los
   *keys*
 
@@ -514,8 +514,8 @@ En cualquier lenguaje esto es natural
 # Otros usos de iteradores 
 * Los iteradores no solo se usan con array y hash
 * Su lógica es muy utilizada en las clases de entrada / salida
-  * Estas clases implementan una interfaz de iteradir que retorna líneas
-    sucesivas o bytes si rabajamos en bajo nivel
+  * Estas clases implementan una interfaz de iterador que retorna líneas
+    sucesivas o bytes si trabajamos en bajo nivel
 
 ## Ejemplo
 	@@@ ruby
@@ -783,7 +783,7 @@ En cualquier lenguaje esto es natural
 * Recordamos que anteriormente mencionamos que los bloques son como un parámetro
 	adicional pasado a un método
 * Además podremos hacer que los bloques sean parámetros explícitos
-	* Si el últmo parámetro en un método se prefija con ampersand (como 
+	* Si el último parámetro en un método se prefija con ampersand (como 
 	&action), Ruby buscará el codigo de un bloque cuando el método es invocado
 	* Este parámetro podrá utilizarse como cualquier otro
 
@@ -806,7 +806,7 @@ En cualquier lenguaje esto es natural
 # Avanzando un poco más...
 * Vemos que `call` invoca la ejecución del bloque 
 * Muchos programas utilizan esta idea para implementar **callbacks**
-* ¿Qué pasaría si retonamos el bloque?
+* ¿Qué pasaría si retornamos el bloque?
 
 ## Lo analizamos
 	@@@ ruby
