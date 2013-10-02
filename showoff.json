@@ -9,6 +9,7 @@
     {"section":"05-clases-objetos-variables"},
     {"section":"06-tipos-estandar"},
     {"section":"07-metodos"},
-    {"section":"08-expresiones"}
+    {"section":"08-expresiones"},
+    {"section":"09-excepciones"}
   ]
 }
