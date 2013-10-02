@@ -237,3 +237,28 @@ la pila
 	raise ArgumentError, "Name too big", caller
 
 * Generalmente no se incluye la traza en librerías
+
+!SLIDE small smbullets transition=uncover
+# `catch` y `throw`
+* Veremos un ejemplo que acalrará el concepto
+  * El siguiente código leerá palabras que irá agregando en un arreglo que al
+    finalizar imprimirá en orden inverso. Sin embargo, si alguna línea es
+    incorrecta deberá salir sin hacer nada
+
+## Ejemplo
+	@@@ ruby
+	word_list = File.open("wordlist")
+	word_in_error = catch(:done) do
+		result = []
+		while line = word_list.gets
+		word = line.chomp
+		throw(:done, word) unless word =~ /^\w+$/
+		result << word
+	end
+	puts result.reverse
+	end
+	if word_in_error
+		puts "Failed: '#{word_in_error}' found. Not a word"
+	end
+
+
