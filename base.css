@@ -94,3 +94,29 @@ code code {
   font-size: 0.9em;
   font-weight: bold;
 }
+
+.error {
+  font-weight: bolder; 
+  font-size: 5em; 
+  color: #ff0000;
+  transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg); /* IE 9 */
+  -webkit-transform: rotate(-30deg); /* Safari and Chrome */
+  animation: error 10s;
+  -webkit-animation: error 10s; /* Safari and Chrome */
+}
+
+@keyframes error
+{
+  from {color: #000;}
+  to {color: #ff0000;}
+}
+
+@-webkit-keyframes error /* Safari and Chrome */
+{
+  from {
+    color: #000;
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, .85);
+  }
+  to {color: #ff0000;}
+}
