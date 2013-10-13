@@ -11,6 +11,8 @@
     {"section":"07-metodos"},
     {"section":"08-expresiones"},
     {"section":"09-excepciones"},
-    {"section":"10-unit-testing"}
+    {"section":"10-unit-testing"},
+    {"section":"11-gems-bundler"},
+    {"section":"12-sinatra"}
   ]
 }
