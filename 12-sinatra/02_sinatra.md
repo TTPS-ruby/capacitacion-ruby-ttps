@@ -27,6 +27,8 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
 ## Guardamos el archivo como `server.rb` y luego lo ejecutamos (`ruby server.rb`)
 
 ## Probemoslo con curl!
+	@@@ ruby
+    $ curl -v http://localhost:4567/
 
 !SLIDE bullets small transition=uncover
 # Y como lo testeamos?
@@ -75,10 +77,11 @@ expuestos al código en la variable params.
 !SLIDE bullets small transition=uncover
 # Sinatra: valor de retorno
 
-El valor de retorno de un bloque de ruta determina al menos el cuerpo de la
+* El valor de retorno de un bloque de ruta determina al menos el cuerpo de la
 respuesta que se le pasa al cliente HTTP o al siguiente middleware en la pila
-de Rack. Lo más común es que sea un string, como en los ejemplos anteriores.
-Sin embargo, otros valores también son aceptados.
+de Rack.
+* Lo más común es que sea un string, como en los ejemplos anteriores.
+* Sin embargo, otros valores también son aceptados (no lo veremos ahora)
 
 !SLIDE bullets small transition=uncover
 # Sinatra: características
@@ -92,8 +95,21 @@ a utilizar, que debe ser guardado en el directorio `views`
 ## Ejemplo
 	@@@ ruby
     get '/' do
+      @name = 'Frank Sinatra'
       erb :index
     end
+
+!SLIDE bullets small transition=uncover
+# Sinatra: características (continuación)
+	@@@ html
+    <html>
+      <head>
+        <title>Welcome</title>
+      </head>
+      <body>
+        Hello, <%= @name %>!
+      </body>
+    </html>
 
 !SLIDE bullets small transition=uncover
 # Sinatra: características (continuación)
@@ -162,6 +178,13 @@ método redirect:
       redirect to('/bar')
     end
 
+    get '/bar' do
+      'Hello!'
+    end
+
+!SLIDE bullets small transition=uncover
+# Sinatra: características (continuación)
+
 * **Manejo de errores**: Los manejadores de errores se ejecutan dentro del
 mismo contexto que las rutas y los filtros before, lo que significa que podés
 usar, por ejemplo, haml, erb, halt, etc.
@@ -173,5 +196,6 @@ usar, por ejemplo, haml, erb, halt, etc.
     end
 
     error do
-      'Disculpá, ocurrió un error horrible - ' + env['sinatra.error'].name
+      'Disculpá, ocurrió un error horrible - ' +
+        env['sinatra.error'].name
     end
