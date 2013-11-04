@@ -140,7 +140,7 @@ creada*
 	p.name = "Some Book"
 	puts p.name # "Some Book"
 
-* Esto creará el mapeo entre `Prodyuct` y la tabla `products`. 
+* Esto creará el mapeo entre `Product` y la tabla `products`. 
 * Además exisitrá el mapeo de cada campo en la tabla a accessors del objeto.
 
 !SLIDE bullets transition=uncover
@@ -149,11 +149,179 @@ creada*
 * Active Record provee métodos que permiten a la aplicación leer y escribir
   datos en las tablas
 
-!SLIDE bullets transition=uncover
+!SLIDE smbullets small transition=uncover
 # Creación
-* Los objetos Active Record 
+* Los objetos Active Record pueden crearse desde:
+  * Un Hash
+  * Un bloque
+  * Setear manualmente los atributos luego de la creación
+* El método `new` retornará un objeto **nuevo** mientras que `create` retornará
+  un objeto y lo **guardará** en la base de datos
+
+## Ejemplo
+
+	@@@ruby
+	user = User.create(name: "David",
+	                   occupation: "Code Artist")
+	# es lo mismo que:
+	user = User.new
+	user.name = "David"
+	user.occupation = "Code Artist"
+	user.save
+
+!SLIDE smbullets transition=uncover
+# Creación con bloques
+
+	@@@ruby
+	user = User.new do |u|
+		u.name = "David"
+		u.occupation = "Code Artist"
+	end
+
+*funciona tanto con `new` como `create`*
+
+!SLIDE bullets small transition=uncover
+# Lectura
+
+* Active Record provee una completa API para acceder a los datos de una base de
+  datos
+
+## Ejemplos
+
+	@@@ruby
+	# return a collection with all users
+	users = User.all
+	
+	# return the first user
+	user = User.first
+	
+	# find all users named David who are Code Artists and 
+	# sort by created_at inreverse chronological order
+	users = User.where(name: 'David', 
+	                   occupation: 'Code Artist').
+	                   order('created_at DESC')
+
+!SLIDE bullets smaller transition=uncover
+# Actualización
+
+* Una vez que un dato es recuperado, sus atributos pueden modificarse y luego
+  almacenarse en la base de datos nuevamente
+
+## Ejemplo
+
+	@@@ruby
+	user = User.find_by(name: 'David')
+	user.name = 'Dave'
+	user.save
+	
+	# Lo mismo pero más corto
+	user = User.find_by(name: 'David')
+	user.update(name: 'Dave')
+	
+	# Para cambios masivos
+	User.update_all "max_attempts = 3, must_change_pwd = 'true'"
 
 !SLIDE bullets transition=uncover
+# Eliminación
+
+* De igual forma, una vez recuperado un objeto Active Record, podrá destruirse 
+  y a su vez eliminarse de la base de datos
+
+## Ejemplo
+
+	@@@ruby
+	user = User.find_by(name: 'David')
+	user.destroy
+
+!SLIDE bullets small transition=uncover
+# Validaciones
+
+* Active Record permite validar el estado de un modelo antes de que sea escrito
+  a la base de datos
+* Existen varios mecanismos para validar y chequear que ciertos atributos no
+  sean blanco, no vacío, únicos, tener un formato específico, etc. 
+* Las validaciones deben ser consideradas a la hora de persistir datos en la
+  base de datos
+	* Por ello, los métodos como `create`, `save` y `update` consideran las
+	  validaciones. 
+	* Retornan `false` cuando la validación falla y no actualizan el dato en la
+	  base de datos
+	* Todos estos métodos tiene sus correspondientes con bang! (`create!`,
+	  `save!`y `update!`) que son estrictos en cuanto a lanzar una excepción `ActiveRecord::RecordInvalid `
+	  cuando la validación falla.
+
+!SLIDE bullets transition=uncover
+# Ejemplo de Validaciones
+
+	@@@ruby
+	class User < ActiveRecord::Base
+		validates :name, presence: true
+	end
+	 
+	User.create  
+	# => false
+	User.create! 
+	# => ActiveRecord::RecordInvalid: 
+	#    Validation failed: 
+	#    Name can't be blank
+
+!SLIDE smbullets transition=uncover
+# Callbacks
+* Active Record callbacks permiten adjuntar código a ciertos eventos en el ciclo
+  de vida de los modelos.
+* Permiten agregar comportamiento a los modelos que es ejecutado de forma transparente 
+  cuando estos eventos suceden.
+* Pueden agregarse eventos cuando se crea un nuevo registro, al modificarse, al
+  eliminarse, etc
+
+!SLIDE bullets transition=uncover
+# Migraciones
+* Las migraciones son una DSL para el manejo de esquemas de bases de datos
+  llamados migraciones
+* Las migraciones se almacenan en archivos que son ejecutados contra una base de
+  datos soportada por Active Recors usando `rake`
+
+!SLIDE smbullets smaller transition=uncover
+# Migraciones
+## Ejemplo de una migración que crea una tabla
+
+	@@@ruby
+	class CreatePublications < ActiveRecord::Migration
+		def change
+			create_table :publications do |t|
+				t.string :title
+				t.text :description
+				t.references :publication_type
+				t.integer :publisher_id
+				t.string :publisher_type
+				t.boolean :single_issue
+	 
+				t.timestamps
+			end
+			add_index :publications, :publication_type_id
+		end
+	end
+
+!SLIDE smbullets transition=uncover
+# Migraciones
+
+* Las migraciones permiten tener un registro en la misma base de datos que
+  indica qué cambios se han aplicado
+* Los cambios entonces pueden versionarse y comitirse o deshacerse en la base de
+  datos
+* Para aplicar las migraciones pendientes: `rake db:migrate`
+* Para deshacer un cambio hecho: `rake db:rollback`
+* La DSL es agnóstico a la base de datos: funciona en Mysql, SQlite, Oracle,
+  Postgres, etc
+
+!SLIDE smbullets transition=uncover
 # Referencias
 
-* http://edgeguides.rubyonrails.org/active_record_basics.html
+* [API](http://api.rubyonrails.org/classes/ActiveRecord/Base.html)
+* [Active Record base](http://edgeguides.rubyonrails.org/active_record_basics.html)
+* [Active Record Associations](http://guides.rubyonrails.org/association_basics.html)
+* [Active Record Querying](http://edgeguides.rubyonrails.org/active_record_querying.html)
+* [Active Record Validations](http://edgeguides.rubyonrails.org/active_record_validations.html)
+* [Active Record
+  Callbacks](http://edgeguides.rubyonrails.org/active_record_callbacks.html)
+* [Active Record Migrations](http://edgeguides.rubyonrails.org/migrations.html)
