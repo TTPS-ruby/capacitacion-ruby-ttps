@@ -13,6 +13,7 @@
     {"section":"09-excepciones"},
     {"section":"10-unit-testing"},
     {"section":"11-gems-bundler"},
-    {"section":"12-sinatra"}
+    {"section":"12-sinatra"},
+    {"section":"13-activerecord"}
   ]
 }
