@@ -80,7 +80,7 @@ creada*
 * Los nombres de las clases se pluralizan para encontrar las tablas
 	* Por ejemplo `Book` se mapea a `books` 
 	* El mecanismo de pluralización (definido por Rails) es muy potente y puede
-	  pluralizar (y singularizar) palabras regulares como irregulares. 
+	  pluralizar (y singularizar) tanto palabras regulares como irregulares. 
 	* Cuando las clases se componen de más de una palabra, se utiliza **CamelCase** 
 	  y el nombre de la tabla se compone de las palabras separadas por
 	  underscores. Por ejemplo: la clase `BookClub` se mapeará a la tabla
@@ -124,7 +124,7 @@ creada*
   Inheritance](http://api.rubyonrails.org/classes/ActiveRecord/Base.html#label-Single+table+inheritance)
 * `(association_name)_type`: especifica el tipo de [asociaciones
   polimórifcas](http://edgeguides.rubyonrails.org/association_basics.html#polymorphic-associations)
-* `(table_name)_count`: usado para cachear el número de registros que perteneces
+* `(table_name)_count`: usado para cachear el número de registros que pertenecen
   a una asociación. Por ejemplo, una columna `comments_count` en la clase `Post` que tiene muchas instancias de `Comment`, cacheará el número de comentarios existentes para cada post.
 
 !SLIDE smbullets small transition=uncover
@@ -272,7 +272,7 @@ creada*
 * Permiten agregar comportamiento a los modelos que es ejecutado de forma transparente 
   cuando estos eventos suceden.
 * Pueden agregarse eventos cuando se crea un nuevo registro, al modificarse, al
-  eliminarse, etc
+  eliminarse, etc.
 
 !SLIDE bullets transition=uncover
 # Migraciones

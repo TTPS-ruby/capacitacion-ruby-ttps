@@ -154,7 +154,7 @@
 	list.search(:titles, genre: 'jazz', duration_less_than: 270)
 
 !SLIDE small transition=uncover
-# Keyword aruments: solo Ruby 2.0
+# Keyword arguments: solo Ruby 2.0
 ## Asumimos un supuesto método `log`
 	@@@ ruby
 	def log(msg, level: "ERROR", time: Time.now)
@@ -170,7 +170,7 @@
 	log("Hello!", level: "INFO")
 
 !SLIDE bullets smaller transition=uncover
-# Keyword aruments: solo Ruby 2.0
+# Keyword arguments: solo Ruby 2.0
 * Las cosas parecen simples, pero todo se complica un poco si sucede:
 	* Queremos usar keyword arguments con splat
 	* Lanzar excepciones cuando un argumento no es conocido
@@ -188,7 +188,7 @@
 *Pero nos gustó preservar la primer versión del ejemplo*
 
 !SLIDE bullets smaller transition=uncover
-# Keyword aruments: solo Ruby 2.0
+# Keyword arguments: solo Ruby 2.0
 ## Probamos los argumentos
 	@@@ ruby
 	log("Hello")
@@ -202,7 +202,7 @@
 	log("Hello!", date: Time.new) 
 
 !SLIDE bullets smaller transition=uncover
-# Keyword aruments: solo Ruby 2.0
+# Keyword arguments: solo Ruby 2.0
 * Si queremos evitar las excepciones 
 	* Podemos usar `**` para explícitamente agrupar el resto de los keyword
 	  arguments en un hash (como splat)
@@ -216,7 +216,7 @@
 	log("Hello!", date: Time.now) 
 	
 !SLIDE bullets smaller transition=uncover
-# Keyword aruments: solo Ruby 2.0
+# Keyword arguments: solo Ruby 2.0
 ## Todos los casos
 	@@@ ruby
 	def f(a, b, c, m = 1, n = 1, *rest, x, y, z, k: 1, 
