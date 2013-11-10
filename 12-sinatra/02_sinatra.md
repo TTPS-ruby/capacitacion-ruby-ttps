@@ -26,19 +26,19 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
 
 ## Guardamos el archivo como `server.rb` y luego lo ejecutamos (`ruby server.rb`)
 
-## Probemoslo con curl!
+## Probémoslo con curl!
 	@@@ ruby
     $ curl -v http://localhost:4567/
 
 !SLIDE bullets small transition=uncover
-# Y como lo testeamos?
+# Y cómo lo testeamos?
 
 * Para testear aplicaciones sinatra usaremos una gema llamada `rack-test`
 * Para testear el ejemplo, haremos un request `GET /` y esperaremos que nos
-devuelva un código de estado `200` (OK), y que el body sea `'hello world'`
+devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 
 !SLIDE bullets small transition=uncover
-# Y como lo testeamos?
+# Y cómo lo testeamos?
 	@@@ ruby
     require 'minitest/autorun'
     require 'rack/test'
@@ -69,8 +69,9 @@ expuestos al código en la variable params.
     require 'sinatra'
 
     get '/hello/:name' do
-      # todo lo que venga en el query string será capturado en params, por ejemplo:
-      # '/hello/Patricio?username=patricio
+      # Todo lo que venga en el query string 
+      # será capturado en params, por ejemplo:
+      # '/hello/Patricio?username=patricio'
       "Hello #{params[:name]}"
     end
 
@@ -117,7 +118,7 @@ a utilizar, que debe ser guardado en el directorio `views`
 * **Filtros**: Los filtros `before` son evaluados antes de cada petición
 dentro del mismo contexto que las rutas. Pueden modificar la petición y la
 respuesta. Las variables de instancia asignadas en los filtros son accesibles
-por las rutas y las plantillas (Idem con `after`):
+por las rutas y las plantillas (idem con `after`):
 
 ## Ejemplo
 	@@@ ruby
