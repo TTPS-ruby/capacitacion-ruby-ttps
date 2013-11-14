@@ -179,7 +179,7 @@
 
 * Así como en los métodos de clase, se invocan los métodos de un módulo
 	precediéndolos con el nombre del módulo y un punto
-* Las constantes se referencian con el nombre del módulo y dos puntos
+* Las constantes se referencian con el nombre del módulo y doble dos puntos (::)
 
 !SLIDE smbullets small transition=uncover
 # Mixins
