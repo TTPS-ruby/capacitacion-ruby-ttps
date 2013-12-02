@@ -7,7 +7,7 @@
   * *No es error que el nombre comience con mayúsucla, el problema es que en la
     invocación, Ruby tratará de interpretarlo como una constante, y por tanto
     parsear la llamada en forma incorrecta. Por convención, los métodos que
-    comienzan con mayúsucla se utilizan para conversiones de tipos*
+    comienzan con mayúscula se utilizan para conversiones de tipos*
 * Cuando retornamos un boolean, es prolijo que el método termine con `?`
 * Aquellos métodos *peligrosos* deben terminar con `!`
 * Los métodos que aparecen a la izquierda de una asignación terminan con `=`
