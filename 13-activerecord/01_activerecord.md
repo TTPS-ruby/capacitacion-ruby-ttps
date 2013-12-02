@@ -279,7 +279,7 @@ creada*
 * Las migraciones son una DSL para el manejo de esquemas de bases de datos
   llamados migraciones
 * Las migraciones se almacenan en archivos que son ejecutados contra una base de
-  datos soportada por Active Recors usando `rake`
+  datos soportada por Active Record usando `rake`
 
 !SLIDE smbullets smaller transition=uncover
 # Migraciones
