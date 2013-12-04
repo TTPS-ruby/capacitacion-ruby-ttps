@@ -6,7 +6,7 @@
 * Unit testing es testing que se focaliza en pequeños bloques (o unidades)
   de código
   * Típicamente se testean métodos individuales o líneas complejas de un método
-  * Se contrasta con otars estrategias de testing que ven al sistema como un
+  * Se contrasta con otras estrategias de testing que ven al sistema como un
     todo
 * Los sistemas de hoy día se desarrollan en capas donde cada una debería poder
   confiar en que la capa de abstracción utilizada se desempeña correctamente, sin errores.
