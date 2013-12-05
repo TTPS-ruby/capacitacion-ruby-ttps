@@ -7,7 +7,7 @@
 * Representa la M de MVC (el modelo)
 * Conecta clases a tablas de una base de datos estableciendo una capa de
   persistencia
-* La librería provee una clase base que al subclasearse, mapea la nueva clase
+* La librería provee una clase base que al heredarse, mapea la nueva clase
   con una tabla existente de una base de datos
 * En el contexto de una aplicación a estas clases suelen llamarselas **modelos**
 * Los modelos pueden conectarse con otros modelos usando **asociaciones**
