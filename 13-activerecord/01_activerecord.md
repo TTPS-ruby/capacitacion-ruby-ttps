@@ -110,7 +110,7 @@ creada*
 	  modelos
 	* **Claves primarias:** por defecto, Active Record utilizará una columna de
 	  tipo entero llamada `id` como clave primaria. Cuando se usan *Migraciones de
-    active Record* para crear las tablas, esta columna se creará automáticamente
+    Active Record* para crear las tablas, esta columna se creará automáticamente
 
 !SLIDE smbullets small transition=uncover
 # Más convenciones sobre los esquemas
@@ -311,7 +311,7 @@ creada*
   datos
 * Para aplicar las migraciones pendientes: `rake db:migrate`
 * Para deshacer un cambio hecho: `rake db:rollback`
-* La DSL es agnóstico a la base de datos: funciona en Mysql, SQlite, Oracle,
+* La DSL es agnóstico a la base de datos: funciona en MySQL, SQLite, Oracle,
   Postgres, etc
 
 !SLIDE smbullets transition=uncover
