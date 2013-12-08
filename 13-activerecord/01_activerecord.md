@@ -7,7 +7,7 @@
 * Representa la M de MVC (el modelo)
 * Conecta clases a tablas de una base de datos estableciendo una capa de
   persistencia
-* La librería provee una clase base que al subclasearse, mapea la nueva clase
+* La librería provee una clase base que al heredarse, mapea la nueva clase
   con una tabla existente de una base de datos
 * En el contexto de una aplicación a estas clases suelen llamarselas **modelos**
 * Los modelos pueden conectarse con otros modelos usando **asociaciones**
@@ -80,7 +80,7 @@ creada*
 * Los nombres de las clases se pluralizan para encontrar las tablas
 	* Por ejemplo `Book` se mapea a `books` 
 	* El mecanismo de pluralización (definido por Rails) es muy potente y puede
-	  pluralizar (y singularizar) palabras regulares como irregulares. 
+	  pluralizar (y singularizar) tanto palabras regulares como irregulares. 
 	* Cuando las clases se componen de más de una palabra, se utiliza **CamelCase** 
 	  y el nombre de la tabla se compone de las palabras separadas por
 	  underscores. Por ejemplo: la clase `BookClub` se mapeará a la tabla
@@ -110,7 +110,7 @@ creada*
 	  modelos
 	* **Claves primarias:** por defecto, Active Record utilizará una columna de
 	  tipo entero llamada `id` como clave primaria. Cuando se usan *Migraciones de
-    active Record* para crear las tablas, esta columna se creará automáticamente
+    Active Record* para crear las tablas, esta columna se creará automáticamente
 
 !SLIDE smbullets small transition=uncover
 # Más convenciones sobre los esquemas
@@ -124,7 +124,7 @@ creada*
   Inheritance](http://api.rubyonrails.org/classes/ActiveRecord/Base.html#label-Single+table+inheritance)
 * `(association_name)_type`: especifica el tipo de [asociaciones
   polimórifcas](http://edgeguides.rubyonrails.org/association_basics.html#polymorphic-associations)
-* `(table_name)_count`: usado para cachear el número de registros que perteneces
+* `(table_name)_count`: usado para cachear el número de registros que pertenecen
   a una asociación. Por ejemplo, una columna `comments_count` en la clase `Post` que tiene muchas instancias de `Comment`, cacheará el número de comentarios existentes para cada post.
 
 !SLIDE smbullets small transition=uncover
@@ -272,14 +272,14 @@ creada*
 * Permiten agregar comportamiento a los modelos que es ejecutado de forma transparente 
   cuando estos eventos suceden.
 * Pueden agregarse eventos cuando se crea un nuevo registro, al modificarse, al
-  eliminarse, etc
+  eliminarse, etc.
 
 !SLIDE bullets transition=uncover
 # Migraciones
 * Las migraciones son una DSL para el manejo de esquemas de bases de datos
   llamados migraciones
 * Las migraciones se almacenan en archivos que son ejecutados contra una base de
-  datos soportada por Active Recors usando `rake`
+  datos soportada por Active Record usando `rake`
 
 !SLIDE smbullets smaller transition=uncover
 # Migraciones
@@ -311,7 +311,7 @@ creada*
   datos
 * Para aplicar las migraciones pendientes: `rake db:migrate`
 * Para deshacer un cambio hecho: `rake db:rollback`
-* La DSL es agnóstico a la base de datos: funciona en Mysql, SQlite, Oracle,
+* La DSL es agnóstico a la base de datos: funciona en MySQL, SQLite, Oracle,
   Postgres, etc
 
 !SLIDE smbullets transition=uncover
