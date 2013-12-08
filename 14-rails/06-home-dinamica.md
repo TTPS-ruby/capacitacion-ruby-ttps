@@ -174,9 +174,41 @@ caracter **#** es una convención usada en la documentación
 
 !SLIDE smbullets transition=uncover small
 # Escribimos el controlador
+## Creamos `app/controllers/visitors_controller.rb`
 	@@@ ruby
 	class VisitorsController < ApplicationController
 		def new
 			@owner = Owner.new
 		end
 	end
+
+## ¿Qué hace?
+* Al ser subclase de ApplicationController hereda todo el comportamiento
+  definido por la API de rails
+* Solo implementa el método `new`
+  * Creamos una variable de instancia `@owner` dado que en la vista
+    correspondiente estará disponible. 
+  * El controller se comunica con la vista a través de variables de instancia
+
+!SLIDE smbullets transition=uncover small
+# Relación controlador y vista
+* Ya creamos una vista llamada `app/views/visitors/new.html.erb`
+* El controlador es muy simple dado que el comportamiento oculto que invoca la
+  vista *new* es heredado de la API de rails.
+  * Podemos hacer explícita esta relación
+
+## Indicando qué vista usar en el controlador
+	@@@ ruby
+	class VisitorsController < ApplicationController
+		def new
+			@owner = Owner.new
+			render 'visitors/new'
+		end
+	end
+
+!SLIDE smbullets transition=uncover small
+# Scaffolding
+* La mejor forma de entender la arquitectura MVC de rails es examinando cada una
+  de las partes como hemos hecho hasta aquí
+* Si se lee la guía de rails: [Rails Guides: Getting Started with Rails](http://guides.rubyonrails.org/getting_started.html) veremos que se utiliza mucho el comando `rails generate scaffold` que permite crear MVC en una única operación
+	* Esta operación es muy usada para desarrollar módulos simples en rails
