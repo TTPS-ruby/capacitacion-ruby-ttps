@@ -22,10 +22,6 @@
   [![twitter](twitter.png)](https://twitter.com/F_3r "twitter")
   [![github](github.png)](https://github.com/f-3r "github")
 
-  * APU J. Francisco Raposeiras
-  [![rapofran@gmail.com](mail.png)](mailto:rapofran@gmail.com "rapofran@gmail.com")
-  [![twitter](twitter.png)](https://twitter.com/rapofran "twitter")
-  [![github](github.png)](https://github.com/rapofran "github")
 
 !SLIDE bullets transition=uncover
 # Horarios de cursada

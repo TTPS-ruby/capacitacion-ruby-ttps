@@ -14,6 +14,7 @@
     {"section":"10-unit-testing"},
     {"section":"11-gems-bundler"},
     {"section":"12-sinatra"},
-    {"section":"13-activerecord"}
+    {"section":"13-activerecord"},
+    {"section":"14-rails"}
   ]
 }
