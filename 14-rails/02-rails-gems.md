@@ -32,11 +32,11 @@ de los desarrollos las utilizan y por ello se consideran
 !SLIDE bullets transition=uncover smaller
 # Algunas gemas útiles
 * De propósito general
-  * [activerecord-tableless]() - permite usar modelos de Rails sin bases de datos
-  * [high_voltage]() - Para la creación de páginas estáticas como *about*
+  * [activerecord-tableless](https://github.com/softace/activerecord-tableless) - permite usar modelos de Rails sin bases de datos
+  * [high_voltage](https://github.com/thoughtbot/high_voltage) - Para la creación de páginas estáticas como *about*
   * [figaro](https://github.com/laserlemon/figaro) - Para la configuracion del
     proyecto
-  * [simple_form]() - simplifica el uso de forms
+  * [simple_form](https://github.com/plataformatec/simple_form) - simplifica el uso de forms
 * Para mejorar el estilo visual
   * [compass-rails](https://github.com/Compass/compass-rails) - simplifica el manejo de estilos para poder usar [Zurb Fundation](http://foundation.zurb.com/) por ejemplo
   * [zurb-foundation](https://github.com/zurb/foundation) - front-end framework
