@@ -91,7 +91,7 @@ elección
 * La ayuda puede parecer un tanto críptica a primera vista, pero es importante
 leer las opciones para ver qué alternativas tenemos.
 * No usaremos ninguna opción en esta primer instancia
-* Como resultado de la ejecución , se creará un directorio con carpetas y
+* Como resultado de la ejecución, se creará un directorio con carpetas y
   archivos en ella.
 
 !SLIDE commandline transition=uncover

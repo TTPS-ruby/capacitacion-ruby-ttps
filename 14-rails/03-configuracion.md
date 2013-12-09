@@ -21,17 +21,17 @@
 * Supongamos que se necesita configurar en alguna parte de nuestra aplicación
   rails, un servidor de mail
 
-## Ejemplo de configuracion de mail
+## Ejemplo de configuración de mail
 
 	@@@ruby
 	config.action_mailer.smtp_settings = {
-	address: "smtp.gmail.com",
-	port: 587,
-	domain: ENV["DOMAIN_NAME"],
-	authentication: "plain",
-	enable_starttls_auto: true,
-	user_name: ENV["GMAIL_USERNAME"],
-	password: ENV["GMAIL_PASSWORD"]
+	  address: "smtp.gmail.com",
+	  port: 587,
+	  domain: ENV["DOMAIN_NAME"],
+	  authentication: "plain",
+	  enable_starttls_auto: true,
+	  user_name: ENV["GMAIL_USERNAME"],
+	  password: ENV["GMAIL_PASSWORD"]
 	}
 
 ¿De qué forma seteamos los valores **DOMAIN_NAME**, **GMAIL_USERNAME** y **GMAIL_PASSWORD**?
