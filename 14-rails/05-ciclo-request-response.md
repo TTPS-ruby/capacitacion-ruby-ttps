@@ -21,7 +21,7 @@
 
 !SLIDE smbullets transition=uncover small
 # Analizando el ciclo desde el navegador
-* Es aconsejable usar [Google Chrome](www.google.com/chrome)
+* Es aconsejable usar [Google Chrome](https://www.google.com/chrome)
 * Antes de investigar algo, es conveniente utilizar el **modo incógnito**: que
   se accede usando **Shift+Ctrl+N**
 	* Alternativamente puede limpiarse la caché del navegador para así limpiar
