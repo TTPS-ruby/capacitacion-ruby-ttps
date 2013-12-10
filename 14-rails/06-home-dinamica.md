@@ -80,7 +80,7 @@ Podemos mejorar el error agregando la gema `better_errors` al `Gemfile`
 ## Mensajes más claros
 ![Error better errors](07-better-errors-no-repl.png)
 
-Si hacemos caso al mensaje marcado en rojo, podemos agregar nua consola REPL
+Si hacemos caso al mensaje marcado en rojo, podemos agregar una consola REPL
 como irb que nos permitirá debugear el código. 
 El mensaje sugiere agregar la gema `binding_of_caller` al `Gemfile`
 
