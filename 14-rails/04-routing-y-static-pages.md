@@ -37,7 +37,7 @@
 
 !SLIDE smbullets transition=uncover small
 # Introduciendo el ruteo
-* El principio de *convention over configuration* govierna el ruteo en rails
+* El principio de *convention over configuration* gobierna el ruteo en rails
 * Si un navegador solicita **index.html** entonces Rails servirá la página desde
   el directorio `public/` por defecto
 	* No se necesita configuración para ello
