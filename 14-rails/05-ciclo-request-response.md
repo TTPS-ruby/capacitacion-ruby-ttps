@@ -4,7 +4,7 @@
 * Debemos considerar que la WEB no es más que navegadores que solicitan páginas
   a un servidor
 * Los navegadores realizan **requerimientos** (request)
-* Los servidores **responden** (repsonse) a estos requerimientos, enviando por ejemplo un
+* Los servidores **responden** (response) a estos requerimientos, enviando por ejemplo un
   HTML.
 	* Dependiendo en los encabezados del HTML, el navegador deberá realizar más
 	  requerimientos para obtener estilos, javascripts e imagenes
