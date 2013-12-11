@@ -10,7 +10,7 @@
 	  requerimientos para obtener estilos, javascripts e imagenes
 * La simplicidad de HTTP hace que no haya más que los requerimientos de un
   navegador y las respuestas de un servidor
-	* Hoy día existe además el streaming de audio / video que requieren un pipe
+	* Hoy día existe además el streaming de audio/video que requieren un pipe
 	  entre el navegador y el servidor, pero aún así, un requerimiento y respuesta inicial 
 		hacen posible la incialización del stream
 
