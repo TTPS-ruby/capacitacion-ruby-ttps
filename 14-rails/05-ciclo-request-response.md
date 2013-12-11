@@ -43,7 +43,7 @@
 
 !SLIDE bullets transition=uncover small
 # El detalle del requerimiento
-Cliqueando sobre el nombre del archivo, y luego sobre la solapa **Headers** se visualiza el detalle del requerimiento y su respuesta
+Cliqueando sobre el nombre del archivo, y luego sobre la solapa **Headers**, se visualiza el detalle del requerimiento y su respuesta
 
 ![ejemplo chrome detalle](04-navegador-detalle.png)
 
