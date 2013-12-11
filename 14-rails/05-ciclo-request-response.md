@@ -94,7 +94,7 @@ Algunos expertos opinan que la arquitectura de la web no se ajusta al original
 * En la base del stack está el navegador: el requerimiento fluye subiendo por
   las capas hasta llegar al **router** que despachará al controlador apropiado
 * Existe un único `config/routes.rb` y múltiples controladores, modelos y vistas
-* El controlador al recibir el flujo, obtendrá datos de algún **modelo**
+* El controlador, al recibir el flujo, obtendrá datos de algún **modelo**
 * Con los datos listos, el controlador renderizará la respuesta combinando los
   datos del modelo con una componente de **vista** que provea layout y markup
 
