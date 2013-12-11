@@ -23,7 +23,7 @@
 # Analizando el ciclo desde el navegador
 * Es aconsejable usar [Google Chrome](https://www.google.com/chrome)
 * Antes de investigar algo, es conveniente utilizar el **modo incógnito**: que
-  se accede usando **Shift+Ctrl+N**
+  se accede usando **Shift+Ctrl+N** (**Shift+Ctrl+P** en Firefox)
 	* Alternativamente puede limpiarse la caché del navegador para así limpiar
 	  cualquier solicitud previamente cacheada por el navegador 
 * Abrimos la vista *Developer Tools* usando **Shift+Ctrl+I**
