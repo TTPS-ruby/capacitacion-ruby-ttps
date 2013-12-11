@@ -119,7 +119,7 @@ Algunos expertos opinan que la arquitectura de la web no se ajusta al original
 !SLIDE smbullets transition=uncover 
 # Controllers en Rails
 * Un controlador podría obtener datos de más de un modelo si fuera necesario
-* Generalmente un controlador posee más de una **acción**
+* Generalmente un controlador posee más de una **acción**.
 	Por ejemplo, un controlador para User podría tener acciones para listar los
 usuarios, agregar o eliminar un usuario de la lista
 * El archivo `config/routes.rb` macheará el requermiento web a una acción del
