@@ -15,7 +15,7 @@ Planificamos nuestro trabajo definiendo un User story
 # La elección de nombres
 * Mucho en el arte de la programación radica en elegir nombres correctos para
   nuestras creaciones
-* Necesitamos un modelo como origen datos que represente el site owner. 
+* Necesitamos un modelo que represente el site owner. 
 	* Elegiremos el nombre más obvio: **Owner** y cremos el archivo
 `app/models/owner.rb`
 * El nombre del controlador abre otro debate
