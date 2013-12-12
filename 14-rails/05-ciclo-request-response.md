@@ -4,13 +4,13 @@
 * Debemos considerar que la WEB no es más que navegadores que solicitan páginas
   a un servidor
 * Los navegadores realizan **requerimientos** (request)
-* Los servidores **responden** (response) a estos requerimientos, enviando por ejemplo un
+* Los servidores **responden** (response) a estos requerimientos, enviando, por ejemplo, un
   HTML.
 	* Dependiendo en los encabezados del HTML, el navegador deberá realizar más
 	  requerimientos para obtener estilos, javascripts e imagenes
 * La simplicidad de HTTP hace que no haya más que los requerimientos de un
   navegador y las respuestas de un servidor
-	* Hoy día existe además el streaming de audio / video que requieren un pipe
+	* Hoy día existe además el streaming de audio/video que requieren un pipe
 	  entre el navegador y el servidor, pero aún así, un requerimiento y respuesta inicial 
 		hacen posible la incialización del stream
 
@@ -23,7 +23,7 @@
 # Analizando el ciclo desde el navegador
 * Es aconsejable usar [Google Chrome](https://www.google.com/chrome)
 * Antes de investigar algo, es conveniente utilizar el **modo incógnito**: que
-  se accede usando **Shift+Ctrl+N**
+  se accede usando **Shift+Ctrl+N** (**Shift+Ctrl+P** en Firefox)
 	* Alternativamente puede limpiarse la caché del navegador para así limpiar
 	  cualquier solicitud previamente cacheada por el navegador 
 * Abrimos la vista *Developer Tools* usando **Shift+Ctrl+I**
@@ -43,7 +43,7 @@
 
 !SLIDE bullets transition=uncover small
 # El detalle del requerimiento
-Cliqueando sobre el nombre del archivo, y luego sobre la solapa **Headers** se visualiza el detalle del requerimiento y su respuesta
+Cliqueando sobre el nombre del archivo, y luego sobre la solapa **Headers**, se visualiza el detalle del requerimiento y su respuesta
 
 ![ejemplo chrome detalle](04-navegador-detalle.png)
 
@@ -94,7 +94,7 @@ Algunos expertos opinan que la arquitectura de la web no se ajusta al original
 * En la base del stack está el navegador: el requerimiento fluye subiendo por
   las capas hasta llegar al **router** que despachará al controlador apropiado
 * Existe un único `config/routes.rb` y múltiples controladores, modelos y vistas
-* El controlador al recibir el flujo, obtendrá datos de algún **modelo**
+* El controlador, al recibir el flujo, obtendrá datos de algún **modelo**
 * Con los datos listos, el controlador renderizará la respuesta combinando los
   datos del modelo con una componente de **vista** que provea layout y markup
 
@@ -119,7 +119,7 @@ Algunos expertos opinan que la arquitectura de la web no se ajusta al original
 !SLIDE smbullets transition=uncover 
 # Controllers en Rails
 * Un controlador podría obtener datos de más de un modelo si fuera necesario
-* Generalmente un controlador posee más de una **acción**
+* Generalmente un controlador posee más de una **acción**.
 	Por ejemplo, un controlador para User podría tener acciones para listar los
 usuarios, agregar o eliminar un usuario de la lista
 * El archivo `config/routes.rb` macheará el requermiento web a una acción del
