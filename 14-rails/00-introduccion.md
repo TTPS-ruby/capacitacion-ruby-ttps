@@ -99,7 +99,7 @@ leer las opciones para ver qué alternativas tenemos.
 
 Primero creamos nuestra aplicación
 
-	$ rails new vearn-rails
+	$ rails new learn-rails
 
 El parámetro **learn-rails** indica el nombre del proyecto. Puede usarse
 cualquier nombre
