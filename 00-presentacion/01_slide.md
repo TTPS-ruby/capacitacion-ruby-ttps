@@ -9,14 +9,14 @@
   [![car@info.unlp.edu.ar](mail.png)](mailto:car@info.unlp.edu.ar "car@info.unlp.edu.ar")
   [![twitter](twitter.png)](https://twitter.com/car_unlp "twitter")
   [![github](github.png)](https://github.com/chrodriguez "github")
-* **JTP:** Lic. Patricio Mac Adden
+* **JTP:** APU Fernando López
+  [![flopez@linti.unlp.edu.ar](mail.png)](mailto:flopez@linti.unlp.edu.ar "flopez@linti.unlp.edu.ar")
+  [![github](github.png)](https://github.com/fernandolopez "github")
+* **Ayudantes:** 
+  * Lic. Patricio Mac Adden
   [![patriciomacadden@gmail.com](mail.png)](mailto:patriciomacadden@gmail.com "patriciomacadden@gmail.com")
   [![twitter](twitter.png)](https://twitter.com/maxawen "twitter")
   [![github](github.png)](https://github.com/patriciomacadden "github")
-* **Ayudantes:** 
-  * APU Fernando López
-  [![flopez@linti.unlp.edu.ar](mail.png)](mailto:flopez@linti.unlp.edu.ar "flopez@linti.unlp.edu.ar")
-  [![github](github.png)](https://github.com/fernandolopez "github")
   * Fernando Martinez
   [![fernando.martinez@live.com.ar](mail.png)](mailto:fernando.martinez@live.com.ar "rapofran@gmail.com")
   [![twitter](twitter.png)](https://twitter.com/F_3r "twitter")
@@ -58,10 +58,12 @@
 
 !SLIDE smbullets transition=uncover
 # Modalidad de cursada
-* Clases teórico prácticas
-* Compromisos semanales con los alumnos
-* Trabajo en grupo. Los grupos podrán ir cambiando a lo largo de la cursada
-* Aprobación de la cursada mediante trabajo práctico y coloquio
+* Clases teórico prácticas: generalmente avanzaremos con las teorías los días
+  Lunes, dejando los Jueves para consultas o talleres prácticos
+* Aprobación de la cursada: *será necesario aprobar*
+  * Entregas de un ejercicio por práctico que se desarrollará en clase. Habrá
+    una evaluación por práctico (salvo el primero)
+  * Trabajo práctico final integrador
 * Aprobación de la materia mediante extensión del trabajo práctico y coloquio
 
 !SLIDE bullets transition=uncover
