@@ -50,16 +50,3 @@ $ git clone https://github.com/rails/rails.git
 # El workflow completo
 ![workflow completo git](git-workflow.png)
 
-!SLIDE center transition=uncover
-# Actividad con GIT
-
-!SLIDE bullets small transition=uncover
-# Interacción con GIT
-
-* Objetivo
-  * Instalar `git`
-  * Aprender el workflow simple de trabajo con git
-
-* Actividad
-  * Acceder a [https://github.com/TTPS-ruby/sandbox](https://github.com/TTPS-ruby/sandbox)
-  * Leer la actividad para el directorio `alumnos/`
