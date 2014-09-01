@@ -30,7 +30,7 @@
 
 ## Lo verificamos:
 	@@@ ruby
-	# La formula de verificacion es: n*(n-1)/2
+	# La formula de verificacion es: n*(n+1)/2
 	
 	100*101/2
 
