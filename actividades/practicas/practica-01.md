@@ -1,10 +1,10 @@
 TTPS Opción Ruby
 
 Práctica 1
-----------
+==========
 
 Un vistazo rápido de Git
-========================
+------------------------
 
 Antes de comenzar esta práctica es necesario tener git instalado.
 Asegurate que tengas git instalado ejecutando el siguiente comando:
@@ -67,7 +67,7 @@ ejecutá el subcomando __pull__ periódicamente.
 
 
 Ruby: Tipos básicos y sintaxis
-==============================
+------------------------------
 
 __Nota: No usar while, for ni repeat.__
 
@@ -107,7 +107,7 @@ literales y usando __new__ (cuando se pueda):
 3. ¿Cuál es la diferencia entre las siguientes sentencias?:
   * `String.methods`
   * `'Hola'.methods`
-  * `String.methods false`
+  * `String.instance\_methods false`
 
 4. Escriba una función que reciba un __hash__ y retorne un __string__
 con las claves y valores del __hash__ formateados en una lista HTML.
@@ -190,8 +190,8 @@ Ejemplo: dado ['Ruby', 'is', 'awesome'] debe retornar [4, 2, 7]
   La representación entera se calcula como: red + green\*256 + blue\*256²
 
   b. Realizar el mismo cálculo obteniendo los coeficientes para cada
-  componente del color de otro hash coefficients = { red: 256⁰, green:
-  256¹, blue: 256² }
+  componente del color de otro hash coefficients = { red: 256**0, green:
+  256**1, blue: 256**2 }
 
 
 
