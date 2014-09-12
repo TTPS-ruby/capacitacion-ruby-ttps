@@ -33,7 +33,7 @@ muestra más abajo e imprima los argumentos recibidos:
     amount: 5
   ```
 
-  Nota: esta función solamente recibe un argumento posicional.
+  Nota: esta función solamente recibe **un** argumento posicional.
 
 1. Analice las diferencias entre los siguientes usos de bloques:
   ```ruby
@@ -92,8 +92,136 @@ muestra más abajo e imprima los argumentos recibidos:
   lambda1.call 2
   ```
 
-Módulos y mixings
+
+1. Definir un método ```#tag``` que se comporte de manera similar a la clase HTMLCanvas utilizada en el framework web Seaside (smalltalk) para generar dinámicamente HTML.
+Debe funcionar de la siguiente manera:
+
+```ruby
+# permite crear tags sin contenido:
+tag(:input) #=> "<input>"
+
+# permite setear attributos:
+tag(:div, id: 'notification_panel', class: 'alert alert-danger') #=> <div id="notification_panel" class="alert alert-danger">
+
+# permite setear attributos data-* de html5
+tag(:input, id: 'id', data: { field: 'value' }) #=> <input id="id" data-field="value">
+
+# permite crear tags con contenido. El contenido será obtenido de un bloque
+tag(:div) { "esto es contenido" } #=> <div>esto es contenido</div>
+
+# De esta manera se puede anidar tags, por ejemplo:
+tag(:div, id: 'lista', data: { toogle: 'true' }) do
+  tag(:ul) do
+    tag(:li) { 'un item en una lista'}
+  end
+end
+#=> <div id="lista" data-toggle="true"><ul><li> un item en una lista</li></ul></div>
+
+```
+
+a. Esta solución permite utilizar todas las clases ruby y sus métodos para generar dinámicamente partes del html.
+Cómo la usaría para que a partir del siguiente hash:
+
+```ruby
+menu = { google: 'http://google.com', ebay: 'http://ebay.com', facultad: 'http://info.unlp.edu.ar' }
+```
+
+Genere una lista de links como la siguiente:
+ 
+```html
+<div>
+  <ul>
+    <li><a href="http://google.com"> Google </a></li>
+    <li><a href="http://ebay.com"> Ebay </a></li>
+    <li><a href="http://info.unlp.edu.ar"> Facultad </a></li>
+  </ul>
+</div>
+```
+
+
+Módulos y mixins
 -----------------
+1. Dada las siguientes definiciones de módulos, clases y constantes:
+
+```ruby
+module TTPS
+  CONSTANTE = 10
+  
+  module Resolving
+    CONSTANTE = 5
+    
+    class Scopes
+      def access(number)
+        ...
+      end
+    end
+  end
+end
+
+CONSTANTE = 20
+```
+
+Implementar el método #access de la clase TTPS::Resolving::Scopes de manera que si el número recibido:
+* si es < 0   =>  sea multiplicado por la constante definida en el módulo Resolving
+* si es > 0   =>  sea multiplicado por la constante definida en el módulo TTPS
+* si es = 0   =>  devuelva el valor de la constante definida en el namespace global
+
+
+
+1. Defina un módulo `Inspector` que provea un `#out` método que imprima en pantalla el estado interno de un objeto de la siguiente manera:
+
+```
+:::::::::::::::::::::::::::: <clase del objeto> (<object_id>) ::::::::::::::::::::::::::::
+
+       <nombre de variable de instancia>  :       <valor de la variable>
+       <nombre de variable de instancia>  :       <valor de la variable>
+       <nombre de variable de instancia>  :       <valor de la variable>
+       ...
+       
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```
+
+a. Cree clases que incluyan el módulo posean varias variables de instancia para probarlo. 
+```ruby
+  class InspectMe
+    include Inspector
+
+    #definición del resto de la clase...
+  end
+
+  InspectMe.new.out
+```
+
+b. ¿Qué sucedería si el método se llamara `#inspect` en lugar de `#out`? Renombre el método, vuelva a incluirlo en la clase de prueba, y pruébelo nuevamente.
+
+c. Luego de renombrar el método, ejecute las siguientes líneas:
+
+```ruby
+class Object
+  include Inspector
+end
+```
+
+d.¿Qué sucede ahora? ¿Por qué?
+
+
+**Nota:**
+
+Para acceder a las variables de instancia de un objeto revise cómo se utilizan los siguientes métodos:
+* [Object#instance_variables](http://ruby-doc.org/core-2.1.2/Object.html#method-i-instance_variables) 
+* [Object#instance_variable_get](http://ruby-doc.org/core-2.1.2/Object.html#instance_variable_get-method)
+
+Para obtener el nombre de la clase de un objeto pueden utilizar los métodos:
+* Object#class
+* Class#name
+    
+```ruby
+100.class #=> Fixnum
+100.class.name #=> "Fixnum"
+```
+
+
 
 
 Clases y objetos
