@@ -1,7 +1,7 @@
 require_relative '../words_from_string.rb'
-require 'test/unit'
+require 'minitest/autorun'
 
-class TestWordsFromString < Test::Unit::TestCase
+class TestWordsFromString < Minitest::Test
   def test_empty_string
     assert_equal([], words_from_string(""))
     assert_equal([], words_from_string(" "))

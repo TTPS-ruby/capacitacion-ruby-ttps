@@ -277,9 +277,9 @@ Ver el ejemplo completo en la carpeta `samples/05/words_frequency`
 # Testeamos `words_from_string`
 	@@@ ruby
 	require_relative 'words_from_string.rb'
-	require 'test/unit'
+	require 'minitest/autorun'
 
-	class TestWordsFromString < Test::Unit::TestCase
+	class TestWordsFromString < Minitest::Test
 		def test_empty_string
 			assert_equal([], words_from_string(""))
 			assert_equal([], words_from_string(" "))
@@ -305,9 +305,9 @@ por el framework de testing
 # Testeamos `count_frequency`
 	@@@ ruby
 	require_relative 'count_frequency.rb'
-	require 'test/unit'
+	require 'minitest/autorun'
 
-	class TestCountFrequency < Test::Unit::TestCase
+	class TestCountFrequency < Minitest::Test
 		def test_empty_list
 			assert_equal({}, count_frequency([]))
 		end
@@ -351,7 +351,7 @@ En cualquier lenguaje esto es natural
 	end
 
 	# o más simple:
-	top_five.each { |word, count| "#{word}: #{count}" }
+	top_five.each { |word, count| puts "#{word}: #{count}" }
 
 !SLIDE smbullets smaller transition=uncover
 # Bloques
@@ -687,7 +687,7 @@ En cualquier lenguaje esto es natural
 * Los metodos comunes de los enumeradores como `count` y `select` tratarán de
 	leer todos los elementos antes de retornar un valor
 	* Podemos escribir la versión de `select` adecuada a nuestra lista
-	  infinito
+	  infinita
 
 ## Ejemplo
 	@@@ ruby

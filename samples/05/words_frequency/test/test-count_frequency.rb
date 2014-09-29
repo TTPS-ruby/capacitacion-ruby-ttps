@@ -1,7 +1,7 @@
 require_relative '../count_frequency.rb'
-require 'test/unit'
+require 'minitest/autorun'
 
-class TestCountFrequency < Test::Unit::TestCase
+class TestCountFrequency < Minitest::Test
   def test_empty_list
     assert_equal({}, count_frequency([]))
   end

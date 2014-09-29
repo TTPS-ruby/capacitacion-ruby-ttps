@@ -9,7 +9,6 @@ abort 'Must specify a text file to read from' if ARGV.length == 0
 
 raw_text = File.read ARGV.first
 word_list = words_from_string raw_text
-counts = count_frequency word_list
 sorted = sorted_count_frequency word_list
 top_five = sorted.last 5
 
