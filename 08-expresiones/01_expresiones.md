@@ -69,16 +69,16 @@
 
 !SLIDE bullets smaller transition=uncover
 # Expresiones de comando
-* Podemos usar comillas ` o `%x` para indicar la ejecución de un comando en el
+* Podemos usar comillas: **\`**  ó `%x` para indicar la ejecución de un comando en el
 sistema operativo subyacente
 
 ## Ejemplo
 
 	@@@ ruby
-	date`
-	ls`.split[34]
+	`date`
+	`ls`.split[34]
 	%x{echo "Hello there"}
-	`ip add ls`.
+	`ip address ls`.
 		split("\n").
 		select {|x| x =~ / inet / }.
 		map do |x|
@@ -111,10 +111,12 @@ sistema operativo subyacente
 	nil && 99    # => nil
 	false && 99  # => false
 	"cat" && 99  # => 99
+	a = (true and false)
+	a = true and false # Check a, Why??
 
 !SLIDE bullets small transition=uncover
 # Or
-* El operador `|| y el método `or` funcionan similar 
+* El operador `||` y el método `or` funcionan similar 
 	* Retornan el primer valor si es verdadero, sino el segundo. Ambos son iguales 
 	salvo por la precedencia `or` es de menor precedencia que `||`
 
@@ -123,11 +125,13 @@ sistema operativo subyacente
 	nil || 99    # => 99
 	false || 99  # => 99
 	"cat" || 99  # => "cat"
+	b = (false or true)
+	b = false or true # Check b, Why??
 
 * Es muy común utilizar la expresión: `||=` para setear un valor si no fue
 	seteado: `var ||= "default value"`
 
-!SLIDE bullets small transition=uncover
+!SLIDE bullets transition=uncover
 # Break, Redo y Next
 * Podemos alterar el flujo de ejecución de loops 
 	* `break`: termina en forma inmediata al loop en que encuentra más próximo. El
@@ -136,3 +140,58 @@ sistema operativo subyacente
 	  siguiente elemento si fuese un iterador
 	* `next`: avanza hasta el final del bloque continuando con la siguiente
 	  iteración
+
+!SLIDE bullets transition=uncover
+# Ejemplos
+
+## Break
+
+	@@@ ruby
+	a = 0
+	while a < 20 do
+		a +=1
+		break if a == 10 
+		p a 
+	end
+
+!SLIDE bullets transition=uncover
+# Ejemplos
+
+## Redo
+
+	@@@ ruby
+	a = 0
+	while a < 20 do
+		a +=1
+		redo if a == 10 
+		p a 
+	end
+	
+	# Y ahora?
+	a = 0
+	while a < 20 do
+		a +=1
+		redo if a == 20 
+		p a 
+	end
+
+!SLIDE bullets transition=uncover
+# Ejemplos
+
+## Next
+
+	@@@ ruby
+	a = 0
+	while a < 20 do
+		a +=1
+		next if a == 10 
+		p a 
+	end
+	
+	# Y ahora?
+	a = 0
+	while a < 20 do
+		a +=1
+		next if a == 20 
+		p a 
+	end
