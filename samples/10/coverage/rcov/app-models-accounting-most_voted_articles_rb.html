@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/accounting/most_voted_articles.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/accounting/most_voted_articles.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-accounting-most_voted_articles_rb.html">app/models/accounting/most_voted_articles.rb</a></td>
+            <td class='right_align'><tt>127</tt></td>
+            <td class='right_align'><tt>52</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.43%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:98px"></div>
+        <div class="uncovered" style="width:2px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.15%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:96px"></div>
+        <div class="uncovered" style="width:4px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> module Accounting</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   class MostVotedArticles &lt; Most</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>     field :u, as: :user,  type: String</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>     field :v, as: :value, type: Integer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>     index u:  1</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     index v: -1</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>     SYS_BASE_LIKE    = &#39;__system_base_like&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>     SYS_BASE_DISLIKE = &#39;__system_base_dislike&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>     def positive?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>       value &gt; 0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>     def negative?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>       value &lt; 0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>     class &lt;&lt; self</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>       def null_record</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>         { v: 0 }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>       def retrieve_user_vote(user, article)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>         vote = where(user: user, article: key_field_for(article)).first</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>         if vote</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>           # We&#39;re going to return a simple hash with correctly named fields</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>           { article: vote.article, section: vote.section, user: vote.user, value: vote.value, date: vote.date }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>       def already_voted?(user, article)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>         !retrieve_user_vote(user, article).nil?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>       def initial_votes_for(article)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>         likes    = retrieve_user_vote(SYS_BASE_LIKE,    article) || { value: 0 }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>         dislikes = retrieve_user_vote(SYS_BASE_DISLIKE, article) || { value: 0 }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>         [likes[:value], dislikes[:value]]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>       def set_initial_votes_for(article, initial_votes)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line47">47</a>         perform_vote(article, SYS_BASE_LIKE, initial_votes[:likes])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line48">48</a>         perform_vote(article, SYS_BASE_DISLIKE, initial_votes[:dislikes])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>       # Voting methods:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>       # Returns true if the voting was succesful or false if the user has already voted</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>       def make(article, user, feeling)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>         case feeling</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>           when &quot;like&quot;    then up(article, user); true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>           when &quot;dislike&quot; then down(article, user); true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>           else false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>       def up(article, user)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>         perform_vote(article, user, 1)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line65">65</a>       def down(article, user)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>         perform_vote(article, user, -1)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>       # Uses mongodb aggregation framework. See http://docs.mongodb.org/manual/applications/aggregation/</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>       def most_something(timerange, section = nil, with_image = nil, limit = 10)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>         collection.aggregate(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>           { &quot;$match&quot; =&gt; prefilter(timerange, section, with_image) },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>           { &quot;$group&quot; =&gt; { &quot;_id&quot; =&gt; &quot;$a&quot;, &quot;votes&quot; =&gt; { &quot;$sum&quot; =&gt; &quot;$v&quot; } } },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>           { &quot;$sort&quot; =&gt; { &quot;votes&quot; =&gt; -1 } },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>           { &quot;$project&quot; =&gt; { &quot;_id&quot; =&gt; 0, &quot;a&quot; =&gt; &quot;$_id&quot; } },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>           { &quot;$limit&quot; =&gt; limit }).map { |article_entry| article_entry[&#39;a&#39;] }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>       end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>       alias :most_voted :most_something</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>       # Retrieves all votes for an article with the following structure:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>       #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>       # { up: &lt;positive_votes&gt;, down: &lt;negative_votes&gt; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>       #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>       # Uses mongodb aggregation framework. See http://docs.mongodb.org/manual/applications/aggregation/</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>       def votes(article, only_real_votes: false)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>         # Filter by article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>         filtering_by_article = { &quot;$match&quot; =&gt; { &quot;a&quot; =&gt; key_field_for(article) } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>         # For each vote generate a new temp document with this structure</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>         count_real_votes = only_real_votes ? 0 : &quot;$v&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>         counting_votes_by_type = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>           &quot;$project&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>             &quot;up&quot;   =&gt; { &quot;$cond&quot; =&gt; [{ &quot;$eq&quot; =&gt; [&quot;$u&quot;, SYS_BASE_LIKE]},    count_real_votes, { &quot;$cond&quot; =&gt; [{ &quot;$eq&quot; =&gt; [&quot;$v&quot;,  1]}, 1, 0]  }]},</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>             &quot;down&quot; =&gt; { &quot;$cond&quot; =&gt; [{ &quot;$eq&quot; =&gt; [&quot;$u&quot;, SYS_BASE_DISLIKE]}, count_real_votes, { &quot;$cond&quot; =&gt; [{ &quot;$eq&quot; =&gt; [&quot;$v&quot;, -1]}, 1, 0]  }]}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>         # Group by article_id and sum each column</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>         # (in fact, there will always be only one group because of the previous match operation )</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line99">99</a>         grouping_vote_types = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>           &quot;$group&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>             &quot;_id&quot;  =&gt; &quot;$a&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>             &quot;up&quot;   =&gt; { &quot;$sum&quot; =&gt; &quot;$up&quot; },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a>             &quot;down&quot; =&gt; { &quot;$sum&quot; =&gt; &quot;$down&quot; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a>         # Remove the _id field of the result document</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line107">107</a>         removing_id_field = { &quot;$project&quot; =&gt; { &quot;_id&quot; =&gt; 0, &quot;up&quot; =&gt; 1, &quot;down&quot; =&gt; 1 } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>         # Finally, feed the mongodb aggregate pipeling with each step built previosly:</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>         res = collection.aggregate(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line111">111</a>           filtering_by_article,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>           counting_votes_by_type,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>           grouping_vote_types,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>           removing_id_field).first # because #aggregate always returns an array</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a>         # And return the resulting hash</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>         res ? res.symbolize_keys : { up: 0, down: 0 }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line119">119</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>       def perform_vote(article, user, new_value)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line121">121</a>         find_or_create_by(user: user, article: key_field_for(article)).tap do |v|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>           v.update_attributes(default_attributes_for(article).merge(value: new_value, user: user))</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>           article.touch</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

@@ -1,0 +1,1229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/article.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/article.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-article_rb.html">app/models/article.rb</a></td>
+            <td class='right_align'><tt>390</tt></td>
+            <td class='right_align'><tt>187</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>92.05%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:92px"></div>
+        <div class="uncovered" style="width:8px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>83.42%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:83px"></div>
+        <div class="uncovered" style="width:17px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Article &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   include Searchable, Taggable, FindableInOrder, ExtraAttributeModelable</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   MAX_SLUG_LENGTH = 240</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   belongs_to :section</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   belongs_to :edition</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   has_and_belongs_to_many :articles, join_table: &#39;article_relations&#39;, foreign_key: &#39;article_a_id&#39;, association_foreign_key: &#39;article_b_id&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   has_many :article_media, dependent: :delete_all</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   has_many :articles_cover_articles_component_configurations, dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   has_many :cover_articles_component_configurations, through: :articles_cover_articles_component_configurations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   has_many :component_values, as: :referable, dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   # Callbacks</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   before_validation :set_defaults, on: :create</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   before_create :autotag</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   before_create :set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   after_create  :append_id_to_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   after_save :touch_related, :update_accounting, :update_main_medium</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   after_touch :touch_related, :update_accounting</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   after_save    :set_initial_votes, :set_initial_visits</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   scope :ordered,           -&gt; { eager_load(:edition).order(&#39;editions.date DESC, articles.time DESC&#39;) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   scope :all_them,          -&gt; { eager_load(:edition, :section).ordered }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>   scope :visible,           -&gt; { all_them.merge(unscoped_visible) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   scope :on_active_edition, -&gt; { joins(:edition).where(&quot;editions.is_active = true&quot;) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>   scope :unscoped_visible,  -&gt; { unscoped.merge(Section.unscoped.visible).merge(Edition.unscoped.visible).where(is_visible: true) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   scope :for_cover,         -&gt; { visible.where(hide_from_cover: false) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   scope :with_main_image,   -&gt; { all_them.joins(:article_media).where(&#39;article_media.main&#39; =&gt; true) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>   scope :with_edition_date, -&gt;(date_string) { where(editions: { date: Date.strptime(date_string, &#39;%d/%m/%Y&#39;) }) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>   scope :with_section,      -&gt;(section_id) { where(section_id ? { section_id: section_id } : nil) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   # Validations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   validates :title, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>   validates :section, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>   validate :same_supplement</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   accepts_nested_attributes_for :article_media, allow_destroy: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>   accepts_nested_attributes_for :extra_attribute_model</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>   # Attributes to be exported for API</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   set_api_resource id: :slug,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     slug: :slug,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>     title: :title,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>     lead: :lead,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>     body: :body,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>     date: :date,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>     full_date: :full_date,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>     time: :time,</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>     section_id: -&gt;(x) { section.slug },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>     section_name: -&gt;(x) { section.name },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>     heading: :heading,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>     signature: :signature,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>     main_image: :main_image,</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>     edition: -&gt;(x) { edition.try(:name_or_date) },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     image_media: -&gt;(x) { article_media.image.limit(api_resource_settings[:media_limit]).order(:order) if api_resource_settings[:media_limit]},</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>     embedded_media: -&gt;(x) { article_media.embedded.limit(api_resource_settings[:media_limit]).order(:order) if api_resource_settings[:media_limit] },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>     file_media: -&gt;(x) { article_media.file.limit(api_resource_settings[:media_limit]).order(:order) if api_resource_settings[:media_limit] },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>     audio_media: -&gt;(x) { article_media.audio.limit(api_resource_settings[:media_limit]).order(:order) if api_resource_settings[:media_limit] },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>     tags: -&gt;(x){ tags.limit(api_resource_settings[:tags_limit]) if api_resource_settings[:tags_limit] },</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>     related: -&gt;(x) {related.limit(api_resource_settings[:related_limit]) if api_resource_settings[:related_limit] },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>     comes_from_migration: :migrated?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>   # Elasticsearch mappings</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>   mappings do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>     indexes :heading,  type: :string, analyzer: :html, similarity: &#39;BM25&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>     indexes :title, type: :string, analyzer: :text, similarity: &#39;BM25&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>     indexes :lead,  type: :string, analyzer: :html, similarity: &#39;BM25&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>     indexes :body,  type: :string, analyzer: :html, similarity: &#39;BM25&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line73">73</a>     indexes :tags do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>       indexes :name, type: :string, analyzer: :text</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>     indexes :edition do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line77">77</a>       indexes :name_or_date, type: :string, analyzer: :text</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>       indexes :date, type: :date</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>     indexes :section do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>       indexes :name, type: :string, analyzer: :text</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a>   # Return all articles *except* the one passed in as argument</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>   def self.but(article)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>     article ? where.not(id: article) : all_them</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>   # Search for articles using a query hash, which may contain:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>   #   * query  [String] string to be searched amongst the title, heading, lead and body (using OR and %&lt;query&gt;%)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>   #   * except [Article | integer] element to exclude from the result set</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>   def self.search(params = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>     scope = all</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     scope = scope.where(&#39;title like :query OR heading like :query OR lead like :query OR body like :query&#39;, query: &quot;%#{params[:query]}%&quot;) unless params[:query].blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>     scope = scope.but(params[:except]) unless params[:except].blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line97">97</a>     scope</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line100">100</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>     title</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>   # Return the main Image for this article, if any</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>   def main_image</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>     article_media.joins(:medium).where(media: { type: &#39;ImageMedium&#39; }, main: true).first</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>   # Return other articles related to this one.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a>   # Note that this method is different from Article#articles as it does a</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line111">111</a>   # both-ways check on the association of the articles, i.e. any articles</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>   # related to this one either as the originator or the target of the relation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>   # will be included by this method.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>   def related</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>     self.class</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a>       .but(self)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>       .joins(&#39;join article_relations on (id = article_a_id OR id = article_b_id)&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a>       .where(&#39;article_a_id = :id OR article_b_id = :id&#39;, id: id)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>       .uniq</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>   # Return a comma-delimited string with the IDs of the related articles</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>   # associated to this article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line124">124</a>   def serialized_related</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line125">125</a>     articles.collect(&amp;:id).join(&#39;,&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a>   # Update the set of articles related to this one to match the ones</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a>   # specified in +related+.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line130">130</a>   def serialized_related=(related)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line131">131</a>     scope = Article.but(self)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line132">132</a>     related = related.is_a?(Array) ? related.first : related</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line133">133</a>     self.articles = related.split(&#39;,&#39;).collect do |id|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line134">134</a>       scope.find_by(id: id)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a>     end.uniq.reject(&amp;:blank?)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line137">137</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line138">138</a>   def copy(attributes = {})</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>     # Copy attributes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line140">140</a>     dup(except: [:slug, :time], include: [:tags, :articles, :article_media]).tap do |copy|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line141">141</a>       copy.time = Time.current</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line142">142</a>       copy.update_attributes(attributes) unless attributes.empty?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line144">144</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line145">145</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line146">146</a>   # Extract the edition date or the created_at article field</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line147">147</a>   # If is a new record, returns the current date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line148">148</a>   def date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line149">149</a>     edition.try(:date) || created_at.try(:to_date) || Date.today</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line150">150</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line151">151</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line152">152</a>   # Ensures time is recorded in UTC format</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line153">153</a>   def time=(new_time)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line154">154</a>     new_time = Time.parse(new_time) if new_time.is_a?(String)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line155">155</a>     super new_time.utc</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line156">156</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line157">157</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line158">158</a>   # Ensures time is returned in localtime format</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line159">159</a>   def time</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line160">160</a>     super.try(:localtime)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line161">161</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line163">163</a>   # Return an object representing the date &amp; time information that should be</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line164">164</a>   # published for this article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line165">165</a>   def full_date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line166">166</a>     DateTime.new date.year, date.month, date.day, time.hour, time.min, time.sec</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line167">167</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line168">168</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line169">169</a>   def migrated?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line170">170</a>     ElDiaMigrate::Article.where(article_id: id).any?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line171">171</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line172">172</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line173">173</a>   # Answer whether this article is visible</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line174">174</a>   def visible?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line175">175</a>     is_visible? &amp;&amp; section.try(:is_visible?) &amp;&amp; edition.try(:is_visible?)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line176">176</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line177">177</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line178">178</a>   def calculated_extra_attribute_model</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line179">179</a>     extra_attribute_model.merge(section.try(:extra_attribute_model)).merge(edition.try(:extra_attribute_model))</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line180">180</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line181">181</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line182">182</a>   def calculated_extra_attribute(attribute)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line183">183</a>     calculated_extra_attribute_model.send attribute rescue nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line184">184</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line185">185</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line186">186</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line187">187</a>   # Assigns a liking vote or a disliking vote in the article from a user</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line188">188</a>   # Returns false when something was wrong (user has already voted, mispelled feeling action)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line189">189</a>   def vote(feeling, user)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line190">190</a>     Accounting::MostVotedArticles.make(self, user, feeling)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line191">191</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line192">192</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line193">193</a>   # Retrieve votes for an article. if *only_real_votes* is set</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line194">194</a>   # it returns the real users votes without fake base votes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line195">195</a>   def votes(only_real_votes: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line196">196</a>     Accounting::MostVotedArticles.votes self, only_real_votes: only_real_votes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line197">197</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line198">198</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line199">199</a>   # Increment the number of visits for this article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line200">200</a>   def visit!(count = 1)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line201">201</a>     Accounting::MostVisitedArticles.visit! self, count</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line202">202</a>   rescue =&gt; error</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line203">203</a>     logger.fatal &quot;Article id: #{id} =&gt; #visit! =&gt; Accounting::MostVisitedArticles.visit! =&gt; ERROR: #{error}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line204">204</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line205">205</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line206">206</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line207">207</a>   # Return the number of visits this article has received. If *only_real_visits* is set</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line208">208</a>   # it returns the real visits without fake base visits</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line209">209</a>   def visits(only_real_visits: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line210">210</a>     Accounting::MostVisitedArticles.visits self, only_real_visits: only_real_visits</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line211">211</a>   rescue =&gt; error</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line212">212</a>     logger.fatal &quot;Article id: #{id} =&gt; #visits =&gt; Accounting::MostVisited.visits =&gt; ERROR: #{error}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line213">213</a>     0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line214">214</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line215">215</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line216">216</a>   # Lazy getters/setters to optimize excedent queries to MongoDB</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line217">217</a>   def initial_visits</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line218">218</a>     @initial_visits ||= Accounting::MostVisitedArticles.initial_visits_for(self)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line219">219</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line220">220</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line221">221</a>   def initial_likes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line222">222</a>     @initial_likes ||= Accounting::MostVotedArticles.initial_votes_for(self).first</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line223">223</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line224">224</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line225">225</a>   def initial_dislikes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line226">226</a>     @initial_dislikes ||= Accounting::MostVotedArticles.initial_votes_for(self).last</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line227">227</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line228">228</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line229">229</a>   attr_accessor :initial_visits_changed</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line230">230</a>   def initial_visits=(new_visits)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line231">231</a>     new_visits = new_visits.to_i</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line232">232</a>     unless initial_visits == new_visits</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line233">233</a>       @initial_visits = new_visits</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line234">234</a>       self.initial_visits_changed = true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line235">235</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line236">236</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line237">237</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line238">238</a>   attr_accessor :initial_likes_changed</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line239">239</a>   def initial_likes=(new_likes)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line240">240</a>     new_likes = new_likes.to_i</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line241">241</a>     unless initial_likes == new_likes</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line242">242</a>       @initial_likes = new_likes</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line243">243</a>       self.initial_likes_changed = true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line244">244</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line245">245</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line246">246</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line247">247</a>   attr_accessor :initial_dislikes_changed</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line248">248</a>   def initial_dislikes=(new_dislikes)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line249">249</a>     new_dislikes = new_dislikes.to_i</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line250">250</a>     unless initial_dislikes == new_dislikes</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line251">251</a>       @initial_dislikes = new_dislikes</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line252">252</a>       self.initial_dislikes_changed = true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line253">253</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line254">254</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line255">255</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line256">256</a>   # Elasticsearch support methods</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line257">257</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line258">258</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line259">259</a>   # Abstraction method that provides a simple interface for performing a</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line260">260</a>   # full search based on the values of +query_string+, +date+, +section_name+ &amp; +sort_by+.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line261">261</a>   def self.perform_search(query_string = nil, date = nil, section_name = nil, sort_by = &#39;date_desc&#39;)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line262">262</a>     queries = []</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line263">263</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line264">264</a>     sort = case sort_by</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line265">265</a>       when &#39;date_asc&#39;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line266">266</a>         { &#39;edition.date&#39; =&gt; { order: &#39;asc&#39; } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line267">267</a>       when &#39;date_desc&#39;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line268">268</a>         { &#39;edition.date&#39; =&gt; { order: &#39;desc&#39; } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line269">269</a>       when &#39;rank&#39;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line270">270</a>         &#39;_score&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line271">271</a>       else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line272">272</a>         { &#39;edition.date&#39; =&gt; { order: &#39;desc&#39; } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line273">273</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line274">274</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line275">275</a>     if query_string.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line276">276</a>       queries &lt;&lt; Hash[</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line277">277</a>         multi_match: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line278">278</a>           query: query_string,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line279">279</a>           type: &#39;most_fields&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line280">280</a>           fields: [ &#39;title^3&#39;, &#39;lead^2&#39;, &#39;body&#39;, &#39;heading&#39;, &#39;tags.name&#39; ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line281">281</a>         }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line282">282</a>       ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line283">283</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line284">284</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line285">285</a>     date_object = date.to_date rescue nil</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line286">286</a>     if date_object.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line287">287</a>       queries &lt;&lt; Hash[</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line288">288</a>         multi_match: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line289">289</a>           query: date_object,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line290">290</a>           fields: [ &#39;edition.date&#39; ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line291">291</a>         }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line292">292</a>       ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line293">293</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line294">294</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line295">295</a>     if section_name.present?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line296">296</a>       queries &lt;&lt; Hash[match: {&#39;section.name&#39; =&gt; section_name}]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line297">297</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line298">298</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line299">299</a>     query = { query: { bool: { must: queries } }, highlight: { fields: { title: {}, body: {}, lead: {}, heading: {} } }, sort: sort }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line300">300</a>     es_search(query)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line301">301</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line302">302</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line303">303</a>   def indexable?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line304">304</a>     visible?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line305">305</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line306">306</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line307">307</a>   def as_indexed_json(options = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line308">308</a>     as_json only: [:slug, :title, :heading, :lead, :body],</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line309">309</a>             include: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line310">310</a>               tags: { only: [:name] },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line311">311</a>               edition: { methods: [:name_or_date], only: [:name, :date] },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line312">312</a>               section: { only: [:name] }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line313">313</a>             }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line314">314</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line315">315</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line316">316</a>   protected</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line317">317</a>     # Automatically tags an article based on its content using an autotagger</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line318">318</a>     # object (available via @autotagger)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line319">319</a>     def autotag</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line320">320</a>       if self.body</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line321">321</a>         autotags = @autotagger.tags_from self.body</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line322">322</a>         self.transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line323">323</a>           autotags.map! { |t| Tag.where(name: t).first_or_create }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line324">324</a>           self.tags |= autotags</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line325">325</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line326">326</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line327">327</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line328">328</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line329">329</a>     # Before-create callback that generates a slug for this article if</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line330">330</a>     # none has been defined yet. The slug will be truncated to a maximum of</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line331">331</a>     # Article::MAX_SLUG_LENGTH characters</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line332">332</a>     def set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line333">333</a>       self.slug = title.parameterize if slug.blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line334">334</a>       self.slug = slug.truncate(MAX_SLUG_LENGTH, omission: &#39;&#39;, separator: &#39;-&#39;) if slug.length &gt; MAX_SLUG_LENGTH</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line335">335</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line336">336</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line337">337</a>     # After-create callback that appends the ID to the autogenerated slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line338">338</a>     def append_id_to_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line339">339</a>       reload</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line340">340</a>       update_attribute :slug, &quot;#{slug}-#{id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line341">341</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line342">342</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line343">343</a>     # Set the default values for this article without overwriting any</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line344">344</a>     # value that might have been specified for any of the target fields</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line345">345</a>     def set_defaults</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line346">346</a>       self.time = Time.current if time.nil?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line347">347</a>       # Initialize the default autotagger - @see Article#autotag</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line348">348</a>       @autotagger = SimpleTagging.new if @autotagger.nil?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line349">349</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line350">350</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line351">351</a>     # Base votes/visits store callbacks to external DB</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line352">352</a>     def set_initial_votes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line353">353</a>       if initial_likes_changed || initial_dislikes_changed</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line354">354</a>         Accounting::MostVotedArticles.set_initial_votes_for self, { likes: initial_likes, dislikes: initial_dislikes }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line355">355</a>         initial_likes_changed, initial_dislikes_changed = false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line356">356</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line357">357</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line358">358</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line359">359</a>     def set_initial_visits</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line360">360</a>       if initial_visits_changed</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line361">361</a>         Accounting::MostVisitedArticles.set_initial_visits_for self, initial_visits.to_i</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line362">362</a>         initial_visits_changed = false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line363">363</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line364">364</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line365">365</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line366">366</a>     private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line367">367</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line368">368</a>     def update_main_medium</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line369">369</a>       transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line370">370</a>         article_media.update_all(main: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line371">371</a>         article_media.image.first.try(:update, main: true)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line372">372</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line373">373</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line374">374</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line375">375</a>     def same_supplement</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line376">376</a>       if (self.section &amp;&amp; self.edition)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line377">377</a>         errors.add(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line378">378</a>           :edition,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line379">379</a>           I18n.t(&#39;activerecord.errors.models.article.attributes.edition.different_supplement&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line380">380</a>         ) if self.section.supplement != self.edition.supplement</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line381">381</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line382">382</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line383">383</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line384">384</a>     def touch_related</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line385">385</a>       articles_cover_articles_component_configurations.each &amp;:touch</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line386">386</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line387">387</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line388">388</a>     def update_accounting</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line389">389</a>       Accounting::Most.update_status_for self</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line390">390</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line391">391</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

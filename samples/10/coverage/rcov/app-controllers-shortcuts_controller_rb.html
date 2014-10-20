@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/controllers/shortcuts_controller.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/controllers/shortcuts_controller.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-controllers-shortcuts_controller_rb.html">app/controllers/shortcuts_controller.rb</a></td>
+            <td class='right_align'><tt>62</tt></td>
+            <td class='right_align'><tt>35</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.39%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:98px"></div>
+        <div class="uncovered" style="width:2px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.14%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:97px"></div>
+        <div class="uncovered" style="width:3px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class ShortcutsController &lt; ApplicationController</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   load_and_authorize_resource</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   def manage</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>     @shortcuts = current_user.shortcuts.order(:title)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>     render layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   def add_to_menu</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>     @shortcut.show_in_menu!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>     redirect_to action: :manage</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   def remove_from_menu</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>     @shortcut.remove_from_menu!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>     redirect_to action: :manage</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   def new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>     @shortcut = current_user.shortcuts.build(url: params[:url], title: params[:title])</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>     render layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   def edit</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>     render layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   def create</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>     if @shortcut.save</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>       @notice = I18n.t(&#39;shortcuts.new.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>       if params.has_key? :postbuster</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>         render action: &#39;create&#39;, layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>       else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>         redirect_to shortcuts_path, notice: @notice</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>       render action: &#39;new&#39;, layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>   def update</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>     if @shortcut.update(shortcut_params)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>       redirect_to shortcuts_url, notice: I18n.t(&#39;shortcuts.edit.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>       render action: &#39;edit&#39;, layout: !request.xhr?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>   def destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>     @shortcut.destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>     redirect_to request.referer || shortcuts_path, notice: I18n.t(&#39;shortcuts.destroy.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>   private</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>     def set_shortcut</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line57">57</a>       @shortcut = current_user.shortcuts.find(params[:id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>     def shortcut_params</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>       params.require(:shortcut).permit(:title, :url, :show_in_menu)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

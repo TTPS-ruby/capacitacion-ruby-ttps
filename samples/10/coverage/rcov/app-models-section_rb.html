@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/section.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/section.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-section_rb.html">app/models/section.rb</a></td>
+            <td class='right_align'><tt>100</tt></td>
+            <td class='right_align'><tt>50</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Section &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   include FindableInOrder, ExtraAttributeModelable</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   belongs_to :supplement</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   belongs_to :parent, class_name: &#39;Section&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   has_many :children, class_name: &#39;Section&#39;, foreign_key: &#39;parent_id&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   has_many :articles, dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   has_many :tags, through: :articles</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   has_many :component_values, as: :referable, dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   # Validations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   validates :name, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :supplement, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   validates :slug, uniqueness: true, on: :update</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   validate  :not_parent_of_itself</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>   # Callbacks</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   before_create :set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   before_update :set_slug, if: -&gt;{ slug_changed? }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   after_update  :update_articles</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   after_update  :touch_articles, if: -&gt;{ is_visible_changed? }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   default_scope { order(:name) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   scope :with_supplement, -&gt;{ eager_load(:supplement) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   scope :visible, -&gt; { where(is_visible: true) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>   accepts_nested_attributes_for :extra_attribute_model</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>   # Attributes to be exported for API</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   set_api_resource id: :slug,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     slug: :slug,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>     name: :name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>     children: :children</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   # Return all sections *except* the one passed in as argument</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   def self.but(section)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>     section ? where.not(id: section) : where(nil)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   # Used for distinguishing which sections should be visible in the frontend application</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>   # @see ComponentFieldModel#value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   # @see ComponentFieldMultiModel#value</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>   def visible?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>     is_visible?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>   # Scope to work with root sections</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>   def self.roots</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>     where parent_id: nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>   # Search for sections using a query hash, which may contain:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>   #   * query  [String] string to be searched amongst the slug and name (using OR and %&lt;query&gt;%)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>   def self.search(params = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>     scope = where(nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>     scope = scope.where(&#39;slug like :query OR name like :query&#39;, query: &quot;%#{params[:query]}%&quot;) unless params[:query].blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     scope</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>     &quot;#{name} (#{supplement || &#39;-&#39;})&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>   # Return whether this section is a root (i.e., it has no parent)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>   def root?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>     parent_id.nil?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def offspring</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>     [self] + children.map { |child| child.offspring }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>     # Before-create/-update callback that generates a unique slug for this</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>     # section if none has been defined yet</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>     def set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>       self.slug = (slug.blank? ? name : slug).parameterize</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>       if Section.where(slug: slug).exists?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>         unique_number = Section.where(&#39;slug like ?&#39;, &quot;#{slug}-%&quot;).count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line82">82</a>         self.slug &lt;&lt; &quot;--#{unique_number}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>     # Validation callback to make sure a section is not parent of itself</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>     # and thus avoid circular loops on the sections tree</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line88">88</a>     def not_parent_of_itself</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>       if parent == self</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>         errors.add(:parent, I18n.t(&#39;activerecord.errors.models.section.attributes.parent.loop&#39;))</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>     def update_articles</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>       articles.update_all updated_at: Time.now</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line98">98</a>     def touch_articles</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line99">99</a>       articles.each &amp;:touch</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/concerns/representation/backup_management.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>El-dia-backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/concerns/representation/backup_management.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-concerns-representation-backup_management_rb.html">app/models/concerns/representation/backup_management.rb</a></td>
+            <td class='right_align'><tt>30</tt></td>
+            <td class='right_align'><tt>16</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>70.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:70px"></div>
+        <div class="uncovered" style="width:30px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>43.75%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:44px"></div>
+        <div class="uncovered" style="width:56px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> module Representation::BackupManagement</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   extend ActiveSupport::Concern</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a>   # Return whether this representation has backups</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   def has_backups?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>     backups.any?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   # Create a new backup for this representation</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   def generate_backup</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>     self.backups &lt;&lt; copy(Time.now.to_s, {representation: self}, RepresentationBackup)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   # Destructively restore the given backup onto this representation.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>   # This method should be invoked from RepresentationBackup#restore! to ensure</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   # that the backup is destroyed once it has been restored.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   def restore_backup!(backup)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line20">20</a>     transaction do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line21">21</a>       self.configuration = backup.configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line22">22</a>       self.rows = backup.copy_rows</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>       self.view = backup.view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>       self.default_row_view = backup.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line25">25</a>       self.default_column_view = backup.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>       self.default_column_view = backup.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>       self.error_view = backup.error_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>       save!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-04-03 14:30:03 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/routes/article_route.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/routes/article_route.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-routes-article_route_rb.html">app/models/routes/article_route.rb</a></td>
+            <td class='right_align'><tt>76</tt></td>
+            <td class='right_align'><tt>34</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>92.11%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:92px"></div>
+        <div class="uncovered" style="width:8px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>82.35%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:82px"></div>
+        <div class="uncovered" style="width:18px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class ArticleRoute &lt; Route</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a>   # Return the parameters that this type of route accepts</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   def self.available_parameters</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>     %w(section article)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   def constrained_article_id</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line9">9</a>     Article.find_by(slug: constrained_article).try(:id) if constrained_article.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   def constrained_article_id=(article_id)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line13">13</a>     self.constrained_article = Article.find_by(id: article_id).try(:slug)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   # Get the value of the :article constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   def constrained_article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>      constraints[:article]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>   # Set value for :article constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   def constrained_article=(value)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     set_constrained_item :article, value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>   # Get the value of the :section constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   def constrained_section</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>      constraints[:section]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>   # Set value for :section constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   def constrained_section=(value)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line33">33</a>     set_constrained_item :section, value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   # Tries to visit an article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   def accounting(params, count = 1)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line38">38</a>     article(params).visit! count</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   rescue</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line40">40</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   protected</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   def _populate_evaluated_context(evaluated_context, params)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>     present_article = article(params)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>     evaluated_context[:article] = present_article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>     _set_seo evaluated_context, present_article</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>     super</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>   def _set_seo(evaluated_context, article)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>     # Build static part</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>     static_seo = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>       title: article.section.supplement.extra_attribute_model.seo_title,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>       description: article.section.supplement.extra_attribute_model.seo_description,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>       keywords: article.section.supplement.extra_attribute_model.seo_keywords</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>     } rescue {}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a>     # Build dynamic part</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>     evaluated_context[:seo] = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>       title: &quot;#{article.title} #{static_seo[:title]}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>       description: &quot;#{article.section.name} #{article.full_date} #{article.lead} #{static_seo[:description]}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>       keywords: &quot;#{article.tags.join(&#39;, &#39;)} #{static_seo[:keywords]}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>     }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>   def article(params)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>     section_slug = params.delete &#39;section&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>     article_slug = params.delete &#39;article&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>     if section_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>       section = Section.visible.find_by_slug! section_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>       section.articles.visible.find_by_slug! article_slug</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>       Article.visible.find_by_slug! article_slug</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

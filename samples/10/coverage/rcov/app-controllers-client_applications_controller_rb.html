@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/controllers/client_applications_controller.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/controllers/client_applications_controller.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-controllers-client_applications_controller_rb.html">app/controllers/client_applications_controller.rb</a></td>
+            <td class='right_align'><tt>134</tt></td>
+            <td class='right_align'><tt>72</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.79%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:92px"></div>
+        <div class="uncovered" style="width:8px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>84.72%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:85px"></div>
+        <div class="uncovered" style="width:15px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> require &#39;rest_client&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a> class ClientApplicationsController &lt; ApplicationController</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   before_action :set_client_application, only: [:show, :edit, :preview, :update_preview, :update, :enable, :disable, :destroy, :compile_assets, :notify_clients]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   before_action :filter,       only: [:index]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   before_action :clear_filter, only: [:index]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   load_and_authorize_resource</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   respond_to :html</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   def index</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>     @client_applications = @filter.all.page(params[:page]).per(per_page)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   def show</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   def preview</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>     render layout: &#39;preview&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   def update_preview</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>     representation = BaseRepresentation.find(params[:representation_id]) if params[:representation_id].present?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line25">25</a>     client_application = @client_application.for_preview(representation)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     route = client_application.routes.find(params[:route])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>     user = Yavu::API::Resource::User.new(username: &#39;test&#39;, full_name: &#39;Test User&#39;, uid: &#39;test&#39;) if params[:user_authenticated]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line29">29</a>     session[&#39;HTTP_X_YAVU_USER&#39;] = user.to_json</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line31">31</a>     server = client_application.preview_server request</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     renderer = client_application.preview_renderer route, server: server, locale: &#39;es&#39;, logger: Rails.logger</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line33">33</a>     parameters = (params[:parameters] || {}).reject { |_, v| v.blank? }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line35">35</a>     context = route.build_context(parameters, { &#39;USER&#39; =&gt; session[&#39;HTTP_X_YAVU_USER&#39;] })</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>     # Simulate what a frontend instance will receive</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>     context = Yavu::API::Resource::Base.from_json context.to_json</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line38">38</a>     render text: renderer.output(context._locals, params[:format]), layout: false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>     @client_application = ClientApplication.new</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   def edit</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   def create</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>     @client_application = ClientApplication.new(client_application_params)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>     if @client_application.save</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>       redirect_to @client_application, notice: I18n.t(&#39;client_applications.new.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>       render action: &#39;new&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def update</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     if @client_application.update(client_application_params)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>       redirect_to @client_application, notice: I18n.t(&#39;client_applications.edit.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>       render action: &#39;edit&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>   def search</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>     ids = (params[:ids] || []).reject &amp;:blank?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>     matches = if ids.empty?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>       ClientApplication.search(query: params[:q]).limit(search_limit)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>       ClientApplication.find(params[:ids])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>     key_method = params[:key_method].to_sym rescue :id</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>     render json: matches.map { |client_application| { id: client_application.send(key_method), text: client_application.name } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>   def compile_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>     CompileAssetsWorker.perform_async @client_application.id, current_user.username, view_context.announcements_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>     redirect_to @client_application, notice: I18n.t(&#39;client_applications.assets_compile.message&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   def notify_clients</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>     @client_application.notify_clients</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>     redirect_to client_applications_path, notice: I18n.t(&#39;client_applications.notify.message&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>   def enable</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>     @client_application.update(enabled: true)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line91">91</a>     redirect_to @client_application, notice: I18n.t(&#39;client_applications.enable.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>   def disable</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     @client_application.update(enabled: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>     redirect_to @client_application, notice: I18n.t(&#39;client_applications.disable.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line99">99</a>   def destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line100">100</a>     redirect_to client_applications_url(page: current_page), notice: I18n.t(&#39;client_applications.destroy.messages.success&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>     @client_application.destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>   private</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>     def set_client_application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>       @client_application = ClientApplication.includes(:routes).find(params[:id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line109">109</a>     def client_application_params</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a>       params.require(:client_application)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>       .permit(:name, :url, :identifier, :enabled, :assets_url, :media_url, :route_cache_control, :service_cache_control,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>               routes_attributes: [:id, :name, :pattern, :type, :default_route, :representation_id, :redirect_url,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>                                   :constrained_article_id, :constrained_section, :cache_control,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>                                   :constrained, :priority, :_destroy], extra_attribute_model_attributes: ExtraAttribute.pluck(:name)+[:id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>     def filter_params</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>       if params.has_key?(:filter)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>         params.require(:filter).permit(:name, :url, :enabled, :query).to_options</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>     # Create the @filter object with the currently-set values for the filters</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line124">124</a>     def filter</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line125">125</a>       @filter = create_filter ClientApplicationsFilter, values: filter_params</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a>     # Clear the currently-set filters, restoring them to the defaults</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line129">129</a>     def clear_filter</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line130">130</a>       if params[:commit] == t(&#39;activerecord.actions.shared.clear_filter&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line131">131</a>         @filter.clear!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line132">132</a>         redirect_to request.path</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

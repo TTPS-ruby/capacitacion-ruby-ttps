@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/controllers/api_controller.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/controllers/api_controller.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-controllers-api_controller_rb.html">app/controllers/api_controller.rb</a></td>
+            <td class='right_align'><tt>121</tt></td>
+            <td class='right_align'><tt>74</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>59.50%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:60px"></div>
+        <div class="uncovered" style="width:40px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>33.78%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:34px"></div>
+        <div class="uncovered" style="width:66px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class ApiController &lt; ActionController::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   before_action :ensure_client_application, except: [:service_preview]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   before_action :ensure_client_application_for_preview, only: [:service_preview]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   before_action :ensure_service_preview_context, only: [:service_preview]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   before_action :ensure_route_context, only: [:context]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   before_action :ensure_service_context, only: [:service]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   skip_before_action :authenticate_user!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   skip_before_action :verify_authenticity_token # Frontend will validate CSRF</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   rescue_from ActiveRecord::RecordNotFound, with: :error_404</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   def register</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line15">15</a>     render json: @client_application.as_api_resource.to_json if stale?(@client_application, public: true)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   def context</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line19">19</a>     invoke do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line20">20</a>       context = @route.build_context(MultiJson.load(params[&#39;params&#39;]), context_headers)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line21">21</a>       return render json: context.to_json if stale?(etag: prepare_etag(context), last_modified: context.last_modified, public: true)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   def service</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     invoke do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>       context = @service.build_context(params, context_headers)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>       return render json: context.to_json if stale?(etag: prepare_etag(context), last_modified: context.last_modified, public: true)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   def service_preview</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line33">33</a>     invoke do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line34">34</a>       renderer = @client_application.preview_renderer(@route, server: @client_application.preview_server(request), locale: &#39;es&#39;, logger: Rails.logger)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line35">35</a>       context = @service.build_context(params, context_headers(session.to_hash))</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>       context = ::Yavu::API::Resource::Base.from_json(context.to_json)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>       return render text: renderer.render(partial: @service.template, locals: context._locals) if stale?(etag: context.etag, last_modified: context.last_modified)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def accounting</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line42">42</a>     status = process_accounting_information</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line43">43</a>     render json: { accounting: { status: status } }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   def process_accounting_information</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line49">49</a>     routes_data = MultiJson.load(params[&#39;bag&#39;])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line50">50</a>     routes_data.map do |raw_article_info, visits|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line51">51</a>       route_pattern, route_accounting_info = MultiJson.load raw_article_info</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line52">52</a>       Route.find_by(pattern: route_pattern).try(:accounting, route_accounting_info, visits.to_i)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   #Implements halt functionality for context processing</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>   def invoke</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line58">58</a>     ret = catch(:halt_processing_context) { yield }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line59">59</a>     return head ret   if ret.is_a?(Fixnum)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line60">60</a>     return head(*ret) if ret.is_a?(Array)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line61">61</a>     ret</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>   def context_headers(from = nil)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line65">65</a>     h = from || request.headers</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>     # Forces User encoding to UTF8 because it can have strange characters</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>     # and session marshalling dumping/loading dont resolve it</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line68">68</a>     h[&#39;HTTP_X_YAVU_USER&#39;] = h[&#39;HTTP_X_YAVU_USER&#39;].try :force_encoding, &#39;UTF-8&#39;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line69">69</a>     selected_headers = Hash[h.select {|k,_| k.match(/^HTTP_X_YAVU/) }.map {|k,v| [k.gsub(/^HTTP_X_YAVU_/,&#39;&#39;).gsub(&#39;_&#39;,&#39;-&#39;),v] }]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line70">70</a>     logger.debug &quot;API request headers filtered to: #{selected_headers}&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line71">71</a>     Rack::Utils::HeaderHash.new(selected_headers)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>   def ensure_client_application</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line75">75</a>     @client_application = ClientApplication.enabled.find_by_identifier params[:id]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line76">76</a>     head :forbidden and return unless @client_application</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>   def ensure_client_application_for_preview</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line80">80</a>     @client_application = ClientApplication.enabled.find_by_identifier(params[:id]).try(:for_preview)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line81">81</a>     head :forbidden and return unless @client_application</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   def ensure_service_context</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line85">85</a>     @component_configuration = ComponentConfiguration.find(params[:component_configuration_id])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line86">86</a>     @service = @component_configuration.configured_services[params[:service_name]] if @component_configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line87">87</a>     @route = @client_application.routes.detect { |x| x.services.include? @service } if @service</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line88">88</a>     head :forbidden and return unless @service &amp;&amp; @route</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line91">91</a>   def ensure_service_preview_context</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line92">92</a>     @component_configuration = ComponentConfiguration.find(params[:component_configuration_id])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line93">93</a>     @service = @component_configuration.configured_services[params[:service_name]] if @component_configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line94">94</a>     @route = @client_application.routes.find(params[:route])</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line95">95</a>     @representation = BaseRepresentation.find_by(id: params[:representation]) || @route.representation  # Use specified representation(for draft rendering) or use route representation</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line96">96</a>     if @representation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>       #if rendering a draft then we must reload objects with preview values</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line98">98</a>       @client_application = @client_application.for_preview(@representation)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line99">99</a>       @route = @client_application.routes.find(params[:route])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line101">101</a>     head :forbidden and return unless @service &amp;&amp; @route &amp;&amp; @representation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>   def ensure_route_context</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line105">105</a>     @route = @client_application.routes.find_by_pattern params[:route]</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line106">106</a>     head :forbidden and return unless @route</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line109">109</a>   def prepare_etag(context)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line110">110</a>     (context.etag + context_headers.values.compact).tap do |etag|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line111">111</a>       etag &lt;&lt; @client_application</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line112">112</a>       logger.debug &quot;Etag made from: #{ActiveSupport::Cache.expand_cache_key etag}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a>   # Return a 404 status instead of showing an ActiveRecord exception,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>   # even in :development environment -- frontend application needs to</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a>   # know it was an actual 404 instead of receiving an erroneous 500.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>   def error_404</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line120">120</a>     head 404</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/route.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>El-dia-backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/route.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-route_rb.html">app/models/route.rb</a></td>
+            <td class='right_align'><tt>154</tt></td>
+            <td class='right_align'><tt>80</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.97%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:76px"></div>
+        <div class="uncovered" style="width:24px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>53.75%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:54px"></div>
+        <div class="uncovered" style="width:46px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Route &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   belongs_to :client_application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   belongs_to :representation, foreign_key: &#39;representation_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   after_initialize :set_default_conditions</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   after_initialize :set_default_constraints</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   serialize :conditions,  Hash</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   serialize :constraints, Hash</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   before_validation :check_route_type</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :client_application,   presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   validates :pattern,              presence: true, uniqueness: { scope: :client_application_id }, format: { with: /\A\// }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   validates :redirect_url,         presence: true, if: -&gt;{ route_type &amp;&amp; route_type.requires_argument?(:redirect_url) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   validates :representation_id,    presence: true, if: -&gt;{ route_type &amp;&amp; route_type.requires_argument?(:representation_id) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   validates :name,                 presence: true, uniqueness: { scope: :client_application_id }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   validate  :pattern_parameters_availability</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   default_scope { order(&#39;priority DESC&#39;) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   def to_s</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>     name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   def route_type</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>     Routes::RouteType.find type_id</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   def route_preview_class</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>     Routes::RouteType.preview_class type_id</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   def pattern_parameters_availability</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>     used_parameters = extract_parameters_from pattern</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>     unless (used_parameters - available_parameters).empty?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line38">38</a>       errors.add(:pattern)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line39">39</a>       false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   def extract_parameters_from(pattern)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line44">44</a>     matches = []</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line45">45</a>     (pattern || &quot;&quot;).scan(/(:[^\/]+)/) { |match| matches = Regexp.last_match.captures }</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line46">46</a>     matches</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>   def available_parameters</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line50">50</a>     route_type.parameters</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>   def translations</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line54">54</a>     representation.translations</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>   def templates</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line58">58</a>     representation.templates</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>   def underscored_name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line62">62</a>     name.parameterize(&#39;_&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line65">65</a>   def context(input)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line66">66</a>     evaluated_input = apply_constraints_and_conditions input</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line67">67</a>     initial_context = route_type_context evaluated_input</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line68">68</a>     representation.context initial_context</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def route_type_context(evaluated_input)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>     route_type.context evaluated_input</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   # Answer whether this route must apply any condition</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>   def conditioned?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line77">77</a>     !conditions.empty?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>   # Answer whether this route has any constraint applied</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>   def constrained?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line82">82</a>     !constraints.empty?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   alias_method :constrained, :constrained?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>   # Apply any constraints and conditions to the given input and return the resulting hash.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>   # This method won&#39;t modify input, but will return a modified copy instead.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>   def apply_constraints_and_conditions(input)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line90">90</a>     input.dup.tap do |i|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line91">91</a>       i.merge!(constraints) if constrained?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>   # Constraints short hand methods (setters and getters)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>   def constrained=(val)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line97">97</a>     val = val == &#39;1&#39; if val.is_a? String</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line98">98</a>     self.constraints = {} unless val</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line99">99</a>     save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>   # Get the value of the :article constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>   def constrained_article</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line104">104</a>     constraints[:article]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>   # Set the value of the :article constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line108">108</a>   def constrained_article=(article)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line109">109</a>     set_constrained_item article, :article</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line111">111</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>   # Get the value of the :section constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line113">113</a>   def constrained_section</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line114">114</a>     constraints[:section]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>   # Set the value of the :section constraint</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>   def constrained_section=(section)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line119">119</a>     set_constrained_item section, :section</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>   def override_api_cache_timeout</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line123">123</a>     !api_cache_timeout.blank?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line126">126</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>     # Set the default value for the :conditions column if it has no value set</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line128">128</a>     def set_default_conditions</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line129">129</a>       self.conditions ||= {}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line131">131</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line132">132</a>     # Set the default value for the :constraints column if it has no value set</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line133">133</a>     def set_default_constraints</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line134">134</a>       self.constraints ||= {}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line137">137</a>     # Set an item value/object over a item constrain (which is a symbol).</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line138">138</a>     # If item is nil, the corresponding constrain will be deleted.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>     # Item object can be an article, a section, ...</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line140">140</a>     def set_constrained_item(item_object, item_constrain)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line141">141</a>       if !item_object.blank?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line142">142</a>         self.constraints[item_constrain] = item_object</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a>       else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line144">144</a>         self.constraints.delete item_constrain</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line145">145</a>       end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line146">146</a>       save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line147">147</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line148">148</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line149">149</a>     def check_route_type</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line150">150</a>       unless type_id &amp;&amp; Routes::RouteType.all.keys.include?(type_id)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line151">151</a>         errors.add(:type_id, I18n.t(&#39;activerecord.errors.models.route.attributes.type_id.not_present&#39;))</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line152">152</a>         false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line153">153</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line154">154</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line155">155</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-04-07 15:07:06 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

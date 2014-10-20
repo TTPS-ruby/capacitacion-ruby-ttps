@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/uploaders/asset_uploader.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/uploaders/asset_uploader.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-uploaders-asset_uploader_rb.html">app/models/uploaders/asset_uploader.rb</a></td>
+            <td class='right_align'><tt>96</tt></td>
+            <td class='right_align'><tt>46</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class AssetUploader &lt; CarrierWave::Uploader::Base</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a>   # Supported assets are configured through YavuSettings·</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a>   # global configurations: settings.yml</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a>   #   assets:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>   #     types:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>   #       stylesheets:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   #         directory: dir_for_stylesheets (relative to configuration folder)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a>   #         allowed_extensions:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   #           - css</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   #           - sass</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   #           - scss</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   include CarrierWave::MimeTypes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   include CarrierWave::ImageOptimizer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   storage :file</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   process :update_model</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   process :set_content_type</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   process :optimize, if: Proc.new { Rails.env.production? }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   def self.types</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>     _types.keys</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>   def self.directory_for(type)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>     raise ArgumentError.new &quot;Directory for type &#39;#{type}&#39; can&#39;t be retrieved&quot; unless type &amp;&amp; _types.has_key?(type)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>     _types[type][:directory] || type.pluralize</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>   def self.extension_white_list</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>     types.map {|x| _types[x][:allowed_extensions] }.flatten</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   def self.editables_asset</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>     %w(stylesheet javascript)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def self.empty_asset_extensions</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>      editables_asset.inject([]) { |acc, asset_type| acc + _complete_types[asset_type][:allowed_extensions] }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   def update_model</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>     model.type = self.class.type_by_extension(file_extension)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>     model.content_type = file.content_type</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>   def extension_white_list</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>     self.class.extension_white_list</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>   def store_dir</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>     File.join %W(#{store_dir_prefix} #{store_dir_suffix})</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def store_dir_prefix</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     raise NotImplementedError.new(&#39;subclasses must implement this method&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>   def store_dir_suffix</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>     raise NotImplementedError.new(&#39;subclasses must implement this method&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>   protected</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>     def self.file_extension(filename, strip = true)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>       File.extname(filename).gsub(/^\./, &#39;&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>     def file_extension</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>       self.class.file_extension(file.filename)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>   private</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line77">77</a>     def self.flatten_types(h)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>       h.each do |k, v|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>         v[:allowed_extensions].map! do |x|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>           extension = file_extension x</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>           extension.blank? ? x : extension</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>     def self._types</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>       @@types ||= flatten_types YavuSettings.assets.types.to_hash.with_indifferent_access</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>     def self._complete_types</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line91">91</a>       @@complete_types ||= YavuSettings.assets.types.to_hash.with_indifferent_access</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>     def self.type_by_extension(extension)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>       types.detect { |type| _types[type][:allowed_extensions].map(&amp;:downcase).include? extension.downcase }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

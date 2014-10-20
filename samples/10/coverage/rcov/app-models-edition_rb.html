@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/edition.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/edition.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-edition_rb.html">app/models/edition.rb</a></td>
+            <td class='right_align'><tt>106</tt></td>
+            <td class='right_align'><tt>51</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Edition &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   include ExtraAttributeModelable</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   belongs_to :supplement</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   has_many   :articles, dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   # Callbacks</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   after_update  :touch_articles, if: -&gt;{ is_visible_changed? }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   before_destroy :become_inactive!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   # Validations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   validates :supplement, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   validate  :presence_of_name_or_date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validate  :correct_format_for_date</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   default_scope { order date: :desc }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   # Scope to work with visible editions only</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   scope :visible, -&gt; { where(is_visible: true) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   # Find any editions matching the given query either on ther name or on their date attributes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   scope :by_name_or_date, -&gt;(query) { visible.where(&#39;name = :query OR date = :query&#39;, query: query) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>   # Try to find the edition with the given ID, and if it fails, return the active edition for the supplement received as argument.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   scope :find_or_active, -&gt;(id, supplement) { find_by(id: id) || supplement.active_edition }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   accepts_nested_attributes_for :extra_attribute_model</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   set_api_resource id: :name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>     name: :name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>     date: :date</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>   # Search for any edition(s) matching the specified criteria</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   def self.search(params = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>     return [] if params[:query].blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>     date = params[:query].to_date rescue nil</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>     where(&#39;date = :date OR name like :query&#39;, date: date, query: &quot;%#{params[:query]}%&quot;).order(date: :desc)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>     &quot;#{supplement} - #{name_or_date}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>   # Used for distinguishing which editions should be visible in the frontend application</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   # @see ComponentFieldModel#value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>   # @see ComponentFieldMultiModel#value</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   def visible?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>     is_visible?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   # Alternate setter to enable setting the value for the date attribute from a string.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>   # Note that this string is expected to have +%F+ format (&quot;YYYY-mm-dd&quot;).</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>   def date_string=(string)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>     self.date = string.to_date unless string.blank?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   rescue ArgumentError</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>     @invalid_date = true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>   # Return the name of this edition if set, or its date otherwise</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def name_or_date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     name.blank? ? date_with_format : name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   # Return the date of this edition formatted using the provided +format+.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>   def date_with_format(format = :long)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>     I18n.l(date.to_date, format: format) rescue date</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>   # Make this edition the active one for its supplement</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>   def become_active!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>     transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>       supplement.replace_active_edition_with! self</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>       self.is_active = true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>       save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>   def active?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line77">77</a>     is_active</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>   # Make this edition not active for its supplement</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>   # is the default</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line82">82</a>   def become_inactive!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line83">83</a>     if is_active</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>       transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>         supplement.clear_active_edition!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>         self.is_active = false</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>         save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>     true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>     # Validate that either the name or the date are present</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     def presence_of_name_or_date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>       errors.add(:name, :name_or_date_blank) if name.blank? &amp;&amp; date.blank?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a>     # Validate that the value entered for +date+ has the correct format (%F, &quot;2014-01-01&quot; for instance)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line100">100</a>     def correct_format_for_date</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>       errors.add(:date, I18n.t(&#39;activerecord.errors.dates.format&#39;)) if @invalid_date</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>     def touch_articles</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>       articles.each &amp;:touch</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

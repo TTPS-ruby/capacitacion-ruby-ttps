@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/components/component_service.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/components/component_service.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-components-component_service_rb.html">app/models/components/component_service.rb</a></td>
+            <td class='right_align'><tt>75</tt></td>
+            <td class='right_align'><tt>33</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.67%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:95px"></div>
+        <div class="uncovered" style="width:5px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.88%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:88px"></div>
+        <div class="uncovered" style="width:12px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class ComponentService &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   extend ::Enumerize</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   enumerize :http_method, in: [:GET, :POST, :PUT, :DELETE]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   serialize :available_parameters, Array</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   belongs_to :view</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   belongs_to :component,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>     foreign_key: &#39;component_id&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>     touch: true,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>     class_name: &#39;BaseComponent&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :view, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   validates :name, presence: true, uniqueness: { scope: [:http_method, :component_id] }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   validates :http_method, presence: true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   # Useful to emulate component_service_configurations. They are not an entity</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   # They are just component_services with an component_configuration associated</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   attr_accessor :component_configuration_id, :component_configuration</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   set_api_resource id: :slug,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a>     component_configuration_id: :component_configuration_id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>     cache_control: :calculated_cache_control,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>     http_method: :http_method,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>     template: :template,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>     body: :body</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   def cache_key</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>     &quot;#{super}/#{component_configuration_id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>     &quot;#{http_method} #{slug}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   def calculated_cache_control</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>     cache_control.blank? ? component_configuration.try(:representation).try(:client_application).try(:calculated_service_cache_control) : cache_control</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>     name.parameterize</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   def available_parameters_string</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>     available_parameters.join &#39;,&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>   def available_parameters_string=(v)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>     self.available_parameters = Set.new(v.split(&#39;,&#39;)).to_a</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>   def template</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>     view.template_name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>   def component_configuration</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     @component_configuration ||= BaseComponentConfiguration.find(component_configuration_id) if component_configuration_id</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   # This method is the starting point of Context Generation Chain:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>   # It uses a SericeContextProcessor to return an EvaluatedContext object with all</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>   # objects needed to render service view</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line65">65</a>   def build_context(params={}, headers = {})</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line66">66</a>     ServiceContextProcessor.new(self).build(params.stringify_keys, headers)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   # Specialized action implemented by subclasses</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line70">70</a>   def populate_evaluated_context(evaluated_context, params)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line71">71</a>     params.each do |attr,value|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line72">72</a>       evaluated_context[attr] =  value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line74">74</a>     evaluated_context[:client_application] = component_configuration.try(:representation).try(:client_application)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

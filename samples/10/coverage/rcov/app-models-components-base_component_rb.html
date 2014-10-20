@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/components/base_component.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/components/base_component.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-components-base_component_rb.html">app/models/components/base_component.rb</a></td>
+            <td class='right_align'><tt>160</tt></td>
+            <td class='right_align'><tt>72</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.75%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:99px"></div>
+        <div class="uncovered" style="width:1px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.22%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:97px"></div>
+        <div class="uncovered" style="width:3px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class BaseComponent &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   MAX_SLUG_LENGTH = 240</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   has_many :views,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>     dependent: :delete_all,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>     foreign_key: &#39;component_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   has_many :services,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>     class_name: &#39;ComponentService&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>     foreign_key: &#39;component_id&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>     dependent: :destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   has_many :translations,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>     dependent: :destroy,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>     class_name: &#39;ComponentTranslation&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>     foreign_key: &#39;component_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   has_many :assets,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>     class_name: &#39;ComponentAsset&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>     dependent: :destroy,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>     foreign_key: &#39;component_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   has_many :configurations,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>     class_name: &#39;BaseComponentConfiguration&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>     dependent: :restrict_with_error,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>     foreign_key: &#39;component_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   has_many :fields,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     class_name: &#39;ComponentField&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>     dependent: :destroy,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     foreign_key: &#39;base_component_id&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>   # Validations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   validates :name, presence: true, uniqueness: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>   validates :views, presence: true, unless: :cover?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   validate  :views_dont_repeat_alternative_formats, unless: :cover?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   # Default scope is ordering by name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>   default_scope { order(name: :asc) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>   # Callbacks</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   before_save :set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>   after_save :touch_configurations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   after_touch :touch_configurations</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>   accepts_nested_attributes_for :fields, allow_destroy: true, reject_if: -&gt;(values) { values[&#39;name&#39;].blank? || values[&#39;type&#39;].blank? }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   # Return an array of available types</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>   def self.types</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>     [Component, CoverComponent, CoverArticlesComponent]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>   # Search components by name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>   def self.search(name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>     if name.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>       BaseComponent.where(&quot;name like :name&quot;, name: &quot;%#{name}%&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>       []</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>   def self.available_for_editor</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>     where.not(type: CoverArticlesComponent)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>     name.to_s</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def fields_hash</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>     HashWithIndifferentAccess[fields.map { |f| [f.name, f] }]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>   def defaults</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>     HashWithIndifferentAccess[fields.map { |f| [f.name, f.value] }]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>   def defaults=(defaults)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>     self.fields = defaults.map do |name, info|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line81">81</a>       ComponentField.build_from(info, name, component: self) rescue next</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>     end.reject(&amp;:nil?)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a>   # Is this a CoverComponent?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>   def cover?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>   # Is this a CoverArticlesComponent?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line91">91</a>   def cover_articles?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line92">92</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>   # Is this a CoverArticlesComponent?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>   def takes_layout_views?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line97">97</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>   # Instantiates a new ComponentConfiguration for me</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>   def new_configuration(attributes = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>     attributes.merge! component: self</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>     configuration = &quot;#{self.class}Configuration&quot;.constantize.new(attributes)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>     configurations &lt;&lt; configuration</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>     configuration</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a>   # Return a copy of this component, updating its name and including any</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>   # related views, translations and assets.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>   def copy(name = nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>     copy = dup include: [:views, :translations, :fields]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line112">112</a>     self.assets.each do |asset|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line113">113</a>       copy.assets.build file: File.open(asset.file.current_path,&#39;r&#39;), component: copy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>     copy.name = name || I18n.t(&#39;components.copy.prefix&#39;, default: &#39;Copy of %{name}&#39;, name: self.name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>     copy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line119">119</a>   # View before_destroy delegation for specified view</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>   # Any view can be destroyed if there are at least more than one view</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>   # associated to a component</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>   def destroy_view?(view)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>     views.include?(view) &amp;&amp; views.count &gt; 1</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line126">126</a>   def update_representation_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line127">127</a>     configurations.map(&amp;:representation).reject(&amp;:nil?).uniq.each do |rep|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line128">128</a>       rep.update_assets!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line131">131</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line132">132</a>   def default_view</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line133">133</a>     views.find_by(default: true)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line136">136</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line137">137</a>   # Before-save callback that generates a slug for this component</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line138">138</a>   # The slug will be truncated to a maximum of Component::MAX_SLUG_LENGTH characters</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line139">139</a>   def set_slug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line140">140</a>     self.slug = name.parameterize(&#39;_&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line141">141</a>     self.slug = slug.truncate(MAX_SLUG_LENGTH, omission: &#39;&#39;, separator: &#39;-&#39;) if slug.length &gt; MAX_SLUG_LENGTH</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line142">142</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line144">144</a>   def touch_configurations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line145">145</a>     configurations.update_all(updated_at: Time.now)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line146">146</a>     configurations.each do |conf|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line147">147</a>       if conf.representation</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line148">148</a>         conf.representation.touch</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line149">149</a>         conf.representation.touch_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line150">150</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line151">151</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line152">152</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line153">153</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line154">154</a>   def views_dont_repeat_alternative_formats</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line155">155</a>     formats = views.map(&amp;:format).reject { |f| GenericRenderer.html? f }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line156">156</a>     if formats.count &gt; formats.uniq.count</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line157">157</a>       errors.add(:views, I18n.t(&#39;errors.messages.format_repeated&#39;))</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line158">158</a>       false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line159">159</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line160">160</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line161">161</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

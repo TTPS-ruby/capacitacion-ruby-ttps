@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/concerns/representation/draft_management.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>El-dia-backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/concerns/representation/draft_management.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-concerns-representation-draft_management_rb.html">app/models/concerns/representation/draft_management.rb</a></td>
+            <td class='right_align'><tt>63</tt></td>
+            <td class='right_align'><tt>28</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>84.13%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:84px"></div>
+        <div class="uncovered" style="width:16px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>64.29%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:64px"></div>
+        <div class="uncovered" style="width:36px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> module Representation::DraftManagement</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   extend ActiveSupport::Concern</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a>   # Return whether this representation has a draft</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   def has_draft?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>     draft.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   # Get this representation&#39;s draft.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   # If the draft doesn&#39;t exist, a new one will be created.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   # If a draft already exists, there are two possible scenarios:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   #   * overwrite_existing is false =&gt; the existing draft will be returned untouched.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>   #   * overwrite_existing is true  =&gt; the existing draft will be discarded and</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   #     updated with the current state of this representation.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   def get_draft(overwrite_existing = false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>     if !has_draft? || overwrite_existing</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>       transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>         discard_draft</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>         self.draft = generate_draft</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     draft</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>   # Create a draft for this representation (copying its rows)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>   # @see Representation#copy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>   def generate_draft</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>     transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       draft_name = I18n.t &#39;activerecord.attributes.draft.draft_name&#39;, representation: name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>       copy(draft_name, {representation: self}, RepresentationDraft)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>   # Destroy the draft associated to this representation - if any.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>   def discard_draft</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>     draft.destroy if has_draft?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   # Destructively apply this representation&#39;s draft, overwriting the current</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   # configuration with the draft&#39;s one. If no draft is available, this method</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>   # won&#39;t do a thing.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>   # As a fail-safe mechanism, a new backup will be automatically created for this</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>   # representation every time a draft is applied on it.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   # This method should be invoked from RepresentationDraft#apply! to ensure that</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>   # the draft is destroyed once it has been applied.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>   def apply_draft!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>     if has_draft?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line51">51</a>       transaction do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line52">52</a>         generate_backup</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line53">53</a>         self.configuration = draft.configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line54">54</a>         self.rows = draft.copy_rows</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line55">55</a>         self.view = draft.view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line56">56</a>         self.default_row_view = draft.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line57">57</a>         self.default_column_view = draft.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line58">58</a>         self.default_column_view = draft.default_row_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line59">59</a>         self.error_view = draft.error_view</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line60">60</a>         save!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-04-03 14:30:03 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

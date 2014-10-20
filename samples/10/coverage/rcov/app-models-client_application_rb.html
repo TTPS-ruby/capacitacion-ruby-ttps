@@ -1,0 +1,668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/client_application.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/client_application.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-client_application_rb.html">app/models/client_application.rb</a></td>
+            <td class='right_align'><tt>203</tt></td>
+            <td class='right_align'><tt>105</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.57%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:96px"></div>
+        <div class="uncovered" style="width:4px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.43%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:91px"></div>
+        <div class="uncovered" style="width:9px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class ClientApplication &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   include ExtraAttributeModelable</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   has_many :routes, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   has_many :representations, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   has_many :assets, class_name: &#39;ClientApplicationAsset&#39;, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   has_many :newsletters, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   belongs_to :favicon, class_name: &#39;ClientApplicationAsset&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   belongs_to :logo, class_name: &#39;ClientApplicationAsset&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   accepts_nested_attributes_for :routes, allow_destroy: true, reject_if: -&gt;(r){ r[:pattern].empty? }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   accepts_nested_attributes_for :extra_attribute_model</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :identifier, uniqueness: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   validates :name, uniqueness: true, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   validates :url,  uniqueness: true, presence: true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   # For testing purposes only. By setting this attribute to +true+, the creation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   # of default routes will be skipped, making our tests faster.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   attr_accessor :skip_initialize_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   before_create :generate_identifier</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   after_create :create_default_routes!, if: -&gt;{ !skip_initialize_routes &amp;&amp; routes.empty? }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   after_save :update_related_entities</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   scope :enabled, -&gt; { where(enabled: true) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   set_api_resource id: :identifier,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     routes: :routes,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>     enabled: :enabled,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     base_url: :url,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>     secure_base_url: :secure_url,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>     accounting_url: :accounting_url,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>     service_prefix: :service_prefix,</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>     internal_media_url: -&gt;(x) { BaseUploader.base_path },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a>     external_media_url: :media_url,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>     logo: :logo,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>     assets_configuration: :assets_configuration</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   # Search for client applications using a query hash, which may contain:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>   #   * query  [String] string to be searched on the name (using %&lt;query&gt;%)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   def self.search(params = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>     if params[:query].blank?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>       all</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>       where(&#39;name like ?&#39;, &quot;%#{params[:query]}%&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>   def secure_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>     secure = URI(url)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>     secure.scheme = &#39;https&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>     secure.to_s</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>   rescue</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>   def accounting_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>     &#39;/track.css&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>   def service_prefix</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>     &#39;/_serve&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>   def self.route_cache_control_default</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>     &quot;public, max-age=120, s-maxage=600&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def calculated_route_cache_control</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>     route_cache_control.blank? ? ClientApplication.route_cache_control_default : route_cache_control</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>   def self.service_cache_control_default</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>     &quot;private, must-revalidate, max-age=0&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>   def calculated_service_cache_control</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>     service_cache_control.blank? ? ClientApplication.service_cache_control_default : service_cache_control</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line83">83</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>     name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>   # Create default routes for a newly-created application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line88">88</a>   def create_default_routes!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>     self.routes = default_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line92">92</a>   def can_have_logo?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>     true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>   # Return the default homepage route for this application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line97">97</a>   def homepage_route</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line98">98</a>     routes.where(type: HomepageRoute).first</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>   # Return the articles set in the homepage</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>   def home_articles(section = nil, limit = nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>     return [] unless homepage_route</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line104">104</a>     home_representation = homepage_route.representation</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line105">105</a>     articles = home_representation.cover_articles do |ar|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line106">106</a>       ar.with_section(section.try(:id)).for_cover</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>     end</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line108">108</a>     limit ? articles.first(limit) : articles</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line111">111</a>   # Return every representation that is a cover - i.e., it responds with true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>   # to :cover?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>   # @see Representation#cover?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>   def cover_representations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>     representations.select(&amp;:cover?)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>   def assets_prefix</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>     YavuSettings.assets.prefix</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>   def assets_host</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>     unless assets_url.blank?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line124">124</a>       URI(assets_url).host rescue nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line128">128</a>   def self.assets_configuration(client_application = nil, prefix: &#39;&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line129">129</a>     Yavu::API::Resource::Base.new.tap do |config|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line130">130</a>       config.base_url        = client_application.try(:url).to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line131">131</a>       config.service_prefix  = client_application.try(:service_prefix).to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line132">132</a>       config.root            = Rails.root.to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line133">133</a>       config.public_path     = Rails.public_path.to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line134">134</a>       prefix, path           = client_application.present?? [client_application.assets_prefix, client_application.identifier] : [YavuSettings.assets.prefix, prefix]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line135">135</a>       config.prefix          = File.join(prefix, path)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line136">136</a>       config.js_compressor   = YavuSettings.assets.js_compressor</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line137">137</a>       config.css_compressor  = YavuSettings.assets.css_compressor</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line138">138</a>       config.digest          = YavuSettings.assets.digest</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line139">139</a>       config.debug           = client_application.try :debug</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line140">140</a>       config.asset_host      = client_application.try :assets_host</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line141">141</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line142">142</a>       config.manifest_file   = File.join(config[:public_path], config[:prefix], &#39;manifest.json&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line143">143</a>       config.append_paths    = AssetUploader.types.inject([]) do |result, asset_type|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line144">144</a>         if client_application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line145">145</a>           result &lt;&lt; ClientApplicationAssetUploader.absolute_prefix_for_representation_type(client_application, asset_type)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line146">146</a>           result &lt;&lt; ClientApplicationAssetUploader.absolute_prefix_for_type(client_application, asset_type)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line147">147</a>         end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line148">148</a>         result &lt;&lt; ComponentAssetUploader.absolute_prefix_for_type(asset_type)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line149">149</a>       end.map(&amp;:to_s)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line150">150</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line151">151</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line152">152</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line153">153</a>   def assets_configuration</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line154">154</a>     self.class.assets_configuration(self)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line155">155</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line156">156</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line157">157</a>   def compile_assets</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line158">158</a>     configuration = assets_configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line159">159</a>     environment = Yavu::Frontend::Util::AssetConfigurationFactory.sprockets_environment configuration</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line160">160</a>     Yavu::Frontend::Util::AssetConfigurationFactory.configure_sprockets_helpers(configuration, environment).try(:compile)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line161">161</a>     notify_clients</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line163">163</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line164">164</a>   def notify_clients</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line165">165</a>     FrontendServer.notify self</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line166">166</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line167">167</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line168">168</a>   def servers</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line169">169</a>     FrontendServer.all.select {|x| x.client_application_identifier == identifier }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line170">170</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line171">171</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line172">172</a>   def for_preview(representation = nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line173">173</a>     becomes(PreviewClientApplication).tap do |pca|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line174">174</a>       pca.preview_representation = representation</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line175">175</a>       pca.updated_at = Time.now # Avoid caching</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line176">176</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line177">177</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line178">178</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line179">179</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line180">180</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line181">181</a>   # Generate the identifier for this client application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line182">182</a>   def generate_identifier</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line183">183</a>     self.identifier = Digest::SHA1.hexdigest name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line184">184</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line185">185</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line186">186</a>   def default_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line187">187</a>     [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line188">188</a>       HomepageRoute.new(name: &#39;Home&#39;, pattern: &#39;/&#39;, priority: 5),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line189">189</a>       SectionRoute.new(name: &#39;Section&#39;, pattern: &#39;/:section&#39;, priority: 3 ),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line190">190</a>       ArticleRoute.new(name: &#39;Article&#39;, pattern: &#39;/:section/:article&#39;, priority: 2 ),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line191">191</a>       CustomRoute.new(name: &#39;Search&#39;, pattern: &#39;/search/query&#39;, priority: 0 ),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line192">192</a>       NewsletterRoute.new(name: &#39;Newsletter&#39;, pattern: &#39;/newsletter/:newsletter&#39;, priority: 4 ),</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line193">193</a>     ].each do |route|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line194">194</a>       if route.requires_representation?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line195">195</a>         route.representation = Representation.new(name: route.name, client_application: self)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line196">196</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line197">197</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line198">198</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line199">199</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line200">200</a>   def update_related_entities</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line201">201</a>     routes.update_all(updated_at: Time.now)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line202">202</a>     representations.map{|r| r.services.update_all(updated_at: Time.now) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line203">203</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line204">204</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

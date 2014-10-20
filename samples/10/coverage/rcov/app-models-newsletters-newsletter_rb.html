@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/newsletters/newsletter.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/newsletters/newsletter.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-newsletters-newsletter_rb.html">app/models/newsletters/newsletter.rb</a></td>
+            <td class='right_align'><tt>128</tt></td>
+            <td class='right_align'><tt>74</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>81.25%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:81px"></div>
+        <div class="uncovered" style="width:19px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>67.57%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:68px"></div>
+        <div class="uncovered" style="width:32px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class Newsletter &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   NEWSLETTER_VIEW = &#39;newsletter_view&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   TEMPLATE_ERROR  = &#39;error&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   belongs_to :client_application</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   has_many   :static_data, -&gt;{ order(created_at: :desc) }, class_name: &#39;NewsletterGeneratedData&#39;, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   after_save :program_worker</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   validates :name, presence: true, uniqueness: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   validates :frequency, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   validates :expiration, presence: true, numericality: { only_integer: true, greater_than: 0 }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :client_application, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   validate  :syntax</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   set_api_resource id: :name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>     name: :name,</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line19">19</a>     active_static_newsletter: -&gt;(_){ active_static_newsletter }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   def self.static_data_id_for newsletter_name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line22">22</a>     newsletter = find_by name: newsletter_name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     static_slug = newsletter.name.parameterize + &#39;-&#39; + Time.now.to_i.to_s</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>     # Warning: the next 2 lines are correct because a dependency problem in generation context</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line25">25</a>     newsletter_content = newsletter.generate_content</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line26">26</a>     if newsletter_content.present?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line27">27</a>       new_data = newsletter.static_data.create(content: &#39;&#39;, slug: static_slug)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line28">28</a>       new_data.update(content: newsletter_content)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line29">29</a>       new_data.slug</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>     else</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>       nil</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   def active_static_newsletter</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line36">36</a>     static_data.first</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>   def active_static_newsletter_id</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line40">40</a>     active_static_newsletter.slug</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   # TODO: Make this method safer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>   def generate_content</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line45">45</a>     do_generation!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>   def program_worker</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line51">51</a>     transaction do</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line52">52</a>       existent_job = Sidekiq::Cron::Job.find cron_worker_name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line53">53</a>       if existent_job</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line54">54</a>         existent_job.cron = calculate_cron_time</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line55">55</a>         existent_job.save</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line56">56</a>         if enabled?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line57">57</a>           existent_job.enable!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>         else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line59">59</a>           existent_job.disable!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>       else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line62">62</a>         job = Sidekiq::Cron::Job.create name: cron_worker_name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>           cron: calculate_cron_time,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>           klass: &#39;NewsletterSenderWorker&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>           args: name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line66">66</a>         job.disable! unless enabled?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line71">71</a>   def syntax</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>     do_generation! checking: true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   rescue SyntaxError, StandardError =&gt; e</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>     errors.add :generator, &quot;presenta errores: #{e.to_s}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line77">77</a>   def cron_worker_name</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line78">78</a>     &#39;Newsletter Cron Worker for &#39; + name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>   #TODO: Implement this using frequency attribute</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line82">82</a>   def calculate_cron_time</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line83">83</a>     frequency</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>   #TODO: Put i18n messages instead of hardcoded spanish labels</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>   def do_generation!(checking: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line88">88</a>     self_in_context = checking ? &#39;&#39; : &lt;&lt;-END</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>       @my = Newsletter.find(#{id})</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>       @client_application = ClientApplication.find(#{client_application.id})</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>     END</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line92">92</a>     super_context = &quot;#{self_in_context}#{context}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>     c   = Component.new context: super_context, views: [View.new(name: NEWSLETTER_VIEW, value: generator)]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>     cc  = ComponentConfiguration.new component: c</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     col = Column.new component_configurations: [cc]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>     row = Row.new columns: [col]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line97">97</a>     r   = Representation.new client_application: client_application,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>       view: View.new(value: &#39;[[content]]&#39;),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a>       error_view: View.new(value: &quot;&lt;%= error %&gt;&quot;),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>       default_row_view: View.new(value: &#39;[[content]]&#39;),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a>       default_column_view: View.new(value: &#39;[[content]]&#39;),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line102">102</a>       rows: [row]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>     row.representation = r</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>     col.row = row</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>     cc.column = col</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>     r.define_singleton_method(:component_configurations) { [cc] }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line108">108</a>     fake_route = Route.new(representation: r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line109">109</a>     cp = ContextProcessor.new fake_route</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>     newsletter_context = cp.build_single_component_context cc</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>     raise(StandardError, &quot;Hay problemas con el contexto: #{newsletter_context.errors}&quot;) unless newsletter_context.errors.empty?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line112">112</a>     client_resource = client_application.as_api_resource</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line113">113</a>     Yavu::Frontend::Renderer::Base.configure do |config|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>       config.base_url = client_resource.base_url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>       config.service_prefix = &quot;#{client_resource.service_prefix}/NOT_USED&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>       config.routes = client_resource.routes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>       config.assets_configuration = client_resource.assets_configuration</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>     yr = Yavu::Frontend::Renderer::Base.new fake_route.as_api_resource</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>     generated_newsletter_content = yr.render_component NEWSLETTER_VIEW, newsletter_context</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line121">121</a>     raise(SyntaxError, &quot;Hay problemas con la vista&quot;) if generated_newsletter_content == TEMPLATE_ERROR</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>     # If __no_send context variable is set on, newsletter data wont be generated</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line123">123</a>     if newsletter_context.__no_send</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line124">124</a>       &#39;&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line126">126</a>       generated_newsletter_content</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

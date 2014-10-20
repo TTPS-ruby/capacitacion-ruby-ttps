@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/shortcut.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/shortcut.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-shortcut_rb.html">app/models/shortcut.rb</a></td>
+            <td class='right_align'><tt>55</tt></td>
+            <td class='right_align'><tt>17</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="inferred">
+          <td><pre><a name="line2">2</a> # Documentation for Shortcut class</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line3">3</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> # == Summary</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> # The class must be created with:</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> # * user_id</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> # * title</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> # * url</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> # * show_in_menu</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a> # == Example</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> # Shortcut.create(user_id: 1, title: &#39;sarasa&#39;, url: &#39;http://localhost:3000/surveys&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> # === Class Shortcut</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> #</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a> class Shortcut &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   # Associations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   belongs_to :user</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a>   # Validations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   validates :user_id,   presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   validates :title,     presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   validates :url,       presence: true, uniqueness: { scope: :user_id, case_sensitive: false }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>   # Scope for sorting the shortcuts</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>   def self.sorted</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>     order(&#39;title ASC&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>   # Scope for limiting the result set only to the elements</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a>   # that should be shown in the shortcuts menu.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>   def self.for_menu</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>     where show_in_menu: true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   # Return the shorcuts for a given user</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   def self.for(user)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>     where user_id: user</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>   # Set a shortcut like must be shown</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>   def show_in_menu!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>     self.show_in_menu = true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>     save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   # Set a shortcut like must not be shown</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>   def remove_from_menu!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>     self.show_in_menu = false</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>     save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

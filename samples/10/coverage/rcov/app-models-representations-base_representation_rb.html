@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/representations/base_representation.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/representations/base_representation.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-representations-base_representation_rb.html">app/models/representations/base_representation.rb</a></td>
+            <td class='right_align'><tt>234</tt></td>
+            <td class='right_align'><tt>121</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>99.57%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>99.17%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:99px"></div>
+        <div class="uncovered" style="width:1px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class BaseRepresentation &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   serialize :configuration, Hash</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>   belongs_to :client_application</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>   # Structure</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a>   has_many :rows, foreign_key: &#39;representation_id&#39;, dependent: :destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   has_many :columns, through: :rows</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   has_many :component_configurations, through: :columns</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>   has_many :components, through: :component_configurations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>   has_many :cover_component_configurations, class_name: &#39;CoverComponentConfiguration&#39;, through: :columns, source: :component_configurations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   has_many :cover_components, through: :cover_component_configurations, source: :component</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>   has_many :services, through: :components</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   # Visual aspects</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   belongs_to :view, dependent: :destroy, autosave: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   belongs_to :default_row_view, class_name: &#39;View&#39;, foreign_key: &#39;row_view_id&#39;, dependent: :destroy, autosave: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   belongs_to :default_column_view, class_name: &#39;View&#39;, foreign_key: &#39;column_view_id&#39;, dependent: :destroy, autosave: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   belongs_to :error_view, class_name: &#39;View&#39;, foreign_key: &#39;error_view_id&#39;, dependent: :destroy, autosave: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   belongs_to :favicon, class_name: &#39;ClientApplicationAsset&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   has_many :client_application_assets_base_representations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   has_many :assets, class_name: &#39;ClientApplicationAsset&#39;, through: :client_application_assets_base_representations, source: :client_application_asset</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   has_and_belongs_to_many :views</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   before_validation :set_default_views</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   before_save :update_assets_when_name_changes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>   after_destroy :remove_asset_files</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>   validates :client_application, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   validates :name, presence: true, uniqueness: { scope: :client_application_id }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   validates :view, presence: true</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>   validate  :view_has_content_placeholder</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>   validate  :views_dont_repeat_formats</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>   scope :all_covers, -&gt; { joins(:cover_component_configurations).uniq }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>   alias_method :own_favicon, :favicon</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   # Add an &quot;I&#39;m being copied&quot; flag so that we don&#39;t try to create drafts for Representations that won&#39;t stay as such</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>   attr_accessor :being_copied</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   attr_reader :locking</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   include Representations::Rendering,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>           Representations::FromJson,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>           Representations::CoverFromJson</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>     name</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   # Return a copy of this representation, updating its name and including any</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   # related rows.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   # See test case to understand what I&#39;m exactly doing</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>   def copy(name = nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>     copy = dup except: :representation_id, include: [ :view, :default_row_view, :default_column_view, :error_view, :views ]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>     copy.name = name || I18n.t(&#39;activerecord.attributes.representation.copy.prefix&#39;, default: &#39;Copy of %{name}&#39;, name: self.name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>     copy.rows = copy_rows(copy)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>     copy.client_application_assets_base_representations = copy_client_application_assets_base_representations(copy)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>     copy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>   def locking_enabled?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>     locking &amp;&amp; super</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>   def enable_locking!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>     @locking = true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a>   # Return true if this representation is a cover - i.e., if it has at least one</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>   # +cover_component+.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>   def cover?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line73">73</a>     cover_components.any?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>   def slug(was=false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line77">77</a>     (was ? name_was : name).parameterize(&#39;_&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>   # Will dump main stylesheet and javascript for current representation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>   # using sprockets pre-processor directives to include used component assets</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>   # and associated client_application assets</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   # This method shall be called when component_configurations or client_application_assets changes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   def update_assets!(*args)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>     File.open(main_javascript_file, &#39;w&#39;) do |file|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>       file.write &lt;&lt;-HEAD</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a> //</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a> //  Representation [#{slug}] wide scripts</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a> //  File automatically generated at #{Time.now}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a> //</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>       HEAD</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line92">92</a>       file.write build_javascripts_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>       file.write &quot;\n&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     File.open(main_stylesheet_file, &#39;w&#39;) do |file|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>       file.write &lt;&lt;-HEAD</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a> /*</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>  *  Representation [#{slug}] wide styles</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a>  *  File automatically generated at #{Time.now}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>       HEAD</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>       file.write build_stylesheets_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>       file.write &quot;\n */\n&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a>   # Return all cover articles by cover placement order</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>   # Can filter by cover component configuration description</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a>   # Admits a block to perform a middle-processing in each articles&#39;s relationship</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>   # with representation&#39;s cover articles components</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>   def cover_articles(*cover_components_config_names)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>     Article.find_ordered(cover_articles_component_configurations(*cover_components_config_names).map do |cacc|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line112">112</a>       (block_given? ? yield(cacc.articles) : cacc.articles).pluck(:id)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>     end.flatten.uniq)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>   def cover_articles_component_configurations(*cover_components_config_names)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>     selected_cover_components_configurations = if cover_components_config_names.any?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line118">118</a>                                                  cover_component_configurations.find_ordered_where(description: cover_components_config_names)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line119">119</a>                                                else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>                                                  cover_component_configurations</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>                                                end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line122">122</a>     selected_cover_components_configurations.map {|x| x.cover_articles_component_configurations }.flatten</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line125">125</a>   def cover_articles_components</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line126">126</a>     Set.new(cover_articles_component_configurations.map { |x| x.component}).to_a</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a>   # Return an array joining components &amp; cover_articles_components</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line130">130</a>   def all_components</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line131">131</a>     components + cover_articles_components</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line132">132</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>   # Returns this representation&#39;s asset, if strict is set to true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a>   # it will not return client application&#39;s favicon in case this representation</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a>   # doesn&#39;t have any.</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line137">137</a>   def favicon(strict = false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line138">138</a>     own_favicon || (client_application.favicon unless strict)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line140">140</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line141">141</a>   def can_have_logo?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line142">142</a>     false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line144">144</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line145">145</a>   def can_have_view?(view)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line146">146</a>     !views.pluck(:format).include? view.format</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line147">147</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line148">148</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line149">149</a>   def has_view?(view)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line150">150</a>     views.include? view</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line151">151</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line152">152</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line153">153</a>   # Update every associated route</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line154">154</a>   # Touching routes is enough because client_application is touched by superclass</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line155">155</a>   # This method must be implemented in the subclasses</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line156">156</a>   def touch_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line157">157</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line158">158</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line159">159</a>   def component_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line160">160</a>     all_components.map(&amp;:assets).flatten.uniq</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line161">161</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line163">163</a>   protected</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line164">164</a>     # Create and set default views for layout, columns, rows and error</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line165">165</a>     def set_default_views</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line166">166</a>       self.view                ||= View.create_default_for(:representation)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line167">167</a>       self.default_row_view    ||= View.create_default_for(:row)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line168">168</a>       self.default_column_view ||= View.create_default_for(:column)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line169">169</a>       self.error_view          ||= View.create_default_for(:error)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line170">170</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line171">171</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line172">172</a>     def view_has_content_placeholder</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line173">173</a>       errors.add(:view, I18n.t(&#39;errors.messages.has_not_content&#39;)) unless view.has_content_placeholder?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line174">174</a>       false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line175">175</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line176">176</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line177">177</a>     def views_dont_repeat_formats</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line178">178</a>       formats = views.map(&amp;:format)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line179">179</a>       if formats.count &gt; formats.uniq.count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line180">180</a>         errors.add(:views, I18n.t(&#39;errors.messages.format_repeated&#39;))</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line181">181</a>         false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line182">182</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line183">183</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line184">184</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line185">185</a>     def build_javascripts_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line186">186</a>       build_assets(:javascript?, assets + component_assets,&#39;//= require&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line187">187</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line188">188</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line189">189</a>     def build_stylesheets_assets</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line190">190</a>       build_assets(:stylesheet?, assets + component_assets,&#39; *= require&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line191">191</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line192">192</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line193">193</a>     # build for each received asset a list of files without extension prefixing each line with</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line194">194</a>     # received prefix</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line195">195</a>     def build_assets(type, assets, prefix)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line196">196</a>       assets.select(&amp;type).map do |asset|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line197">197</a>         &quot;#{prefix} #{asset.relative_url_without_extension}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line198">198</a>       end.uniq.join &quot;\n&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line199">199</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line200">200</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line201">201</a>     def copy_rows(representation)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line202">202</a>       rows.map(&amp;:copy).each {|row| row.representation = representation }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line203">203</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line204">204</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line205">205</a>     def copy_client_application_assets_base_representations(representation)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line206">206</a>       client_application_assets_base_representations.map(&amp;:copy)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line207">207</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line208">208</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line209">209</a>     def main_javascript_file(was=false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line210">210</a>       ClientApplicationAssetUploader.javascript_representation_store_filename(self, was)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line211">211</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line212">212</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line213">213</a>     def main_stylesheet_file(was=false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line214">214</a>       ClientApplicationAssetUploader.stylesheet_representation_store_filename(self, was)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line215">215</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line216">216</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line217">217</a>     def remove_asset_files</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line218">218</a>       old_js  = main_javascript_file</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line219">219</a>       old_css = main_stylesheet_file</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line220">220</a>       File.unlink old_js  if File.exists? old_js</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line221">221</a>       File.unlink old_css if File.exists? old_css</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line222">222</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line223">223</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line224">224</a>     def update_assets_when_name_changes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line225">225</a>       if name_changed? &amp;&amp; name_was</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line226">226</a>         # If name changed from a valid name to a new name...</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line227">227</a>         old_js  = main_javascript_file(true)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line228">228</a>         old_css = main_stylesheet_file(true)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line229">229</a>         File.unlink old_js  if File.exists? old_js</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line230">230</a>         File.unlink old_css if File.exists? old_css</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line231">231</a>         update_assets!</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line232">232</a>       end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line233">233</a>       true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line234">234</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line235">235</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

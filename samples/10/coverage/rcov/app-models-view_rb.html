@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/models/view.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Backend C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/models/view.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-models-view_rb.html">app/models/view.rb</a></td>
+            <td class='right_align'><tt>198</tt></td>
+            <td class='right_align'><tt>80</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class View &lt; ActiveRecord::Base</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   attr_accessor :must_be_alternative</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   belongs_to :component,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a>     foreign_key: &#39;component_id&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>     touch: true,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>     class_name: &#39;BaseComponent&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   has_many :component_configurations,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>     dependent: :restrict_with_error</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>   has_and_belongs_to_many :base_representations</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   validates :name, presence: true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   # Views not only are used for components so uniqueness is valid when a component is set</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   validates_uniqueness_of :name, scope: :component_id, unless: &#39;component_id.nil?&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   validates_uniqueness_of :format, scope: :component_id, unless: &#39;component_id.nil? || !alternative?&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   validate  :only_one_default, unless: &#39;component_id.nil? || !default?&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   validate  :presence_of_content_placeholder, if: &#39;component.nil? &amp;&amp; alternative?&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>   validate  :is_not_html, if: &#39;must_be_alternative&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>   before_validation :set_blank_value</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>   before_validation :clean_default_flag, if: &#39;alternative?&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>   before_destroy :check_before_destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>   # Touch representations only if this view is a representation view</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>   after_save :touch_representations, if: &#39;component_id.nil?&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   default_scope { order :name }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>   # Scopes to filter CoverArticleComponent views</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   scope :for_layout,  -&gt; { where(is_layout: true) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   scope :for_article, -&gt; { where(is_layout: false) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   # Scops to filter Alternative views</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>   scope :component, -&gt; { joins(:component) }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   scope :representation, -&gt; { where(component_id: nil).eager_load(:base_representations) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>   # Alternative views: those not being HTML</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line37">37</a>   scope :html, -&gt; { where format: &#39;text/html&#39; }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>   scope :alternative, -&gt; { where.not format: &#39;text/html&#39; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>   # Partial / Non partial scopes</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>   scope :partials, -&gt; { where &#39;name like ?&#39;, &#39;\_%&#39; }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>   scope :templates, -&gt; { where &#39;name not like ?&#39;, &#39;\_%&#39; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>   PLACEHOLDER_PATTERN            = &#39;[[%s]]&#39;.freeze</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>   FAVICON_PLACEHOLDER            = (PLACEHOLDER_PATTERN % :favicon).freeze             # [[favicon]]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>   STYLESHEETS_PLACEHOLDER        = (PLACEHOLDER_PATTERN % :stylesheets).freeze         # [[stylesheets]]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>   JAVASCRIPTS_PLACEHOLDER        = (PLACEHOLDER_PATTERN % :javascripts).freeze         # [[javascripts]]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>   SEO_PLACEHOLDER                = (PLACEHOLDER_PATTERN % :seo).freeze                 # [[seo]]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>   CONTENT_PLACEHOLDER            = (PLACEHOLDER_PATTERN % :content).freeze             # [[content]]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>   ADDITIONAL_HEADERS_PLACEHOLDER = (PLACEHOLDER_PATTERN % :additional_headers).freeze  # [[additional_headers]]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>   # Create a new View object to be used as the default for the given kind of elements</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>   # (either :representation, :row or :column).</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>   # @see View#default_attributes_for</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>   # @throws RuntimeError if +kind+ is invalid</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>   def self.create_default_for(kind)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>     create default_attributes_for(kind)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>   def to_s</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>     name.to_s</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>   def has_placeholder?(placeholder)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>     value.include? placeholder</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>   def has_content_placeholder?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>     has_placeholder? CONTENT_PLACEHOLDER</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>   # Render this view object using the provided arguments to replace any placeholder this</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>   # view may have. +arguments+ is expected to be a hash with the placeholder names as the</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>   # keys and their respective values as the values - if any.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>   # === Examples</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>   #     view.value = &#39;&lt;p&gt;[[content]]&lt;/p&gt;&lt;p&gt;No value specified? The placeholder stays&lt;/p&gt;&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>   #     view.render</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>   #       # =&gt; &#39;&lt;p&gt;[[content]]&lt;/p&gt;&lt;p&gt;No value specified? The placeholder stays&lt;/p&gt;&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>   #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>   #     view.value = &#39;&lt;p&gt;[[content]]&lt;/p&gt;&lt;footer&gt;[[footer]]&lt;/footer&gt;&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>   #     view.render(content: &#39;My content&#39;, footer: &#39;&amp;copy; 2014&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>   #       # =&gt; &#39;&lt;p&gt;My content&lt;/p&gt;&lt;footer&gt;&amp;copy; 2014&lt;/footer&gt;&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>   def render(arguments = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>     arguments.inject(value) do |result, (placeholder_key, placeholder_value)|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>       placeholder = PLACEHOLDER_PATTERN % placeholder_key</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>       result.gsub placeholder, placeholder_value</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>   # Returns wether view&#39;s value is blank</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line92">92</a>   def blank_value?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line93">93</a>     value.blank?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>   # Template name is tokenized as: snake case, prefixed by component name if any</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>   # and spaces replaced by underscores</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line98">98</a>   def template_name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line99">99</a>     &quot;#{component &amp;&amp; &quot;#{component.slug}/&quot;}#{name.parameterize(&#39;_&#39;)}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line101">101</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>   def partial?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>     name.starts_with? &#39;_&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>   def can_be_default?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line107">107</a>     !(default? || partial? || alternative?)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line108">108</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>   def alternative?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>     !GenericRenderer.html?(format)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>   def make_default!</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>     transaction do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>       component.default_view.try(:update, default: false)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>       self.update(default: true)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>     end if can_be_default?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line119">119</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line121">121</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>     # Return the attributes hash of the default View for the given kind of element.</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>     # @throws RuntimeError if +kind+ is invalid</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line124">124</a>     def self.default_attributes_for(kind)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a>       {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>         representation: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>           name: &#39;representation_layout&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a>           value: &lt;&lt;-HTML</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a> &lt;!DOCTYPE html&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a> &lt;html&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line131">131</a>   &lt;head&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line132">132</a>     &lt;meta charset=&quot;utf-8&quot;&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a>     #{SEO_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>     #{FAVICON_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a>     #{ADDITIONAL_HEADERS_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a>     #{STYLESHEETS_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line137">137</a>   &lt;/head&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line138">138</a>   &lt;body&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>     #{CONTENT_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line140">140</a>     #{JAVASCRIPTS_PLACEHOLDER}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line141">141</a>   &lt;/body&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line142">142</a> &lt;/html&gt;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a>           HTML</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line144">144</a>         },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line145">145</a>         row: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line146">146</a>           name: &#39;row_layout&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line147">147</a>           value: &quot;&lt;div&gt;#{CONTENT_PLACEHOLDER}&lt;/div&gt;&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line148">148</a>         },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line149">149</a>         column: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line150">150</a>           name: &#39;column_layout&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line151">151</a>           value: &quot;&lt;div&gt;#{CONTENT_PLACEHOLDER}&lt;/div&gt;&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line152">152</a>         },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line153">153</a>         error: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line154">154</a>           name: &#39;error_view&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line155">155</a>           value: &#39;&lt;div class=&quot;error&quot;&gt;&lt;h1&gt;&lt;%= t &quot;renderer.error.title&quot;, default: &quot;Error&quot; %&gt;&lt;/h1&gt;&lt;%= t &quot;renderer.error.message&quot;, default: &quot;Some error was produced while processing component&quot; %&gt;&lt;div class=&quot;message&quot;&gt;&lt;%= error %&gt;&lt;/div&gt;&lt;/div&gt;&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line156">156</a>         }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line157">157</a>       }[kind] || raise(&quot;Don&#39;t know how to create default view for #{kind.inspect}&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line158">158</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line159">159</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line160">160</a>     def touch_representations</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line161">161</a>       base_representations.each &amp;:touch_routes</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line163">163</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line164">164</a>     def only_one_default</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line165">165</a>       count = component.views.where(default: true).where.not(id: id).count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line166">166</a>       if count &gt; 0</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line167">167</a>         # Trying to specify a new default when there was one already</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line168">168</a>         errors.add(:default, I18n.t(&#39;activerecord.errors.models.view.default.conflict&#39;))</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line169">169</a>         false</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line170">170</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line171">171</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line172">172</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line173">173</a>     # View can be destroyed if it doesn&#39;t belong to a component</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line174">174</a>     # or if it isn&#39;t the last view of the component it belongs to</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line175">175</a>     # And it has no ComponentConfigurations using it</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line176">176</a>     def check_before_destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line177">177</a>       (</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line178">178</a>         component.nil? ||</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line179">179</a>         component.destroy_view?(self)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line180">180</a>       ) &amp;&amp; component_configurations.empty? &amp;&amp; base_representations.empty?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line181">181</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line182">182</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line183">183</a>     def set_blank_value</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line184">184</a>       self.value = &#39;&#39; if value.nil?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line185">185</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line186">186</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line187">187</a>     def clean_default_flag</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line188">188</a>       self.default = false</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line189">189</a>       true</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line190">190</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line191">191</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line192">192</a>     def presence_of_content_placeholder</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line193">193</a>       errors.add(:value, I18n.t(&#39;activerecord.errors.models.representation_view.value.not_present_placeholder&#39;)) unless has_content_placeholder?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line194">194</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line195">195</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line196">196</a>     def is_not_html</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line197">197</a>       errors.add(:format, I18n.t(&#39;activerecord.errors.models.representation_view.format.not_html&#39;)) unless alternative?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line198">198</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line199">199</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2014-10-20 17:53:08 -0300 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>
