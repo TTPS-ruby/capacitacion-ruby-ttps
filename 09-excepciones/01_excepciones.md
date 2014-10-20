@@ -238,12 +238,14 @@ la pila
 
 * Generalmente no se incluye la traza en librerías
 
-!SLIDE small smbullets transition=uncover
+!SLIDE smaller smbullets transition=uncover
 # `catch` y `throw`
-* Veremos un ejemplo que acalrará el concepto
+* Veremos un ejemplo que aclarará el concepto
   * El siguiente código leerá palabras que irá agregando en un arreglo que al
     finalizar imprimirá en orden inverso. Sin embargo, si alguna línea es
     incorrecta deberá salir sin hacer nada
+  * El secreto es `throw(symbol, variable)`. **En este ejemplo es importante que
+    el último puts retorna `nil`**
 
 ## Ejemplo
 	@@@ ruby

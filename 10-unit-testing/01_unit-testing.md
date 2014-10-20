@@ -135,14 +135,11 @@ numérico y que imprima el valor como un número romano
     archivo
 
 !SLIDE bullets transition=uncover
-# Test::Unit vs MiniTest::Unit
-## Aparecen tres opciones de uso:
-* `require 'minitest/unit'` y usaremos únicamente la funcionalidad de **MiniTest**
-* `require 'test/unit'`  y usaremos MiniTest con la capa de *compatibilidad* con
-	Test::Unit habilitada, agregando las assertions ausentes y la funcionalidad de
-	autorun mencionadas
-* Instalar la gema `test-unit` y disponer de la funcionalidad original de
-	**Test::Unit**
+# MiniTest
+## Aparecen dos opciones de uso:
+* `require 'minitest/unit'` similar a Test::Unit
+* `require 'minitest/spec'` utiliza el formato de *specs* introducido por
+  **[rspec](http://rspec.info/)**
 
 !SLIDE bullets transition=uncover
 # El framework de testing
@@ -167,9 +164,10 @@ funcionalidades en un mismo paquete:
 # El ejemplo de Roman
 ## Reescribimos los tests que hicimos con los dientes
 	@@@ ruby
-	require 'roman'
-	require 'test/unit'
-	class TestRoman < MiniTest::Unit::TestCase
+	require_relative 'roman'
+	require 'minitest/autorun'
+	require 'minitest/unit'
+	class TestRoman < MiniTest::Test
 		def test_simple
 		  assert_equal("i", Roman.new(1).to_s)
 		  assert_equal("ix", Roman.new(9).to_s)
@@ -181,13 +179,14 @@ funcionalidades en un mismo paquete:
 !SLIDE bullets transition=uncover
 # Agregamos más assertions
 	@@@ ruby
-	require 'roman'
-	require 'test/unit'
-	class TestRoman < MiniTest::Unit::TestCase
+	require_relative 'roman'
+	require 'minitest/autorun'
+	require 'minitest/unit'
+	class TestRoman < MiniTest::Test
 		def test_simple
-		  assert_equal("i", Roman.new(1).to_s)
+		  assert_equal("i",  Roman.new(1).to_s)
 		  assert_equal("ii", Roman.new(2).to_s)
-		  assert_equal("iii", Roman.new(3).to_s)
+		  assert_equal("iii",Roman.new(3).to_s)
 		  assert_equal("iv", Roman.new(4).to_s)
 		  assert_equal("ix", Roman.new(9).to_s)
 		end
@@ -222,9 +221,10 @@ funcionalidades en un mismo paquete:
 # Refactorizando el test
 ## Para no repetir los asserts, podemos:
 	@@@ ruby
-	require 'roman'
-	require 'test/unit'
-	class TestRoman < Test::Unit::TestCase
+	require_relative 'roman'
+	require 'minitest/autorun'
+	require 'minitest/unit'
+	class TestRoman < MiniTest::Test
 	  NUMBERS = [
 	             [ 1, "i" ], [ 2, "ii" ], [ 3, "iii" ],
 	             [ 4, "iv"], [ 5, "v" ], [ 9, "ix" ]
@@ -243,9 +243,10 @@ funcionalidades en un mismo paquete:
 # Testeamos el rango de Roman
 ## Verificamos si se lanzan las excepciones
 	@@@ ruby
-	require 'roman'
-	require 'test/unit'
-	class TestRoman < Test::Unit::TestCase
+	require_relative 'roman'
+	require 'minitest/autorun'
+	require 'minitest/unit'
+	class TestRoman < MiniTest::Test
 		def test_range
 			# no exception for these two...
 			Roman.new(1)
@@ -340,12 +341,45 @@ funcionalidades en un mismo paquete:
 	  salvo  `refute_nil` que devolvería *Expected nil to not be nil*
 
 !SLIDE smaller bullets transition=uncover
+# Minitest Spec
+
+Veamos ahora como sería el mismo último test escrito en este nuevo formato
+
+	@@@ ruby
+	require_relative 'roman'
+	require 'minitest/autorun'
+	require 'minitest/spec'
+	describe Roman do
+		NUMBERS = [ [ 1, "i" ], [ 2, "ii" ], [ 3, "iii" ],
+			[ 4, "iv"], [ 5, "v" ], [ 9, "ix" ] ]
+		describe 'when arbitrary numbers are converted' do
+			it 'must return expected value' do
+				NUMBERS.each do |arabic, roman|
+					r = Roman.new(arabic)
+					assert_equal(roman, r.to_s)
+				end
+			end
+		end
+
+		describe 'limits' do 
+			it 'should not raise exceptions for these two' do
+				Roman.new(1)
+				Roman.new(4999)
+			end
+			it 'should raise an exception for limits' do
+				assert_raises(RuntimeError) { Roman.new(0) }
+				assert_raises(RuntimeError) { Roman.new(5000) }
+			end
+		end
+	end
+
+!SLIDE smaller bullets transition=uncover
 # Estructurando los tests
 * Los tests de unidad nos llevan a dos agrupamientos:
 	* **De alto nivel**: llamados *test cases*. Contienen todos los tests para una
 	  característica determinada. En el ejemplo de `Roman` alcanza con un único
 	  test case. Las clases que representan test cases, deben ser subclase de:
-	  `Test::Unit::TestCase`
+	  `Minitest::Test`
 
 	* **De bajo nivel**: que serían los métodos de test en sí. Los assertions
 	  podríamos escribirlos todos mezclados, pero en su lugar los agrupamos en
@@ -355,10 +389,15 @@ funcionalidades en un mismo paquete:
 	  comenzar con el prefijo **test** para que sean seleccionados como tales
 * Generalmente queremos ejecutar determinado código antes y luego de cada test.
 	Disponemos entonces de:
-	* `setup`
-	* `teardown`
+	* `setup` en Unit o `before` en Spec
+	* `teardown` en Unit o `after` en Spec
 	* Ver `samples/10/setup-teardown`
 
 !SLIDE smaller bullets transition=uncover
-# Cómo correr los tests
+# Otros agregados
+* Mocks
+** minitest/mock
+** Mocha: https://github.com/freerange/mocha
+
+* Coverage con [simplecov](https://github.com/colszowka/simplecov)
 

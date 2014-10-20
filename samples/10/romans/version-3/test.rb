@@ -1,6 +1,7 @@
-require 'roman'
-require 'test/unit'
-class TestRoman < Test::Unit::TestCase
+require_relative 'roman'
+require 'minitest/autorun'
+require 'minitest/unit'
+class TestRoman < MiniTest::Test
   NUMBERS = [
              [ 1, "i" ], [ 2, "ii" ], [ 3, "iii" ],
              [ 4, "iv"], [ 5, "v" ], [ 9, "ix" ]

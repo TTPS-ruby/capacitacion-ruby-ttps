@@ -1,6 +1,7 @@
-require 'test/unit'
+require 'minitest/unit'
+require 'minitest/autorun'
 
-class SampleTest < Test::Unit::TestCase
+class SampleTest < Minitest::Test
 
   def setup
     puts "\nIngreso a setup"
