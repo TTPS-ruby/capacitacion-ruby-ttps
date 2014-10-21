@@ -396,8 +396,8 @@ Veamos ahora como sería el mismo último test escrito en este nuevo formato
 !SLIDE smaller bullets transition=uncover
 # Otros agregados
 * Mocks
-** minitest/mock
-** Mocha: https://github.com/freerange/mocha
+  * minitest/mock
+  * Mocha: https://github.com/freerange/mocha
 
 * Coverage con [simplecov](https://github.com/colszowka/simplecov)
 
