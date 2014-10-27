@@ -38,6 +38,7 @@ para que se ejecute sin errores.
 parámetros:
   * versión, por ejemplo: `'>= 1.1.0'`, `'~> 3.1.2'`
   * github (construir la gema a partir de un repositorio en github): `github: 'sinatra/sinatra'`
+  * path: para una gema local
 
 ## Ejemplo
 	@@@ ruby
@@ -51,13 +52,67 @@ parámetros:
 * Con declarar las dependencias en el `Gemfile` no basta, hay que invocar a bundler.
 * Hay dos formas:
 
-## Dejar que bundler se encargue de requerir los archivos
+## Bundler requiere los archivos
 	@@@ ruby
 	require 'bundler'
     Bundler.require
 
-## Que bundler arme el entorno y nosotros requerimos los archivos
+## Bundler configura, pero los require son explícitos
 	@@@ ruby
 	require 'bundler'
     Bundler.setup
     require 'sinatra'
+
+!SLIDE smbullets small transition=uncover
+# Con el Gemfile podremos establecer
+ 
+* La fuente de donde obtener las gemas: `source 'https://rubygems.org'`
+  * Especificarlo para una gema en particular o agrupar gemas por sources
+
+* Cómo se require la gema: usando `require: 'string'` o
+  `require: false`
+
+* Versión de una gema: `>= x.y` o `~> x.y.z`
+
+* Tag, branch o ref de un repo git
+
+* Grupos de gemas con el fin de poder requerir o instalarlas en forma modular:
+  `group: :development`
+  * Relacionado con `Bundler.setup` y `Bundler.require`
+
+* Plataforma para la cual aplican determinadas gemas: `patforms:
+  [:jruby, :ruby]`
+
+!SLIDE smbullets smaller transition=uncover
+# Ejemplo de Gemfile
+
+	@@@ ruby
+	source 'https://rubygems.org'
+
+	gem 'thin',  '~>1.1'
+
+	gem 'rspec', :require => 'spec'
+
+	gem 'my_gem', '1.0', :source => 'https://gems.example.com'
+
+	gem 'mysql2', platform: :ruby
+	gem 'jdbc-mysql', platform: :jruby
+	gem 'activerecord-jdbc-adapter', platform: :jruby
+
+	source 'https://gems.example.com' do
+		gem 'another_gem', '1.2.1'
+	end
+
+	gem 'nokogiri', 
+		:git => 'https://github.com/tenderlove/nokogiri.git', 
+		:branch => '1.4'
+
+	gem 'extracted_library', :path => './vendor/extracted_library'
+
+	gem 'wirble', :group => :development
+	gem 'debugger', :group => [:development, :test]
+	group :test do
+		gem 'rspec'
+	end
+
+

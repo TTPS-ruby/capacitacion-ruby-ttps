@@ -17,6 +17,17 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
 
 !SLIDE bullets small transition=uncover
 # Ejemplo
+
+* Creamos un directorio e inicializamos con `bundle init`
+
+## El Gemfile
+
+	@@@ ruby
+	source 'https://rubygems.org'
+	gem 'sinatra'
+
+## El server
+
 	@@@ ruby
 	require 'sinatra'
 
@@ -24,11 +35,37 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
       'hello world'
     end
 
-## Guardamos el archivo como `server.rb` y luego lo ejecutamos (`ruby server.rb`)
+!SLIDE commandline small transition=uncover
+# Probamos el server
 
-## Probémoslo con curl!
-	@@@ ruby
-    $ curl -v http://localhost:4567/
+* Asumiendo el server se guarda en el archivo `server.rb`
+  * Lo ejecutamos: `ruby server.rb`
+
+## Probamos con curl
+
+	$ curl -v http://localhost:4567/
+	> GET / HTTP/1.1
+	> User-Agent: curl/7.35.0
+	> Host: localhost:4567
+	> Accept: */*
+	> 
+	< HTTP/1.1 200 OK 
+	HTTP/1.1 200 OK 
+	< Content-Type: text/html;charset=utf-8
+	Content-Type: text/html;charset=utf-8
+	< Content-Length: 11
+	Content-Length: 11
+	< X-Xss-Protection: 1; mode=block
+	X-Xss-Protection: 1; mode=block
+	< X-Content-Type-Options: nosniff
+	X-Content-Type-Options: nosniff
+	< X-Frame-Options: SAMEORIGIN
+	X-Frame-Options: SAMEORIGIN
+	* Server WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08) is not blacklisted
+	< Server: WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08)
+	Server: WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08)
+	< Date: Sun, 26 Oct 2014 23:35:04 GMT
+
 
 !SLIDE bullets small transition=uncover
 # Y cómo lo testeamos?
@@ -40,40 +77,241 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 !SLIDE bullets small transition=uncover
 # Y cómo lo testeamos?
 	@@@ ruby
-    require 'minitest/autorun'
-    require 'rack/test'
-    require_relative 'server'
+	require 'minitest/autorun'
+	require 'rack/test'
+	require_relative 'server'
 
-    class HelloWorldTest < Minitest::Test
-      include Rack::Test::Methods
+	class HelloWorldTest < MiniTest::Test
+		include Rack::Test::Methods
 
-      def app
-        Sinatra::Application
-      end
+		def app
+			Sinatra::Application
+		end
 
-      def test_get_root
-        get '/'
-        assert_equal 200, last_response.status
-        assert_equal 'hello world', last_response.body
-      end
-    end
+		def test_get_root
+			get '/'
+			assert_equal 200, last_response.status
+			assert last_response.ok?
+			assert_equal 'hello world', last_response.body
+		end
+	end
 
 !SLIDE bullets small transition=uncover
-# Sinatra: rutas con parámetros
-
-* En sinatra, las rutas pueden también aceptar parámetros variables que son
-expuestos al código en la variable params.
-
-## Ejemplo
+# Y si queremos usar mintest/spec
 	@@@ ruby
-    require 'sinatra'
+	require 'minitest/autorun'
+	require 'minitest/spec'
+	require 'rack/test'
+	require_relative 'server'
 
-    get '/hello/:name' do
-      # Todo lo que venga en el query string 
-      # será capturado en params, por ejemplo:
-      # '/hello/Patricio?username=patricio'
-      "Hello #{params[:name]}"
-    end
+	include Rack::Test::Methods
+
+	def app
+		Sinatra::Application
+	end
+
+	describe 'my example server' do
+		it 'should succeed' do
+			get '/'
+			last_response.status.must_equal 200
+			last_response.must_be :ok?
+			last_response.body.must_include 'hello world'
+		end
+	end
+
+
+!SLIDE bullets small transition=uncover
+# Rutas en Sinatra
+
+* En sinatra una ruta es la dupla de un método HTTP, con un patrón de URL
+* A cada ruta se le asocia un bloque
+* Las rutas se machean en el orden en que fueron definidas
+* Los patrones de rutas podrán:
+  * Incluir parámetros nombrados: accesibles usando el hash `params` o como un
+    parámetro del bloque
+  * Utilizar argumentos **splat**: accesibles mediante `params[:splat]` o
+    parámtros del bloque
+  * Expresiones regulares
+  * Incluir parámetros de consulta: `?some_param=value&other=other_value`
+
+!SLIDE bullets small transition=uncover
+# Ejemplos de rutas: verbos
+	@@@ ruby
+	get '/' do
+		.. show something ..
+	end
+
+	post '/' do
+		.. create something ..
+	end
+
+	put '/' do
+		.. replace something ..
+	end
+
+	patch '/' do
+		.. modify something ..
+	end
+
+	delete '/' do
+		.. annihilate something ..
+	end
+
+!SLIDE bullets transition=uncover
+# Ejemplos de rutas: verbos
+
+	@@@ ruby
+	options '/' do
+		.. appease something ..
+	end
+
+	link '/' do
+		.. affiliate something ..
+	end
+
+	unlink '/' do
+		.. separate something ..
+	end
+
+!SLIDE bullets small transition=uncover
+# Ejemplos de rutas: patrones con parámetros
+
+	@@@ ruby
+	get '/hello/:name' do
+		# matches "GET /hello/foo" and "GET /hello/bar"
+		# params[:name] is 'foo' or 'bar'
+		"Hello #{params[:name]}!"
+	end
+
+	# O usando variables de bloque
+	get '/hello/:name' do |n|
+		# matches "GET /hello/foo" and "GET /hello/bar"
+		# params[:name] is 'foo' or 'bar'
+		# n stores params[:name]
+		"Hello #{n}!"
+	end
+
+!SLIDE bullets small transition=uncover
+# Ejemplos de rutas: patrones con splats
+
+	@@@ ruby
+	get '/say/*/to/*' do
+		# matches /say/hello/to/world
+		params[:splat] # => ["hello", "world"]
+	end
+
+	get '/download/*.*' do
+		# matches /download/path/to/file.xml
+		params[:splat] # => ["path/to/file", "xml"]
+	end
+
+	# O usando variales de bloque
+	get '/download/*.*' do |path, ext|
+		[path, ext] # => ["path/to/file", "xml"]
+	end
+
+!SLIDE bullets small transition=uncover
+# Ejemplos de rutas: patrones basados en regexp
+
+	@@@ ruby
+	get %r{/hello/([\w]+)} do
+		"Hello, #{params[:captures].first}!"
+	end
+
+	# O usando variables de bloque
+	get %r{/hello/([\w]+)} do |c|
+		"Hello, #{c}!"
+	end
+
+!SLIDE bullets small transition=uncover
+# Ejemplos de rutas: con parámetros de consulta
+
+	@@@ruby
+	get '/posts' do
+		# matches "GET /posts?title=foo&author=bar"
+		title = params[:title]
+		author = params[:author]
+	end
+
+!SLIDE smbullets transition=uncover
+# Sinatra: Condiciones
+
+* Las rutas de sinatra pueden incluir condiciones de match como por ejemplo:
+  * `agent`: condiciones sobre el UA
+  * `provides`: condiciones sobre el content type
+  * `host_name`: condiciones sobre el server name
+  * definidas por el usuario
+
+!SLIDE smbullets small transition=uncover
+# Ejemplo de Condiciones
+
+	@@@ruby
+	get '/foo', :agent => /Songbird (\d\.\d)[\d\/]*?/ do
+		"You're using Songbird version #{params[:agent][0]}"
+	end
+
+	get '/foo' do
+		# Matches non-songbird browsers
+	end
+
+## Cómo probar?
+
+`curl -i -v http://localhost:4567 -A 'Songbird 1.1'`
+
+!SLIDE smbullets small transition=uncover
+# Ejemplo de condiciones con host_name y provides
+	@@@ruby
+	get '/', :host_name => /^admin\./ do
+		"Admin Area, Access denied!"
+	end
+
+	get '/', :provides => 'html' do
+		'HTML'
+	end
+
+	get '/', :provides => ['rss', 'atom', 'xml'] do
+		'XML'
+	end
+
+## Cómo probar?
+
+`curl -i -v http://localhost:4567 -H "Accept: application/xml"`
+
+!SLIDE bullets small transition=uncover
+# Ejemplo de condiciones propias
+	@@@ruby
+	set(:probability) do |value| 
+		condition { rand <= value }
+	end
+
+	get '/win_a_car', :probability => 0.1 do
+		"You won!"
+	end
+
+	get '/win_a_car' do
+		"Sorry, you lost."
+	end
+
+!SLIDE bullets smaller transition=uncover
+# Ejemplo de condiciones propias
+	@@@ruby
+	set(:auth) do |*roles|   # <- notice the splat here
+		condition do
+			unless logged_in? && 
+				roles.any? {|role| current_user.in_role? role }
+					redirect "/login/", 303
+			end
+		end
+	end
+
+	get "/my/account/", :auth => [:user, :admin] do
+		"Your Account Details"
+	end
+
+	get "/only/admin/", :auth => :admin do
+		"Only admins are allowed here!"
+	end
+
 
 !SLIDE bullets small transition=uncover
 # Sinatra: valor de retorno
