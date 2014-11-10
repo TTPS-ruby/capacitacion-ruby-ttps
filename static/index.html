@@ -5917,6 +5917,7 @@ par&#xE1;metros:
 <ul>
 <li>versi&#xF3;n, por ejemplo: <code>'&gt;= 1.1.0'</code>, <code>'~&gt; 3.1.2'</code></li>
 <li>github (construir la gema a partir de un repositorio en github): <code>github: 'sinatra/sinatra'</code></li>
+<li>path: para una gema local</li>
 </ul></li>
 </ul>
 
@@ -5934,16 +5935,70 @@ gem 'activerecord', '~&gt; 3.1.0'</code></pre>
 <li>Hay dos formas:</li>
 </ul>
 
-<h2>Dejar que bundler se encargue de requerir los archivos</h2>
+<h2>Bundler requiere los archivos</h2>
 
 <pre class="sh_ruby"><code>require 'bundler'
 Bundler.require</code></pre>
 
-<h2>Que bundler arme el entorno y nosotros requerimos los archivos</h2>
+<h2>Bundler configura, pero los require son expl&#xED;citos</h2>
 
 <pre class="sh_ruby"><code>require 'bundler'
 Bundler.setup
 require 'sinatra'</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="11-gems-bundler/02_bundler/7">
+<h1>Con el Gemfile podremos establecer</h1>
+
+<ul>
+<li><p>La fuente de donde obtener las gemas: <code>source 'https://rubygems.org'</code></p>
+
+<ul>
+<li>Especificarlo para una gema en particular o agrupar gemas por sources</li>
+</ul></li>
+<li><p>C&#xF3;mo se require la gema: usando <code>require: 'string'</code> o
+<code>require: false</code></p></li>
+<li><p>Versi&#xF3;n de una gema: <code>&gt;= x.y</code> o <code>~&gt; x.y.z</code></p></li>
+<li><p>Tag, branch o ref de un repo git</p></li>
+<li><p>Grupos de gemas con el fin de poder requerir o instalarlas en forma modular:
+<code>group: :development</code></p>
+
+<ul>
+<li>Relacionado con <code>Bundler.setup</code> y <code>Bundler.require</code></li>
+</ul></li>
+<li><p>Plataforma para la cual aplican determinadas gemas: <code>patforms:
+[:jruby, :ruby]</code></p></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="11-gems-bundler/02_bundler/8">
+<h1>Ejemplo de Gemfile</h1>
+
+<pre class="sh_ruby"><code>source 'https://rubygems.org'
+
+gem 'thin',  '~&gt;1.1'
+
+gem 'rspec', :require =&gt; 'spec'
+
+gem 'my_gem', '1.0', :source =&gt; 'https://gems.example.com'
+
+gem 'mysql2', platform: :ruby
+gem 'jdbc-mysql', platform: :jruby
+gem 'activerecord-jdbc-adapter', platform: :jruby
+
+source 'https://gems.example.com' do
+    gem 'another_gem', '1.2.1'
+end
+
+gem 'nokogiri', 
+    :git =&gt; 'https://github.com/tenderlove/nokogiri.git', 
+    :branch =&gt; '1.4'
+
+gem 'extracted_library', :path =&gt; './vendor/extracted_library'
+
+gem 'wirble', :group =&gt; :development
+gem 'debugger', :group =&gt; [:development, :test]
+group :test do
+    gem 'rspec'
+end</code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content center" ref="12-sinatra/01_http/1">
 <h1>HTTP</h1>
@@ -5953,7 +6008,7 @@ require 'sinatra'</code></pre>
 
 <ul>
 <li>Es un protocolo de red de la capa de aplicaci&#xF3;n</li>
-<li>Es la espina dorsal de la comunicaci&#xF3;n entre clientes y servidores</li>
+<li>Se ha convertido en el principal protocolo de comunicaci&#xF3;n entre clientes y servidores</li>
 <li>Cuando un cliente (un browser, una aplicaci&#xF3;n web, un servicio) quiere
 interactuar con un servidor sobre HTTP le env&#xED;a un mensaje (<strong>Request</strong>)</li>
 <li>Luego, cuando el servidor termina de procesar el Request puede comunicar
@@ -5961,23 +6016,7 @@ informaci&#xF3;n al cliente creando un mensaje HTTP propio (<strong>Response</st
 </ul>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/01_http/3">
-<h1>Introducci&#xF3;n (continuaci&#xF3;n)</h1>
-
-<ul>
-<li>El <strong>Response</strong> usualmente contiene la siguiente informaci&#xF3;n:
-
-<ul>
-<li><strong>status</strong>: si el <strong>Request</strong> del cliente fue exitoso, si ocurri&#xF3; un
-error, etc.</li>
-<li><strong>headers</strong>: por ejemplo que tipo de contenido se env&#xED;a al cliente, etc.</li>
-<li><strong>body</strong>: por ejemplo, un documento HTML</li>
-</ul></li>
-</ul>
-</div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/01_http/4">
-<h1>Mensaje HTTP</h1>
-
-<p>Un mensaje HTTP se compone por:</p>
+<h1>Requerimiento HTTP</h1>
 
 <ul>
 <li><strong>Start line</strong>: Es la primera l&#xED;nea del Request. Identifica el
@@ -5990,7 +6029,105 @@ cuando se sube una imagen a facebook, los datos binarios de la foto son
 enviados en este campo. Este campo no es obligatorio.</li>
 </ul>
 </div>
+</div><div class="slide" data-transition="uncover"><div class="content command small" ref="12-sinatra/01_http/4">
+<h1>Ejemplo de requerimiento HTTP</h1>
+
+<pre><code>GET /capacitacion-ruby-ttps/ HTTP/1.1
+
+Host: ttps-ruby.github.io
+
+Connection: keep-alive
+
+Pragma: no-cache
+
+Cache-Control: no-cache
+
+Accept: text/html,application/xhtml+xml,\
+        application/xml;q=0.9,image/webp,*/*;q=0.8
+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64)\ 
+            AppleWebKit/537.36 (KHTML, like \
+            Gecko) Chrome/38.0.2125.104 Safari/537.36
+
+Accept-Encoding: gzip,deflate,sdch
+
+Accept-Language: es-ES,es;q=0.8
+</code></pre>
+</div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/01_http/5">
+<h1>Respuesta HTTP</h1>
+
+<ul>
+<li>El <strong>Response</strong> usualmente contiene la siguiente informaci&#xF3;n:
+
+<ul>
+<li><strong>status</strong>: si el <strong>Request</strong> del cliente fue exitoso, si ocurri&#xF3; un
+error, etc.</li>
+<li><strong>headers</strong>: por ejemplo que tipo de contenido se env&#xED;a al cliente, etc.</li>
+<li><strong>body</strong>: por ejemplo, un documento HTML</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content command small" ref="12-sinatra/01_http/6">
+<h1>Ejemplo de respuesta HTTP</h1>
+
+<pre><code>HTTP/1.1 200 OK
+
+Server: GitHub.com
+
+Content-Type: text/html; charset=utf-8
+
+Last-Modified: Tue, 21 Oct 2014 02:06:17 GMT
+
+Expires: Sun, 26 Oct 2014 23:05:15 GMT
+
+Cache-Control: max-age=600
+
+Content-Encoding: gzip
+
+Content-Length: 78296
+
+Accept-Ranges: bytes
+
+Date: Sun, 26 Oct 2014 22:55:48 GMT
+
+
+...........{..W.....UT.&gt;.....$`...C.r ....L&amp;.?.T.
+...gN...k_......=.{../.g'..~.../.&gt;..V......[_...Q
+</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="12-sinatra/01_http/7">
+<h1>Un poco de historia de HTTP</h1>
+
+<ul>
+<li>Protocolo usado para la WWW.</li>
+<li>RFC 2616: http://www.ietf.org/rfc/rfc2616.txt</li>
+<li>Lanzado en el a&#xF1;o 1999</li>
+<li>Protocolo sin estado (Stateless)</li>
+<li>El acceso a los recursos se hace por medio
+de m&#xE9;todos:
+
+<ul>
+<li>HTTP 1.0: GET, HEAD, POST</li>
+<li>HTTP 1.1: agrega PUT, DELETE, OPTIONS, TRACE, CONNECT</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="12-sinatra/01_http/8">
+<h1>Algunos detalles del protocolo</h1>
+
+<ul>
+<li>Los m&#xE9;todos GET, HEAD, PUT, DELETE son considerados idempotentes: 
+
+<ul>
+<li>El resultado de invocar el m&#xE9;todo es el mismo que hacerlo N
+veces (N &gt; 1)</li>
+</ul></li>
+<li>Lo mismo aplica para OPTIONS y TRACE dado que no deber&#xED;an tener efectos
+secundarios, y por ende heredan la propiedad</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="12-sinatra/01_http/9">
 <h1>Verbos HTTP</h1>
 
 <ul>
@@ -6004,6 +6141,38 @@ un servidor web.</li>
 <li>La especificaci&#xF3;n de HTTP tambi&#xE9;n define <strong>OPTIONS</strong>, <strong>HEAD</strong>, <strong>TRACE</strong> y
 <strong>CONNECT</strong>, los cuales dejaremos de lado.</li>
 </ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content commandline small" ref="12-sinatra/01_http/10">
+<h1>El mejor amigo de HTTP: curl</h1>
+
+<p>Curl y libcurl es una librer&#xED;a empleada para interactuar con varios protocolos,
+especialmente HTTP. Si deseamos analizar cabeceras HTTP en implementaciones de
+servicios WEB o verificar sitios, podemos utilizar esta herramienta. </p>
+
+<h2>Un ejemplo de uso:</h2>
+
+<pre><code><code class="command">$ curl -X GET \
+    http://ttps-ruby.github.io/capacitacion-ruby-ttps/ -i</code>
+<code class="result">HTTP/1.1 200 OK
+Server: GitHub.com
+Content-Type: text/html; charset=utf-8
+Last-Modified: Tue, 21 Oct 2014 02:06:17 GMT
+Expires: Sun, 26 Oct 2014 23:36:24 GMT
+Cache-Control: max-age=600
+Content-Length: 281844
+Accept-Ranges: bytes
+Date: Sun, 26 Oct 2014 23:26:24 GMT
+Via: 1.1 varnish
+Age: 0
+Connection: keep-alive
+X-Served-By: cache-iad2134-IAD
+X-Cache: MISS
+X-Cache-Hits: 0
+X-Timer: S1414365984.304589,VS0,VE7
+Vary: Accept-Encoding
+
+&lt;...
+</code></code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content center" ref="12-sinatra/02_sinatra/1">
 <h1>Sinatra</h1>
@@ -6030,19 +6199,61 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.</li>
 </div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/3">
 <h1>Ejemplo</h1>
 
+<ul>
+<li>Creamos un directorio e inicializamos con <code>bundle init</code></li>
+</ul>
+
+<h2>El Gemfile</h2>
+
+<pre class="sh_ruby"><code>source 'https://rubygems.org'
+gem 'sinatra'</code></pre>
+
+<h2>El server</h2>
+
 <pre class="sh_ruby"><code>require 'sinatra'
 
 get '/' do
   'hello world'
 end</code></pre>
-
-<h2>Guardamos el archivo como <code>server.rb</code> y luego lo ejecutamos (<code>ruby server.rb</code>)</h2>
-
-<h2>Prob&#xE9;moslo con curl!</h2>
-
-<pre class="sh_ruby"><code>$ curl -v http://localhost:4567/</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/4">
+</div><div class="slide" data-transition="uncover"><div class="content commandline small" ref="12-sinatra/02_sinatra/4">
+<h1>Probamos el server</h1>
+
+<ul>
+<li>Asumiendo el server se guarda en el archivo <code>server.rb</code>
+
+<ul>
+<li>Lo ejecutamos: <code>ruby server.rb</code></li>
+</ul></li>
+</ul>
+
+<h2>Probamos con curl</h2>
+
+<pre><code><code class="command">$ curl -v http://localhost:4567/</code>
+<code class="result">&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.35.0
+&gt; Host: localhost:4567
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK 
+HTTP/1.1 200 OK 
+&lt; Content-Type: text/html;charset=utf-8
+Content-Type: text/html;charset=utf-8
+&lt; Content-Length: 11
+Content-Length: 11
+&lt; X-Xss-Protection: 1; mode=block
+X-Xss-Protection: 1; mode=block
+&lt; X-Content-Type-Options: nosniff
+X-Content-Type-Options: nosniff
+&lt; X-Frame-Options: SAMEORIGIN
+X-Frame-Options: SAMEORIGIN
+* Server WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08) is not blacklisted
+&lt; Server: WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08)
+Server: WEBrick/1.3.1 (Ruby/2.1.2/2014-05-08)
+&lt; Date: Sun, 26 Oct 2014 23:35:04 GMT
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/5">
 <h1>Y c&#xF3;mo lo testeamos?</h1>
 
 <ul>
@@ -6051,47 +6262,248 @@ end</code></pre>
 devuelva un c&#xF3;digo de estado <code>200</code> (OK) y que el body sea <code>'hello world'</code></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/5">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/6">
 <h1>Y c&#xF3;mo lo testeamos?</h1>
 
 <pre class="sh_ruby"><code>require 'minitest/autorun'
 require 'rack/test'
 require_relative 'server'
 
-class HelloWorldTest &lt; Minitest::Test
-  include Rack::Test::Methods
+class HelloWorldTest &lt; MiniTest::Test
+    include Rack::Test::Methods
 
-  def app
-    Sinatra::Application
-  end
+    def app
+        Sinatra::Application
+    end
 
-  def test_get_root
-    get '/'
-    assert_equal 200, last_response.status
-    assert_equal 'hello world', last_response.body
-  end
-end</code></pre>
-</div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/6">
-<h1>Sinatra: rutas con par&#xE1;metros</h1>
-
-<ul>
-<li>En sinatra, las rutas pueden tambi&#xE9;n aceptar par&#xE1;metros variables que son
-expuestos al c&#xF3;digo en la variable params.</li>
-</ul>
-
-<h2>Ejemplo</h2>
-
-<pre class="sh_ruby"><code>require 'sinatra'
-
-get '/hello/:name' do
-  # Todo lo que venga en el query string 
-  # ser&#xE1; capturado en params, por ejemplo:
-  # '/hello/Patricio?username=patricio'
-  "Hello #{params[:name]}"
+    def test_get_root
+        get '/'
+        assert_equal 200, last_response.status
+        assert last_response.ok?
+        assert_equal 'hello world', last_response.body
+    end
 end</code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/7">
+<h1>Y si queremos usar mintest/spec</h1>
+
+<pre class="sh_ruby"><code>require 'minitest/autorun'
+require 'minitest/spec'
+require 'rack/test'
+require_relative 'server'
+
+include Rack::Test::Methods
+
+def app
+    Sinatra::Application
+end
+
+describe 'my example server' do
+    it 'should succeed' do
+        get '/'
+        last_response.status.must_equal 200
+        last_response.must_be :ok?
+        last_response.body.must_include 'hello world'
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/8">
+<h1>Rutas en Sinatra</h1>
+
+<ul>
+<li>En sinatra una ruta es la dupla de un m&#xE9;todo HTTP, con un patr&#xF3;n de URL</li>
+<li>A cada ruta se le asocia un bloque</li>
+<li>Las rutas se machean en el orden en que fueron definidas</li>
+<li>Los patrones de rutas podr&#xE1;n:
+
+<ul>
+<li>Incluir par&#xE1;metros nombrados: accesibles usando el hash <code>params</code> o como un
+par&#xE1;metro del bloque</li>
+<li>Utilizar argumentos <strong>splat</strong>: accesibles mediante <code>params[:splat]</code> o
+par&#xE1;mtros del bloque</li>
+<li>Expresiones regulares</li>
+<li>Incluir par&#xE1;metros de consulta: <code>?some_param=value&amp;other=other_value</code></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/9">
+<h1>Ejemplos de rutas: verbos</h1>
+
+<pre class="sh_ruby"><code>get '/' do
+    .. show something ..
+end
+
+post '/' do
+    .. create something ..
+end
+
+put '/' do
+    .. replace something ..
+end
+
+patch '/' do
+    .. modify something ..
+end
+
+delete '/' do
+    .. annihilate something ..
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="12-sinatra/02_sinatra/10">
+<h1>Ejemplos de rutas: verbos</h1>
+
+<pre class="sh_ruby"><code>options '/' do
+    .. appease something ..
+end
+
+link '/' do
+    .. affiliate something ..
+end
+
+unlink '/' do
+    .. separate something ..
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/11">
+<h1>Ejemplos de rutas: patrones con par&#xE1;metros</h1>
+
+<pre class="sh_ruby"><code>get '/hello/:name' do
+    # matches "GET /hello/foo" and "GET /hello/bar"
+    # params[:name] is 'foo' or 'bar'
+    "Hello #{params[:name]}!"
+end
+
+# O usando variables de bloque
+get '/hello/:name' do |n|
+    # matches "GET /hello/foo" and "GET /hello/bar"
+    # params[:name] is 'foo' or 'bar'
+    # n stores params[:name]
+    "Hello #{n}!"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/12">
+<h1>Ejemplos de rutas: patrones con splats</h1>
+
+<pre class="sh_ruby"><code>get '/say/*/to/*' do
+    # matches /say/hello/to/world
+    params[:splat] # =&gt; ["hello", "world"]
+end
+
+get '/download/*.*' do
+    # matches /download/path/to/file.xml
+    params[:splat] # =&gt; ["path/to/file", "xml"]
+end
+
+# O usando variales de bloque
+get '/download/*.*' do |path, ext|
+    [path, ext] # =&gt; ["path/to/file", "xml"]
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/13">
+<h1>Ejemplos de rutas: patrones basados en regexp</h1>
+
+<pre class="sh_ruby"><code>get %r{/hello/([\w]+)} do
+    "Hello, #{params[:captures].first}!"
+end
+
+# O usando variables de bloque
+get %r{/hello/([\w]+)} do |c|
+    "Hello, #{c}!"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/14">
+<h1>Ejemplos de rutas: con par&#xE1;metros de consulta</h1>
+
+<pre class="sh_ruby"><code>get '/posts' do
+    # matches "GET /posts?title=foo&amp;author=bar"
+    title = params[:title]
+    author = params[:author]
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="12-sinatra/02_sinatra/15">
+<h1>Sinatra: Condiciones</h1>
+
+<ul>
+<li>Las rutas de sinatra pueden incluir condiciones de match como por ejemplo:
+
+<ul>
+<li><code>agent</code>: condiciones sobre el UA</li>
+<li><code>provides</code>: condiciones sobre el content type</li>
+<li><code>host_name</code>: condiciones sobre el server name</li>
+<li>definidas por el usuario</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="12-sinatra/02_sinatra/16">
+<h1>Ejemplo de Condiciones</h1>
+
+<pre class="sh_ruby"><code>get '/foo', :agent =&gt; /Songbird (\d\.\d)[\d\/]*?/ do
+    "You're using Songbird version #{params[:agent][0]}"
+end
+
+get '/foo' do
+    # Matches non-songbird browsers
+end</code></pre>
+
+<h2>C&#xF3;mo probar?</h2>
+
+<p><code>curl -i -v http://localhost:4567 -A 'Songbird 1.1'</code></p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="12-sinatra/02_sinatra/17">
+<h1>Ejemplo de condiciones con host_name y provides</h1>
+
+<pre class="sh_ruby"><code>get '/', :host_name =&gt; /^admin\./ do
+    "Admin Area, Access denied!"
+end
+
+get '/', :provides =&gt; 'html' do
+    'HTML'
+end
+
+get '/', :provides =&gt; ['rss', 'atom', 'xml'] do
+    'XML'
+end</code></pre>
+
+<h2>C&#xF3;mo probar?</h2>
+
+<p><code>curl -i -v http://localhost:4567 -H "Accept: application/xml"</code></p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/18">
+<h1>Ejemplo de condiciones propias</h1>
+
+<pre class="sh_ruby"><code>set(:probability) do |value| 
+    condition { rand &lt;= value }
+end
+
+get '/win_a_car', :probability =&gt; 0.1 do
+    "You won!"
+end
+
+get '/win_a_car' do
+    "Sorry, you lost."
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="12-sinatra/02_sinatra/19">
+<h1>Ejemplo de condiciones propias</h1>
+
+<pre class="sh_ruby"><code>set(:auth) do |*roles|   # &lt;- notice the splat here
+    condition do
+        unless logged_in? &amp;&amp; 
+            roles.any? {|role| current_user.in_role? role }
+                redirect "/login/", 303
+        end
+    end
+end
+
+get "/my/account/", :auth =&gt; [:user, :admin] do
+    "Your Account Details"
+end
+
+get "/only/admin/", :auth =&gt; :admin do
+    "Only admins are allowed here!"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/20">
 <h1>Sinatra: valor de retorno</h1>
 
 <ul>
@@ -6102,7 +6514,7 @@ de Rack.</li>
 <li>Sin embargo, otros valores tambi&#xE9;n son aceptados (no lo veremos ahora)</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/8">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/21">
 <h1>Sinatra: caracter&#xED;sticas</h1>
 
 <ul>
@@ -6120,7 +6532,7 @@ a utilizar, que debe ser guardado en el directorio <code>views</code></li>
   erb :index
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/9">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/22">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <pre class="sh_html"><code>&lt;html&gt;
@@ -6132,7 +6544,7 @@ end</code></pre>
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/10">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/23">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <ul>
@@ -6152,7 +6564,7 @@ get '/' do
   @nota #=&gt; 'Hey!'
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/11">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/24">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <ul>
@@ -6172,7 +6584,7 @@ get '/:name' do
   "#{bar params[:name]}"
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/12">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/25">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <ul>
@@ -6193,7 +6605,7 @@ get '/:value' do
   session[:value] = params[:value]
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/13">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/26">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <ul>
@@ -6211,7 +6623,7 @@ get '/bar' do
   'Hello!'
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/14">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/27">
 <h1>Sinatra: caracter&#xED;sticas (continuaci&#xF3;n)</h1>
 
 <ul>

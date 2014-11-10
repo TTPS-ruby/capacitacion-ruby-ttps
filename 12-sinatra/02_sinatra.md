@@ -29,11 +29,12 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
 ## El server
 
 	@@@ ruby
-	require 'sinatra'
+	require 'bundler'
+	Bundler.require
 
-    get '/' do
-      'hello world'
-    end
+	get '/' do
+		'hello world'
+	end
 
 !SLIDE commandline small transition=uncover
 # Probamos el server
@@ -74,12 +75,19 @@ esencial para manejar Requests HTTP y entregar Responses a los clientes.
 * Para testear el ejemplo, haremos un request `GET /` y esperaremos que nos
 devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 
-!SLIDE bullets small transition=uncover
-# Y cómo lo testeamos?
+!SLIDE bullets smaller transition=uncover
+# Testeando
+## Como usamos bundler, editamos el `Gemfile`
+	@@@ruby
+	source 'https://rubygems.org'
+	gem 'sinatra'
+	gem "minitest"
+	gem "rack-test" 
+	
+## Cómo lo testeamos?
 	@@@ ruby
-	require 'minitest/autorun'
-	require 'rack/test'
 	require_relative 'server'
+	require 'minitest/autorun'
 
 	class HelloWorldTest < MiniTest::Test
 		include Rack::Test::Methods
@@ -99,10 +107,9 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 !SLIDE bullets small transition=uncover
 # Y si queremos usar mintest/spec
 	@@@ ruby
+	require_relative 'server'
 	require 'minitest/autorun'
 	require 'minitest/spec'
-	require 'rack/test'
-	require_relative 'server'
 
 	include Rack::Test::Methods
 
@@ -137,41 +144,44 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 !SLIDE bullets small transition=uncover
 # Ejemplos de rutas: verbos
 	@@@ ruby
+	require 'bundler'
+	Bundler.require
+
 	get '/' do
-		.. show something ..
+	  'This is GET'
 	end
 
 	post '/' do
-		.. create something ..
+	  'This is POST'
 	end
 
 	put '/' do
-		.. replace something ..
+	  'This is PUT'
 	end
 
 	patch '/' do
-		.. modify something ..
+	  'This is PATCH'
 	end
 
 	delete '/' do
-		.. annihilate something ..
+	  'This is DELETE'
 	end
 
-!SLIDE bullets transition=uncover
-# Ejemplos de rutas: verbos
+!SLIDE commandline incremental transition=uncover
+# Lo probamos
 
-	@@@ ruby
-	options '/' do
-		.. appease something ..
-	end
+	$ curl -X GET http://localhost:4567/
+	This is GET
+	$curl -d '' -X PUT http://localhost:4567/ 
+	This is PUT
+	$ curl -d '' -X POST http://localhost:4567/ 
+	This is POST
+	$ curl -d '' -X DELETE http://localhost:4567/ 
+	This is DELETE
+	$ curl -d '' -X PATCH http://localhost:4567/ 
+	This is PATCH
 
-	link '/' do
-		.. affiliate something ..
-	end
 
-	unlink '/' do
-		.. separate something ..
-	end
 
 !SLIDE bullets small transition=uncover
 # Ejemplos de rutas: patrones con parámetros
@@ -256,7 +266,7 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 
 ## Cómo probar?
 
-`curl -i -v http://localhost:4567 -A 'Songbird 1.1'`
+`curl http://localhost:4567/foo -A 'Songbird 1.1'`
 
 !SLIDE smbullets small transition=uncover
 # Ejemplo de condiciones con host_name y provides
@@ -275,7 +285,7 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 
 ## Cómo probar?
 
-`curl -i -v http://localhost:4567 -H "Accept: application/xml"`
+`curl http://localhost:4567 -H "Accept: application/xml"`
 
 !SLIDE bullets small transition=uncover
 # Ejemplo de condiciones propias
@@ -320,7 +330,6 @@ devuelva un código de estado `200` (OK) y que el body sea `'hello world'`
 respuesta que se le pasa al cliente HTTP o al siguiente middleware en la pila
 de Rack.
 * Lo más común es que sea un string, como en los ejemplos anteriores.
-* Sin embargo, otros valores también son aceptados (no lo veremos ahora)
 
 !SLIDE bullets small transition=uncover
 # Sinatra: características
@@ -350,8 +359,40 @@ a utilizar, que debe ser guardado en el directorio `views`
       </body>
     </html>
 
+!SLIDE smbullets small transition=uncover
+# Templates
+## Los templates aceptan las siguientes opciones:
+* **locals**: lista de variables pasadas al template
+* **default_encoding**: codificación de caracteres. Por defecto se usa 
+  `settings.default_encoding`
+* **views**: directorio de donde cargar los templates. Por defecto `settings.views`
+* **layout**: utilizar o no layout (true/false). Si es un símbolo, especifica
+  que templeta usar
+* **Content-Type**: tipo de contenido producido por el template. 
+* **scope**: alcance en el cual renderiza el template. Por defecto es la
+  aplicación. Si se cambia, las variables de instancia y helpers no estarán
+disponibles.
+
 !SLIDE bullets small transition=uncover
-# Sinatra: características (continuación)
+# Templates: cambiando el directorio de las vistas
+
+	@@@ ruby
+	set :views, settings.root + '/templates'
+
+* Es importante recordar que los templates deben referenciarse siempre con
+símbolos, aun si se encuentran en un subdirectorio (en este caso usar:
+`:subdir/template` o `'subdir/template'.to_sym`). Debe siempre usarse un símbolo
+sino se toma el string y renderiza directamente.
+
+!SLIDE bullets transition=uncover
+# Layout
+
+* El layout es un template contenedor que enmarca lo que cada acción renderiza.
+* Para embeber utilizaremos `yield`
+
+
+!SLIDE bullets small transition=uncover
+# Filtros: before y after
 
 * **Filtros**: Los filtros `before` son evaluados antes de cada petición
 dentro del mismo contexto que las rutas. Pueden modificar la petición y la
@@ -368,8 +409,33 @@ por las rutas y las plantillas (idem con `after`):
       @nota #=> 'Hey!'
     end
 
+!SLIDE bullets smaller transition=uncover
+# Filtros: before y after
+
+* El filtro `after` ejecuta luego de atender la petición
+* Los filtros pueden contener una ruta para machear cuándo aplican
+  * Además es posible usar condiciones como en las rutas
+
+## Ejemplos
+	@@@ruby
+	before '/protected/*' do
+		authenticate!
+	end
+
+	after '/create/:slug' do |slug|
+		session[:last_slug] = slug
+	end
+
+	before :agent => /Songbird/ do
+		# ...
+	end
+
+	after '/blog/*', :host_name => 'example.com' do
+		# ...
+	end
+
 !SLIDE bullets small transition=uncover
-# Sinatra: características (continuación)
+# Helpers
 
 * **Helpers**: Son métodos que pueden ser usados en los bloques de rutas y los
 templates.
@@ -387,7 +453,7 @@ templates.
     end
 
 !SLIDE bullets small transition=uncover
-# Sinatra: características (continuación)
+# Sesiones
 
 * **Sessions**: Una sesión es usada para mantener el estado a través de
 distintas peticiones. Cuando están activadas, proporciona un hash de sesión
@@ -406,7 +472,7 @@ para cada sesión de usuario:
     end
 
 !SLIDE bullets small transition=uncover
-# Sinatra: características (continuación)
+# Redirecciones
 
 * **Redirecciones del navegador**: Podés redireccionar al navegador con el
 método redirect:
@@ -422,7 +488,7 @@ método redirect:
     end
 
 !SLIDE bullets small transition=uncover
-# Sinatra: características (continuación)
+# Manejo de errores
 
 * **Manejo de errores**: Los manejadores de errores se ejecutan dentro del
 mismo contexto que las rutas y los filtros before, lo que significa que podés
@@ -435,6 +501,109 @@ usar, por ejemplo, haml, erb, halt, etc.
     end
 
     error do
-      'Disculpá, ocurrió un error horrible - ' +
-        env['sinatra.error'].name
+      # env['sinatra.error'] contains error
+      'Disculpá, ocurrió un error horrible' 
     end
+
+!SLIDE bullets small transition=uncover
+# Configuración
+
+* Es posible correr, por única vez, código de incialización
+* Es posible hacerlo dependieno del **ambiente** indicado con la variable de
+  entorno `RACK_ENV`
+
+!SLIDE bullets small transition=uncover
+# Configuración: Ejemplos
+
+	@@@ruby
+	configure do
+		# setting one option
+		set :option, 'value'
+
+		# setting multiple options
+		set :a => 1, :b => 2
+
+		# same as `set :option, true`
+		enable :option
+
+		# same as `set :option, false`
+		disable :option
+
+		# you can also have dynamic settings with blocks
+		set(:css_dir) { File.join(views, 'css') }
+	end
+
+	configure :production do
+		# Sólo aplica al ambiente :production
+	end
+
+!SLIDE bullets small transition=uncover
+# Configuración: accediendo a los valores
+
+* Lo valores seteados con `set` pueden accederse con `settings`
+
+## Ejemplo
+	@@@ruby
+	configure do
+		set :foo, 'bar'
+	end
+
+	get '/' do
+		settings.foo? # => true
+		settings.foo  # => 'bar'
+		...
+	end
+
+!SLIDE bullets small transition=uncover
+# Ambientes
+* Se utilizan 3 ambientes predefinidos: 
+	* **production**
+	* **test**
+	* **development**
+* Los ambientes se setean mediante la variable del entorno `RACK_ENV`
+* El ambiente por defecto es **development**
+	* En este ambiente, los templates se recargan en cada requerimiento
+	* Los manejadores de `not_found` y `error` son especiales dado que muestran el
+	  stacktrace
+* En los ambientes **production** y **test** los templates se cachean  por
+  defecto
+
+!SLIDE bullets small transition=uncover
+# Ejemplo de ambientes
+* La aplicación se inicia seteando la variable `RACK_ENV` de la siguiente forma:
+	* `RACK_ENV=production ruby my_app.rb`
+
+## Ejemplo
+	@@@ ruby
+	get '/' do
+		if settings.development?
+			"development!"
+		else
+			"not development!"
+		end
+	end
+
+!SLIDE bullets small transition=uncover
+# Rack y Sinatra
+* Sinatra se apoya en [rack](https://github.com/rack/rack), una interface con el webserver modular
+* La capacidad más importante de rack es la de soportar **middlewares** 
+	* Esto es, componentes que operan entre la aplicación y el web server
+	  monitoreando o manipulando los reqs/resp HTTP proveyendo así de varios tipos
+	  de funcionalidades comunes
+* En sinatra, es simple utilizar los middlewares Rack con el método `use`
+
+!SLIDE bullets small transition=uncover
+# Ejemplo de uso de middleware rack
+
+	@@@ ruby
+	# Agregando al Gemfile gem 'rack-contrib'
+	require 'bundler'
+	Bundler.require
+
+	use Rack::Deflater
+
+	get '/hello' do
+		'Hello World'
+	end
+
+* Ahora las respuestas se comprimen con **gzip**
