@@ -100,6 +100,8 @@ creada*
 		| Person        | people        |
 		+---------------+---------------+
 	
+
+* Ver [ActiveSupport::Inflector](http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html)
 !SLIDE bullets transition=uncover
 # Convenciones sobre los esquemas
 * Active Record utiliza convenciones para las columnas de las tablas,
