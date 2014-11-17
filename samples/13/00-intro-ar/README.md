@@ -3,7 +3,7 @@
 Tratamos de correr la aplicacion que lista todos los productos en la db:
 
 ```
-bundle exec ruby main.rb
+ruby main.rb
 ```
 
 La salida inicial será un error porque no existe la tabla en la base de datos
