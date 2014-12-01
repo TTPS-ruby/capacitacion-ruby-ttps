@@ -138,7 +138,7 @@ usuarios, agregar o eliminar un usuario de la lista
 * Las vistas tendrán una sintaxis muy similar a HTML convencional, pero con
   algunos datos que se extraen de variables ruby o estructuras de control como
 loops que permitirán crear tablas.
-	* Siguiendo el principio de SoC, es considerada una buena práctica limitar el
+	* Siguiendo el principio de Separation of Concerns, es considerada una buena práctica limitar el
 uso de código ruby en las vistas a sólo utilizarlo para imprimir valores de
 variables.
 	* Cualquier otra cosa será responsabilidad del modelo

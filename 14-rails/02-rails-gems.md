@@ -6,6 +6,7 @@
 * Las gemas en que depende rails son:
   * [actionmailer](https://github.com/rails/rails/tree/master/actionmailer) - framework para envío de email y testing
   * [actionpack](https://github.com/rails/rails/tree/master/actionpack) - framework para el ruteo y respuestas a requerimientos WEB. *Es el VC de MVC*
+  * [actionview](https://github.com/rails/rails/tree/master/actionview) - framework para el manejo de templates y renderizado. *Es el V de MVC*
   * [activerecord](https://github.com/rails/rails/tree/master/activerecord) - framework para la conexión a bases de datos. *Es el M de MVC*
   * [activeresource](https://github.com/rails/activeresource) - framework para la abstracción de servicios REST. *Es el M' de MVC*
   * [activesupport](https://github.com/rails/rails/tree/master/activesupport) - extensiones a Ruby y clases que proveen mayor funcionalidad

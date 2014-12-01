@@ -68,14 +68,15 @@ elección
 * [Ruby Weekly](http://rubyweekly.com/)
 * [Ruby Flow](http://www.rubyflow.com/)
 * [Ruby5](http://ruby5.envylabs.com/)
+* [The Changelog](http://thechangelog.com/tagged/rubyonrails/)
 
 !SLIDE commandline incremental transition=uncover
 # Instalando
 	$ gem install rails
-	Successfully installed rails-4.0.1
+	Successfully installed rails-x.y.z
 	
 	$ rails -v
-	Rails 4.0.1
+	Rails x.y.z
 
 
 !SLIDE commandline smaller transition=uncover

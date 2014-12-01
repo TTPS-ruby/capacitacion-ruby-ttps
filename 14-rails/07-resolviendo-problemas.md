@@ -9,14 +9,14 @@
 
 !SLIDE bullets transition=uncover small
 # Rails console
-* IRB solamente evalúa expresiones que so definidas por la API de ruby
+* IRB solamente evalúa expresiones que son definidas por la API de ruby
 * IRB no conoce las clases de rails
 * Rails console carga toda la aplicación rails en una consola IRB
 
 ## Ejemplo
 	@@@ bash
 	$ bundle exec rails console
-	Loading development environment (Rails 4.0.1)
+	Loading development environment (Rails X.Y.Z)
 	irb(main):001:0> 
 
 *Notamos que se cargó el ambiente de development*

@@ -34,7 +34,7 @@ Planificamos nuestro trabajo definiendo un User story
 	* `class Visitor < ActiveRecord::Base` - los nombres de las clases de modelo
 	  son en singular y en mayúscula
 	* `class VisitorsController < ApplicationController` - los nombres de
-	  controladores son la combinación de un nombre de modelo en singular con
+	  controladores son la combinación de un nombre de modelo en plural con
 *Controller* en camel case
 * Los archivos:
 	* Los archivos de modelo coinciden con el nombre del modelo , pero en
@@ -59,7 +59,7 @@ Crearemos primero el ruteo antes de implementar el model y controller
   **LearnRails**
 	* Esto se debe al nombre de la aplicación que creamos con el comando `rails
 	  new learn_rails`
-* Los detalles de la sintaxis en el arcchivo `config/routes.rb` pueden
+* Los detalles de la sintaxis en el archivo `config/routes.rb` pueden
   entenderse bien leyendo [Rails Guide: Routing from outside in](http://guides.rubyonrails.org/routing.html)
 * Modificando `config/routes.rb` no requiere reiniciar la aplicación
 
@@ -106,11 +106,11 @@ y conoce como conectarse con la base de datos
 	@@@ ruby
 	class Owner
 		def name
-			name = 'Foobar Kadigan'
+			'Foobar Kadigan'
 		end
 
 		def birthdate
-			birthdate = Date.new(1990, 12, 22)
+			Date.new(1990, 12, 22)
 		end
 
 		def countdown
