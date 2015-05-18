@@ -11,7 +11,7 @@ Process](http://books.google.com.ar/books/about/The_Unified_Software_Development
 # Elementos RUP
 ## Workflows o disciplinas 
 * **Workflows primarios**
-  * Business Modeling (Modado del Negocio)
+  * Business Modeling (Modelado del Negocio)
   * Requirements (Requisitos)
   * Analysis & Design (Análisis y Diseño)
   * Implementation (Implementación)
