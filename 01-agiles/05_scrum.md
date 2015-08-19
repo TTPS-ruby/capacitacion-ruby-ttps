@@ -106,7 +106,7 @@ de errores
 # Procesos
 ## Scrum diario
 * Cada día, a la misma hora, el Scrum Master con el equipo tienen una breve
-  reunoión
+  reunión
 * El propósito es el de *eliminar* todos los impedimentos de velocidad en el
   grupo
 * Cada participante debería, de alguna manera, responder a las siguientes
