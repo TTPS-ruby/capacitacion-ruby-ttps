@@ -9,16 +9,21 @@
   [![car@info.unlp.edu.ar](mail.png)](mailto:car@info.unlp.edu.ar "car@info.unlp.edu.ar")
   [![twitter](twitter.png)](https://twitter.com/car_unlp "twitter")
   [![github](github.png)](https://github.com/chrodriguez "github")
-* **JTP:** APU Fernando López
-  [![flopez@linti.unlp.edu.ar](mail.png)](mailto:flopez@linti.unlp.edu.ar "flopez@linti.unlp.edu.ar")
+
+* **JTP:** APU Nahuel Cuesta Luengo
+  [![ncuesta@cespi.unlp.edu.ar](mail.png)](mailto:ncuesta@cespi.unlp.edu.ar "ncuesta@cespi.unlp.edu.ar")
   [![github](github.png)](https://github.com/fernandolopez "github")
+
 * **Ayudantes:** 
-  * Lic. Patricio Mac Adden
-  [![patriciomacadden@gmail.com](mail.png)](mailto:patriciomacadden@gmail.com "patriciomacadden@gmail.com")
-  [![twitter](twitter.png)](https://twitter.com/maxawen "twitter")
+  * Lic. Patricio Mac Adden 
+  [![patriciomacadden@gmail.com](mail.png)](mailto:patriciomacadden@gmail.com "patriciomacadden@gmail.com") 
+  [![twitter](twitter.png)](https://twitter.com/maxawen "twitter") 
   [![github](github.png)](https://github.com/patriciomacadden "github")
+  * Lautaro De León 
+  [![ldeleon@cespi.unlp.edu.ar](mail.png)](mailto:ldeleon@cespi.unlp.edu.ar "ldeleon@cespi.unlp.edu.ar")
+* **Colaboradores:**
   * Fernando Martinez
-  [![fernando.martinez@live.com.ar](mail.png)](mailto:fernando.martinez@live.com.ar "rapofran@gmail.com")
+  [![fernando.martinez@live.com.ar](mail.png)](mailto:fernando.martinez@live.com.ar "fernando.martinez@live.com.ar")
   [![twitter](twitter.png)](https://twitter.com/F_3r "twitter")
   [![github](github.png)](https://github.com/f-3r "github")
 
