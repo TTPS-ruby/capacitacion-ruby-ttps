@@ -76,11 +76,10 @@
 ![proceso incremental](07-proceso-iterativo-incremental-regresion.png)
 
 !SLIDE bullets transition=uncover
-# Modelos de proceso y metodologías
+# Metodologías
 * Aportan disciplina a la Ingeniería de Software
-* Un modelo de proceso es una estrategia *global* respecto de cómo
-  abordar un proyecto
-* Una **metodología** define **Quién** debe hacer **Qué**, **Cuándo** y **Cómo**
+* Definen una estrategia *global* respecto de cómo abordar un proyecto 
+  donde se indica **Quién** debe hacer **Qué**, **Cuándo** y **Cómo**
   debe hacerlo
   * Metodologías tradicionales
   * Metodologías ágiles

@@ -2,7 +2,7 @@
 # Metodologías Tradicionales
 !SLIDE bullets transition=uncover
 # Introducción
-* **RUP (Rational Unified Process)** es la metodología tardicional más conocida
+* **RUP (Rational Unified Process)** es la metodología tradicional más conocida
   y mejor documentada
 * Actualmente es un producto de IBM, pero su esencia está descrita en el libro
   *[The Unified Software Development
@@ -79,7 +79,7 @@ Process](http://books.google.com.ar/books/about/The_Unified_Software_Development
 # Proceso Iterativo e Incremental
 * El ciclo de vida iterativo se basa en la evolución de prototipos ejecutables 
 que se muestran a los usuarios y clientes
-* En el ciclo de vida iterativo a cada iteración se reproduce el ciclo de vida 
+* En el ciclo de vida iterativo, cada iteración reproduce el ciclo de vida 
 en cascada a menor escala
 * Los objetivos de una iteración se establecen en función de la evaluación de 
 las iteraciones precedentes

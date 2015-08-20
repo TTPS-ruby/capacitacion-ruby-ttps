@@ -64,7 +64,7 @@
 !SLIDE smbullets transition=uncover
 # Modalidad de cursada
 * Clases teórico prácticas: generalmente avanzaremos con las teorías los días
-  Lunes, dejando los Jueves para consultas o talleres prácticos
+  Jueves, dejando los Lunes para consultas o talleres prácticos
 * Aprobación de la cursada: *será necesario aprobar*
   * Entregas de un ejercicio por práctico que se desarrollará en clase. Habrá
     una evaluación por práctico (salvo el primero)
