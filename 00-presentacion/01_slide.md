@@ -12,7 +12,8 @@
 
 * **JTP:** APU Nahuel Cuesta Luengo
   [![ncuesta@cespi.unlp.edu.ar](mail.png)](mailto:ncuesta@cespi.unlp.edu.ar "ncuesta@cespi.unlp.edu.ar")
-  [![github](github.png)](https://github.com/fernandolopez "github")
+  [![twitter](twitter.png)](https://twitter.com/ncuestal "twitter") 
+  [![github](github.png)](https://github.com/ncuesta "github")
 
 * **Ayudantes:** 
   * Lic. Patricio Mac Adden 
