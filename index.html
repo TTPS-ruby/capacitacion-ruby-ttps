@@ -113,7 +113,8 @@
 <a href="https://github.com/chrodriguez" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a></a>
 <li><p><strong>JTP:</strong> APU Nahuel Cuesta Luengo
 <a href="mailto:ncuesta@cespi.unlp.edu.ar" title="ncuesta@cespi.unlp.edu.ar"><img src="./file/00-presentacion/mail.png" alt="ncuesta@cespi.unlp.edu.ar"/>
-<a href="https://github.com/fernandolopez" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a></a>
+<a href="https://twitter.com/ncuestal" title="twitter"><img src="./file/00-presentacion/twitter.png" alt="twitter"/> 
+<a href="https://github.com/ncuesta" title="github"><img src="./file/00-presentacion/github.png" alt="github"/></a></a>
 <li><p><strong>Ayudantes:</strong> </p>
 
 <ul>
@@ -135,7 +136,7 @@
 </li>
 </ul>
 </li>
-</a></li></ul></li></p></li></a></p></li></ul></div>
+</a></li></ul></li></a></p></li></a></p></li></ul></div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets" ref="00-presentacion/01_slide/3">
 <h1>Horarios de cursada</h1>
 
@@ -1445,10 +1446,13 @@ end</code></pre>
 
 <pre class="sh_ruby"><code>def foo
     "bar"
-end
-# =&gt; nil</code></pre>
+end</code></pre>
 
-<p>Notar que la definici&#xF3;n de un m&#xE9;todo retorna nil</p>
+<p>En versiones previas a la 2.0 retorna <em>nil</em>, en versiones superiores el s&#xED;mbolo
+con el nombre del m&#xE9;todo</p>
+
+<pre class="sh_ruby"><code>RUBY_VERSION
+def foo; end</code></pre>
 
 <p><strong>Su ejecuci&#xF3;n retorna <code>"bar"</code></strong></p>
 </div>
@@ -1766,10 +1770,10 @@ RubyConf 2012 Argentina
 
 <ul>
 <li>1.8.7-p375 (No usar!)</li>
-<li>1.9.3-p547</li>
-<li>2.0.0-p481</li>
-<li>2.1.2</li>
-<li>2.2.0-dev</li>
+<li>1.9.3-p551</li>
+<li>2.0.0-p547</li>
+<li>2.1.7</li>
+<li>2.2.3</li>
 </ul></li>
 </ul>
 </div>
@@ -1788,7 +1792,7 @@ RubyConf 2012 Argentina
 <li>&#xDA;ltimas versiones
 
 <ul>
-<li>jruby-1.7.14</li>
+<li>jruby-1.7.22</li>
 </ul></li>
 <li>Modos
 
@@ -1809,8 +1813,13 @@ RubyConf 2012 Argentina
 <li>&#xDA;ltimas versiones
 
 <ul>
-<li>rbx-1.2.4: modos 1.8.7 y 1.9.3</li>
-<li>rbx-2.0.0 (no lanzado): modos 1.8.7, 1.9.3 y 2.0.0</li>
+<li>rbx-1.2.4</li>
+<li>rbx-2.0.0</li>
+<li>rbx-2.1.1</li>
+<li>rbx-2.2.10</li>
+<li>rbx-2.3.0</li>
+<li>rbx-2.4.1</li>
+<li>rbx-2.5.8</li>
 </ul></li>
 </ul>
 </div>
@@ -1929,12 +1938,11 @@ RubyConf 2012 Argentina
 
 <ul>
 <li>ruby-build</li>
-<li>rbenv-gem-rehash</li>
 <li>rbenv-update</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/8">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="04-VMs/02_rbenv/8">
 <h1>Instalando rbenv</h1>
 
 <ul>
@@ -1953,15 +1961,17 @@ $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
 </code></p>
 
-<p>En ubuntu, hacer el <code>echo</code> en <code>.profile</code> en vez de <code>.bash_profile</code></p>
+<p>En ubuntu, hacer el <code>echo</code> en <code>.bashrc</code> en vez de <code>.bash_profile</code></p>
 
 <ul>
-<li>Agregamos <code>rbenv init</code> al shell para habilitar los shims y el autocompletado</li>
+<li>Agregamos <code>rbenv init</code> al shell para habilitar el autocompletado</li>
 </ul>
 
 <p><code>
 $ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
 </code></p>
+
+<p>En ubuntu, hacer el <code>echo</code> en <code>.bashrc</code> en vez de <code>.bash_profile</code></p>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/9">
 <h1>Instalando rbenv</h1>
@@ -1986,20 +1996,10 @@ $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-
 </code></p>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/11">
-<h1>Instalando rbenv-gem-rehash</h1>
-
-<ul>
-<li>Clonamos el plugin en el directorio <code>~/.rbenv/plugins</code></li>
-</ul>
-
-<p><code>
-$ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
-</code></p>
-</div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/12">
 <h1>Instalando rbenv-update</h1>
 
 <ul>
+<li>Simplifica la actualizaci&#xF3;n de <code>rbenv</code> y todos sus plugins</li>
 <li>Clonamos el plugin en el directorio <code>~/.rbenv/plugins</code></li>
 </ul>
 
@@ -2007,7 +2007,7 @@ $ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins
 $ git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
 </code></p>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/13">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/12">
 <h1>rbenv: Comandos</h1>
 
 <ul>
@@ -2028,14 +2028,13 @@ $ rbenv global 2.0.0-p247 # setea la versi&#xF3;n 2.0.0-p247 como global
 <li><p><code>rbenv install</code> instala rubies! (con <code>-l</code> listamos todas las versiones disponibles)</p></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/14">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="04-VMs/02_rbenv/13">
 <h1>Referencias</h1>
 
 <ul>
 <li><a href="https://rvm.io/">https://rvm.io/</a></li>
 <li><a href="https://github.com/sstephenson/rbenv">https://github.com/sstephenson/rbenv</a></li>
 <li><a href="https://github.com/sstephenson/ruby-build">https://github.com/sstephenson/ruby-build</a></li>
-<li><a href="https://github.com/sstephenson/rbenv-gem-rehash">https://github.com/sstephenson/rbenv-gem-rehash</a></li>
 <li><a href="https://github.com/rkh/rbenv-update">https://github.com/rkh/rbenv-update</a></li>
 <li><a href="https://github.com/postmodern/chruby">https://github.com/postmodern/chruby</a></li>
 </ul>
@@ -2790,7 +2789,7 @@ p array.last(4)</code></pre>
 <h2>Un ejemplo</h2>
 
 <pre class="sh_ruby"><code>h = { 'dog' =&gt; 'canine', 'cat' =&gt; 'feline' }
-h.length # =&gt; 3
+h.length # =&gt; 2
 h['dog'] # =&gt; "canine"
 h['cow'] = 'bovine'
 h[12] = 'dodecine'
@@ -2904,8 +2903,7 @@ end</code></pre>
 <ul>
 <li>Aplicar un test r&#xE1;pido es una buena pr&#xE1;ctica.</li>
 <li>Si bien lo veremos m&#xE1;s adelante, vamos introduciendo el concepto</li>
-<li>Utilizaremos un framework de test llamado <code>Test::Unit</code> que ya incluye ruby como
-parte de la librer&#xED;a est&#xE1;ndar</li>
+<li>Utilizaremos un framework de test llamado <code>Minitest</code></li>
 <li>S&#xF3;lo explicaremos el m&#xE9;todo <code>assert_equal</code> que chequea si los dos par&#xE1;metros 
 que se le env&#xED;an son iguales, indicando <strong>fuertemente</strong> si as&#xED; no
 sucede</li>
@@ -3195,7 +3193,7 @@ arreglo que es <strong>retornado</strong></li>
 
 <pre class="sh_ruby"><code>[ 1, 3, 5, 7, 9 ].each {|i| puts i }
 
-["H", "A", "L"].collect {|x| x.succ }</code></pre>
+['k','h','m','t','w'].collect {|x| x.succ }</code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/33">
 <h1>Otros usos de iteradores</h1>
@@ -3297,7 +3295,7 @@ enum_h.next     # =&gt; [ :dog, "canine" ]
 enum_a.next     # =&gt; 3
 enum_h.next     # =&gt; [ :fox, "lupine" ]</code></pre>
 
-<p><em>Si un iterador se utiliza sin bloque, entonces retorna un iterador</em></p>
+<p><em>Si un iterador se utiliza sin bloque, entonces retorna un Enumerator</em></p>
 
 <pre class="sh_ruby"><code>a = [1,2,3].each
 a.next</code></pre>
