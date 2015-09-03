@@ -44,10 +44,9 @@
 * Vamos a instalar rbenv con git
 * Vamos a instalar los siguientes plugins
   * ruby-build
-  * rbenv-gem-rehash
   * rbenv-update
 
-!SLIDE smbullets transition=uncover
+!SLIDE smbullets small transition=uncover
 # Instalando rbenv
 
 * Instalamos rbenv en `~/.rbenv`
@@ -62,13 +61,15 @@ $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 ```
 
-En ubuntu, hacer el `echo` en `.profile` en vez de `.bash_profile`
+En ubuntu, hacer el `echo` en `.bashrc` en vez de `.bash_profile`
 
-* Agregamos `rbenv init` al shell para habilitar los shims y el autocompletado
+* Agregamos `rbenv init` al shell para habilitar el autocompletado
 
 ```
 $ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 ```
+
+En ubuntu, hacer el `echo` en `.bashrc` en vez de `.bash_profile`
 
 !SLIDE smbullets transition=uncover
 # Instalando rbenv
@@ -89,17 +90,9 @@ $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-
 ```
 
 !SLIDE smbullets transition=uncover
-# Instalando rbenv-gem-rehash
-
-* Clonamos el plugin en el directorio `~/.rbenv/plugins`
-
-```
-$ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
-```
-
-!SLIDE smbullets transition=uncover
 # Instalando rbenv-update
 
+* Simplifica la actualización de `rbenv` y todos sus plugins
 * Clonamos el plugin en el directorio `~/.rbenv/plugins`
 
 ```
@@ -130,6 +123,5 @@ $ rbenv global 2.0.0-p247 # setea la versión 2.0.0-p247 como global
 * [https://rvm.io/](https://rvm.io/)
 * [https://github.com/sstephenson/rbenv](https://github.com/sstephenson/rbenv)
 * [https://github.com/sstephenson/ruby-build](https://github.com/sstephenson/ruby-build)
-* [https://github.com/sstephenson/rbenv-gem-rehash](https://github.com/sstephenson/rbenv-gem-rehash)
 * [https://github.com/rkh/rbenv-update](https://github.com/rkh/rbenv-update)
 * [https://github.com/postmodern/chruby](https://github.com/postmodern/chruby)

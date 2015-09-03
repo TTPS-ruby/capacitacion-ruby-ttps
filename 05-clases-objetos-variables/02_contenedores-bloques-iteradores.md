@@ -171,7 +171,7 @@ nuevo `array`*
 
 	@@@ ruby
 	h = { 'dog' => 'canine', 'cat' => 'feline' }
-	h.length # => 3
+	h.length # => 2
 	h['dog'] # => "canine"
 	h['cow'] = 'bovine'
 	h[12] = 'dodecine'
@@ -263,8 +263,7 @@ Ver el ejemplo completo en la carpeta `samples/05/words_frequency`
 # Testeando nuestra solución
 * Aplicar un test rápido es una buena práctica.
 * Si bien lo veremos más adelante, vamos introduciendo el concepto
-* Utilizaremos un framework de test llamado `Test::Unit` que ya incluye ruby como
-  parte de la librería estándar
+* Utilizaremos un framework de test llamado `Minitest`
 * Sólo explicaremos el método `assert_equal` que chequea si los dos parámetros 
   que se le envían son iguales, indicando **fuertemente** si así no
   sucede
@@ -508,7 +507,7 @@ En cualquier lenguaje esto es natural
 	@@@ ruby
 	[ 1, 3, 5, 7, 9 ].each {|i| puts i }
 
-	["H", "A", "L"].collect {|x| x.succ }
+	['k','h','m','t','w'].collect {|x| x.succ }
 
 !SLIDE smbullets smaller transition=uncover
 # Otros usos de iteradores 
@@ -588,7 +587,7 @@ En cualquier lenguaje esto es natural
 	enum_a.next 	# => 3
 	enum_h.next 	# => [ :fox, "lupine" ]
 
-*Si un iterador se utiliza sin bloque, entonces retorna un iterador*
+*Si un iterador se utiliza sin bloque, entonces retorna un Enumerator*
 
 	@@@ ruby
 	a = [1,2,3].each

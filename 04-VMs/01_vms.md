@@ -9,10 +9,10 @@
 * Es la implementación de referencia del lenguaje
 * Últimas versiones
   * 1.8.7-p375 (No usar!)
-  * 1.9.3-p547
-  * 2.0.0-p481
-  * 2.1.2
-  * 2.2.0-dev
+  * 1.9.3-p551
+  * 2.0.0-p547
+  * 2.1.7
+  * 2.2.3
 
 !SLIDE smbullets transition=uncover
 # JRuby
@@ -23,7 +23,7 @@
   * Concurrencia real
   * Interoperabilidad con librerías Java
 * Últimas versiones
-  * jruby-1.7.14
+  * jruby-1.7.22
 * Modos
   * 1.8.x
   * 1.9.x (default)
@@ -36,8 +36,13 @@
 * La VM fue escrita en C++
 * El bytecode compiler y una gran parte de las clases Core de Ruby fueron escritas en Ruby
 * Últimas versiones
-  * rbx-1.2.4: modos 1.8.7 y 1.9.3
-  * rbx-2.0.0 (no lanzado): modos 1.8.7, 1.9.3 y 2.0.0
+  * rbx-1.2.4
+  * rbx-2.0.0
+  * rbx-2.1.1
+  * rbx-2.2.10
+  * rbx-2.3.0
+  * rbx-2.4.1
+  * rbx-2.5.8
 
 !SLIDE smbullets transition=uncover
 # Otras implementaciones

@@ -27,9 +27,13 @@
 	def foo
 		"bar"
 	end
-	# => nil
 
-Notar que la definición de un método retorna nil
+En versiones previas a la 2.0 retorna *nil*, en versiones superiores el símbolo
+con el nombre del método
+
+	@@@ ruby
+	RUBY_VERSION
+	def foo; end
 
 **Su ejecución retorna `"bar"`**
 
