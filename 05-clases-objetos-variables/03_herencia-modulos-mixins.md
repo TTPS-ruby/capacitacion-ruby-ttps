@@ -16,7 +16,7 @@
 * También se utilizan los términos: clase padre y clase hija
 * El mecanismo de herencia es simple:
   * Los hijos heredan todas las capacidades de la clase padre
-  * Todos los métodos de instancia de la clase padre estarán disponibles en los
+  * Todos los métodos de instancia y clase de la clase padre estarán disponibles en los
     hijos
 
 !SLIDE transition=uncover
