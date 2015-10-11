@@ -86,7 +86,7 @@ Probar la división requiriendo `mathn`
 	end
 
 !SLIDE bullets transition=uncover
-# Busncado el problema...
+# Buscando el problema...
 	@@@ ruby
 	car_age = gets.to_f # let's assume it's 5.2
 	case car_age
