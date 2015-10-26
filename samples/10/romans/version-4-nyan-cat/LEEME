@@ -1,0 +1,5 @@
+Debe instalarse la gema minitest-nyan-cat:
+
+ gem install minitest-nyan-cat
+
+Luego correr el test con ruby test.rb
