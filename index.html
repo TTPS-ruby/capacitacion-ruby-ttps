@@ -2572,10 +2572,10 @@ person2 = person1
 person1.freeze
 person2[0] = 'J'</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/1">
-<h1>Contenedores, bloques e iteradores</h1>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/1">
+<h1>Colecciones, bloques e iteradores</h1>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/2">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/2">
 <h1>Introducci&#xF3;n</h1>
 
 <ul>
@@ -2591,7 +2591,7 @@ person2[0] = 'J'</code></pre>
 poderosas para la iteraci&#xF3;n</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/3">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/3">
 <h1>Array</h1>
 
 <ul>
@@ -2617,7 +2617,7 @@ b[0] = "second"
 b[1] = "array"
 b</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/4">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/4">
 <h1>Arrays y <code>[]</code></h1>
 
 <ul>
@@ -2642,7 +2642,7 @@ a[-1]
 a[-2]
 a[-99]</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/5">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/5">
 <h1>Arrays y <code>[]</code></h1>
 
 <h2>Indexando con un par de valores</h2>
@@ -2669,7 +2669,7 @@ a[-3..-1]</code></pre>
 <li>Usando <code>...</code> se <strong>excluye</strong> el extremo final</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/6">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/6">
 <h1>Arrays y <code>[]=</code></h1>
 
 <ul>
@@ -2690,7 +2690,7 @@ a[-3] = 'cat'
 a[3] = [ 9, 8 ]
 a[6] = 99</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/7">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/7">
 <h1>Arrays y <code>[]=</code></h1>
 
 <ul>
@@ -2716,11 +2716,11 @@ a[1, 1] = [ 9, 8, 7 ]
 a[0..3] = []
 a[5..6] = 99, 98</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/8">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/8">
 <h1>Arrays usados como pilas</h1>
 
 <ul>
-<li>Podomos invocar los siguientes m&#xE9;todos de <code>Array</code>
+<li>Podemos invocar los siguientes m&#xE9;todos de <code>Array</code>
 
 <ul>
 <li><code>push</code></li>
@@ -2740,7 +2740,7 @@ puts stack.pop
 puts stack.pop
 p stack</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/9">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/9">
 <h1>Arrays usados como colas</h1>
 
 <ul>
@@ -2760,14 +2760,14 @@ queue.push "green"
 puts queue.shift
 puts queue.shift</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/10">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/10">
 <h1>El principio y el final</h1>
 
 <pre class="sh_ruby"><code>array = [ 1, 2, 3, 4, 5, 6, 7 ]
 p array.first(4)
 p array.last(4)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/11">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/11">
 <h1>Hashes</h1>
 
 <ul>
@@ -2795,7 +2795,7 @@ h['cow'] = 'bovine'
 h[12] = 'dodecine'
 h['cat'] = 99</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/12">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/12">
 <h1>Acceso a los hashes</h1>
 
 <ul>
@@ -2822,10 +2822,10 @@ inserci&#xF3;n</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/13">
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/13">
 <h1>Un ejemplo usando Array y Hash</h1>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/14">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/14">
 <h1>Frecuencia de palabras</h1>
 
 <p><em>Calcular el n&#xFA;mero de veces que aparece una palabra en un texto</em></p>
@@ -2839,7 +2839,7 @@ inserci&#xF3;n</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/15">
+</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/15">
 <h1>La soluci&#xF3;n</h1>
 
 <h2>El m&#xE9;todo que obtiene las palabras</h2>
@@ -2848,7 +2848,7 @@ inserci&#xF3;n</li>
     string.downcase.scan(/[\w']+/)
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/16">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/16">
 <h1>La soluci&#xF3;n</h1>
 
 <h2>El m&#xE9;todo que cuenta las palabras</h2>
@@ -2872,7 +2872,7 @@ else
     counts[next_word] = 1
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/17">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/17">
 <h1>La soluci&#xF3;n</h1>
 
 <ul>
@@ -2897,7 +2897,7 @@ end</code></pre>
 
 <p>Ver el ejemplo completo en la carpeta <code>samples/05/words_frequency</code></p>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/18">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/18">
 <h1>Testeando nuestra soluci&#xF3;n</h1>
 
 <ul>
@@ -2916,7 +2916,7 @@ m&#xE9;todos implementados, uno por vez
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/19">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/19">
 <h1>Testeamos <code>words_from_string</code></h1>
 
 <pre class="sh_ruby"><code>require_relative 'words_from_string.rb'
@@ -2944,7 +2944,7 @@ end</code></pre>
 <p>En esta clase, los m&#xE9;todos que comienzan con <strong>test</strong> ser&#xE1;n corridos
 por el framework de testing</p>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/20">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/20">
 <h1>Testeamos <code>count_frequency</code></h1>
 
 <pre class="sh_ruby"><code>require_relative 'count_frequency.rb'
@@ -2971,10 +2971,10 @@ class TestCountFrequency &lt; Minitest::Test
     end
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/21">
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/21">
 <h1>Bloques e iteradores</h1>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/22">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/22">
 <h1>Introducci&#xF3;n</h1>
 
 <h2>En <code>samples/05/words_frequency/top_five</code> usamos:</h2>
@@ -2996,7 +2996,7 @@ end
 # o m&#xE1;s simple:
 top_five.each { |word, count| puts "#{word}: #{count}" }</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/23">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/23">
 <h1>Bloques</h1>
 
 <ul>
@@ -3020,7 +3020,7 @@ m&#xE9;todo
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/24">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/24">
 <h1>Ejemplo</h1>
 
 <h2>Suma de los cuadrados de los n&#xFA;meros en un arreglo</h2>
@@ -3047,7 +3047,7 @@ misma. En el ejemplo hay s&#xF3;lo una variable <code>sum</code></em></li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/25">
+</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/25">
 <h1>Los casos no esperados</h1>
 
 <pre class="sh_ruby"><code># assume Shape defined elsewhere
@@ -3064,7 +3064,7 @@ end
 puts sum
 square.draw # BOOM!</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/26">
+</div><div class="slide" data-transition="uncover"><div class="content small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/26">
 <h1>Mas casos</h1>
 
 <h2>No sucede lo mismo con los argumentos al bloque</h2>
@@ -3084,7 +3084,7 @@ end
 puts sum
 puts square</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/27">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/27">
 <h1>La magia de los bloques</h1>
 
 <ul>
@@ -3111,7 +3111,7 @@ finalizar el llamado a <code>yield</code></li>
 end
 three_times { puts "Hola" }</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/28">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/28">
 <h1>Par&#xE1;metros a un bloque</h1>
 
 <ul>
@@ -3124,7 +3124,7 @@ verticales</li>
 <li>Un bloque puede retornar un valor y ser usado en el m&#xE9;todo</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/29">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/29">
 <h1>Ejemplo de env&#xED;o de par&#xE1;metros</h1>
 
 <pre class="sh_ruby"><code>def fib_up_to(max)
@@ -3137,7 +3137,7 @@ end
 
 fib_up_to(1000) {|f| print f, " " }</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/30">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/30">
 <h1>Ejemplo de uso del valor retornado</h1>
 
 <pre class="sh_ruby"><code>class Array
@@ -3153,7 +3153,7 @@ end
 (1..200).to_a.my_find {|x| x%5 == 0}
 (1..200).to_a.my_find {|x| x == 0}</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/31">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/31">
 <h1>Los iteradores</h1>
 
 <ul>
@@ -3172,7 +3172,7 @@ el criterio sea verdadero</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/32">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/32">
 <h1>Los iteradores <code>each</code> y <code>collect</code></h1>
 
 <ul>
@@ -3195,7 +3195,7 @@ arreglo que es <strong>retornado</strong></li>
 
 ['k','h','m','t','w'].collect {|x| x.succ }</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/33">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/33">
 <h1>Otros usos de iteradores</h1>
 
 <ul>
@@ -3222,7 +3222,7 @@ f.each_with_index do |line, index|
 end
 f.close</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/34">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/34">
 <h1>El caso de <code>inject</code></h1>
 
 <ul>
@@ -3243,7 +3243,7 @@ f.close</code></pre>
 [1,3,5,7].inject(1) {|prod, element| prod*element}
 [1,3,5,7].inject {|prod, element| prod*element}</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/35">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/35">
 <h1>El caso de <code>inject</code></h1>
 
 <h2>Generando m&#xE1;s m&#xED;stica para <code>inject</code></h2>
@@ -3257,7 +3257,7 @@ f.close</code></pre>
 
 [1,3,5,7].inject(:*)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/36">
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/36">
 <h1>Enumerators</h1>
 
 <ul>
@@ -3272,7 +3272,7 @@ Iterator de Java)</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/37">
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/37">
 <h1>Enumerators</h1>
 
 <ul>
@@ -3300,7 +3300,7 @@ enum_h.next     # =&gt; [ :fox, "lupine" ]</code></pre>
 <pre class="sh_ruby"><code>a = [1,2,3].each
 a.next</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/38">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/38">
 <h1>El m&#xE9;todo <code>loop</code></h1>
 
 <ul>
@@ -3323,7 +3323,7 @@ short_enum = [1, 2, 3].to_enum
 long_enum = ('a'..'z').to_enum
 loop { puts "#{short_enum.next} - #{long_enum.next}" }</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/39">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/39">
 <h1>Usando <code>Enumerator</code> como objetos</h1>
 
 <ul>
@@ -3337,7 +3337,7 @@ loop { puts "#{short_enum.next} - #{long_enum.next}" }</code></pre>
     result &lt;&lt; [item, index] 
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/40">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/40">
 <h1>Usando <code>Enumerator</code> como objetos</h1>
 
 <h2>&#xBF;Y si queremos hacer lo mismo con un <code>String</code>?</h2>
@@ -3365,7 +3365,7 @@ result = []
         result &lt;&lt; [item, index] 
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/41">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/41">
 <h1><code>Enumerator</code> como generadores</h1>
 
 <ul>
@@ -3386,7 +3386,7 @@ partir de la l&#xED;nea siguiente al <code>yield</code></li>
 <li>Esto permite generar <strong>secuencias infinitas</strong> </li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/42">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/42">
 <h1><code>Enumerator</code> como generadores</h1>
 
 <pre class="sh_ruby"><code>fibonacci = Enumerator.new do |caller|
@@ -3403,7 +3403,7 @@ end
 
 <pre class="sh_ruby"><code>fibonacci.first(1000).last</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/43">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/43">
 <h1>Hay que tener cuidado!!</h1>
 
 <ul>
@@ -3429,7 +3429,7 @@ end
 
 p infinite_select(fibonacci) {|val| val % 2 == 0}.first(5)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/44">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/44">
 <h1>Haciendo algo m&#xE1;s conveniente</h1>
 
 <ul>
@@ -3455,7 +3455,7 @@ p fibonacci.
     infinite_select {|val| val.to_s =~ /13\d$/ }.
     first(2)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/45">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/45">
 <h1>Bloques como transacciones</h1>
 
 <ul>
@@ -3482,7 +3482,7 @@ mucho </li>
     end
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/46">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/46">
 <h1>Analizamos un poco...</h1>
 
 <ul>
@@ -3506,7 +3506,7 @@ directamente procesarlo como lo hac&#xED;amos con <code>open_and_process</code><
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/47">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/47">
 <h1>Una versi&#xF3;n m&#xE1;s completa de <code>my_open</code></h1>
 
 <pre class="sh_ruby"><code>class File
@@ -3526,7 +3526,7 @@ end</code></pre>
 m&#xE1;s adelante</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/48">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/48">
 <h1>Los bloques pueden ser objetos</h1>
 
 <ul>
@@ -3556,7 +3556,7 @@ eg = ProcExample.new
 eg.pass_in_block { |param| puts "The parameter is #{param}" }
 eg.use_proc(99)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/49">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/49">
 <h1>Avanzando un poco m&#xE1;s...</h1>
 
 <ul>
@@ -3577,7 +3577,7 @@ end
 bo.call 99
 bo.call "cat"</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/50">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/50">
 <h1><code>Proc</code> y <code>lambda</code></h1>
 
 <ul>
@@ -3592,7 +3592,7 @@ bloque, mientras que <code>Proc</code> no lo hace</li>
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/51">
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/51">
 <h1>Los bloques pueden ser Closures</h1>
 
 <ul>
@@ -3612,7 +3612,7 @@ p1.call(4)
 p2 = n_times("Hola ")
 p2.call(3)</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/52">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/52">
 <h1>&#xBF;Qu&#xE9; es un Closure?</h1>
 
 <ul>
@@ -3640,7 +3640,7 @@ let_me_see = what_do_i_do?
 let_me_see.call
 let_me_see.call</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/53">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/53">
 <h1>Notaci&#xF3;n alternativa</h1>
 
 <h2>A partir de ruby 1.9</h2>
@@ -3661,7 +3661,7 @@ proc1.call "ant"
 proc2.call "bee", "cat"
 proc3.call "dog", "elk"</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/54">
+</div><div class="slide" data-transition="uncover"><div class="content" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/54">
 <h1>Locas ideas</h1>
 
 <h2>Reimplementamos un while usando bloques</h2>
@@ -3678,7 +3678,7 @@ my_while -&gt; { a &lt; 3 } do
     a += 1
 end</code></pre>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="05-clases-objetos-variables/02_contenedores-bloques-iteradores/55">
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="05-clases-objetos-variables/02_colecciones-bloques-iteradores/55">
 <h1>Lista de par&#xE1;metros a un bloque</h1>
 
 <ul>
@@ -3733,7 +3733,7 @@ una vez en el c&#xF3;digo</li>
 
 <ul>
 <li>Los hijos heredan todas las capacidades de la clase padre</li>
-<li>Todos los m&#xE9;todos de instancia de la clase padre estar&#xE1;n disponibles en los
+<li>Todos los m&#xE9;todos de instancia y clase de la clase padre estar&#xE1;n disponibles en los
 hijos</li>
 </ul></li>
 </ul>
@@ -4381,7 +4381,7 @@ case car_age
 end</code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets" ref="06-tipos-estandar/01_tipos-estandar/7">
-<h1>Busncado el problema...</h1>
+<h1>Buscando el problema...</h1>
 
 <pre class="sh_ruby"><code>car_age = gets.to_f # let's assume it's 5.2
 case car_age
@@ -6411,11 +6411,15 @@ de Rack.</li>
 <li>Lo m&#xE1;s com&#xFA;n es que sea un string, como en los ejemplos anteriores.</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/21">
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="12-sinatra/02_sinatra/21">
 <h1>Sinatra: caracter&#xED;sticas</h1>
 
 <ul>
-<li><strong>Archivos est&#xE1;ticos</strong>: Son servidos desde el directorio <code>public</code></li>
+<li><strong>Archivos est&#xE1;ticos</strong>: Son servidos desde el directorio <code>public</code>.
+
+<ul>
+<li>Podemos modificar esta opci&#xF3;n con <code>set :public_folder, File.dirname(__FILE__) + '/static'</code></li>
+</ul></li>
 <li><strong>Vistas/Plantillas</strong>: Sinatra soporta numerosos template engines, y para
 renderizar vistas de cada template engine se expone un m&#xE9;todo con su mismo
 nombre. A estos m&#xE9;todos debe pas&#xE1;rsele un s&#xED;mbolo con el nombre de la vista
@@ -6478,6 +6482,15 @@ sino se toma el string y renderiza directamente.</li>
 <li>El layout es un template contenedor que enmarca lo que cada acci&#xF3;n renderiza.</li>
 <li>Para embeber utilizaremos <code>yield</code></li>
 </ul>
+
+<p>Ejemplo</p>
+
+<pre class="sh_ruby"><code>get '/template' do
+    @name='Some name'
+    erb :sample
+end</code></pre>
+
+<p>El c&#xF3;digo anterior, buscar&#xE1; el layout <code>views/layout.erb</code> y el template <code>views/sample.erb</code></p>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="12-sinatra/02_sinatra/26">
 <h1>Filtros: before y after</h1>
