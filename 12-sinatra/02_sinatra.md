@@ -331,10 +331,11 @@ respuesta que se le pasa al cliente HTTP o al siguiente middleware en la pila
 de Rack.
 * Lo más común es que sea un string, como en los ejemplos anteriores.
 
-!SLIDE bullets small transition=uncover
+!SLIDE bullets smaller transition=uncover
 # Sinatra: características
 
-* **Archivos estáticos**: Son servidos desde el directorio `public`
+* **Archivos estáticos**: Son servidos desde el directorio `public`.
+  * Podemos modificar esta opción con `set :public_folder, File.dirname(__FILE__) + '/static'`
 * **Vistas/Plantillas**: Sinatra soporta numerosos template engines, y para
 renderizar vistas de cada template engine se expone un método con su mismo
 nombre. A estos métodos debe pasársele un símbolo con el nombre de la vista
@@ -389,6 +390,17 @@ sino se toma el string y renderiza directamente.
 
 * El layout es un template contenedor que enmarca lo que cada acción renderiza.
 * Para embeber utilizaremos `yield`
+
+Ejemplo
+
+	@@@ ruby
+	get '/template' do
+		@name='Some name'
+		erb :sample
+	end
+
+El código anterior, buscará el layout `views/layout.erb` y el template `views/sample.erb`
+
 
 
 !SLIDE bullets small transition=uncover

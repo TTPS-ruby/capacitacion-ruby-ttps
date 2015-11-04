@@ -1,5 +1,5 @@
 !SLIDE center transition=uncover
-# Contenedores, bloques e iteradores
+# Colecciones, bloques e iteradores
 
 !SLIDE smbullets transition=uncover
 # Introducción
@@ -117,7 +117,7 @@ nuevo `array`*
 
 !SLIDE bullets transition=uncover
 # Arrays usados como pilas
-* Podomos invocar los siguientes métodos de `Array`
+* Podemos invocar los siguientes métodos de `Array`
   * `push`
   * `pop`
 
