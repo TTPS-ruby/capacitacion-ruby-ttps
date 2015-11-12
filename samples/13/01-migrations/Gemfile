@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-#gem "sqlite3"
+gem "sqlite3"
 #gem "rails"
 gem "activerecord"
 gem "micro_migrations", github: 'svenfuchs/micro_migrations'
