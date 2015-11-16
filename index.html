@@ -7139,7 +7139,803 @@ datos</li>
 Postgres, etc</li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="13-activerecord/01_activerecord/24">
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="13-activerecord/02_validaciones/1">
+<h1>Active Record: validaciones</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/2">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li>Garantizan que se guarden datos v&#xE1;lidos en la base de datos</li>
+<li>Hay alternativas:
+
+<ul>
+<li>Con validaciones en la DB como restricciones o store procedures, dificultan
+la portabilidad de la aplicaci&#xF3;n a otros motores. Adem&#xE1;s no es simple
+realizar los tests de la aplicaci&#xF3;n. Sin embargo, no es unamala pr&#xE1;ctica
+aplicar restricciones en la base de datos</li>
+<li>Del lado del cliente usando por ejemplo JS. Pero esta funcionalidad no
+aplica a todos los usuarios, dado que un navegador puede no diponer de JS o
+un usuario mal intencionado podr&#xED;a enviar datos no validados de forma
+intencional</li>
+<li>Validaciones en el controlador podr&#xED;a ser una alternativa. Sucede que el
+testeo de los controladores se complejizar&#xED;a. Por otra parte es una buena
+idea mantener los controladores bien delgados</li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/02_validaciones/3">
+<h1>&#xBF;Cu&#xE1;ndo ocurren las validaciones?</h1>
+
+<ul>
+<li>Hay dos tipos de objetos en AR: 
+
+<ul>
+<li>Los que corresponden a una fila de la base de datos</li>
+<li>Los que a&#xFA;n no est&#xE1;n en la DB. Por ejemplo los objetos creados con <code>.new</code>
+hasta que no se les diga <code>save</code></li>
+</ul></li>
+<li>Exite el m&#xE9;todo <code>.new_record?</code> que indica la situaci&#xF3;n de un objeto</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>Person = Class.new(ActiveRecord::Base)
+p = Person.new(name: "John Doe")
+p.new_record?
+p.save
+p.new_record?</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/4">
+<h1>&#xBF;Cu&#xE1;ndo ocurren las validaciones?</h1>
+
+<ul>
+<li>Crear y guardar un objeto emite un <code>INSERT</code> a la DB</li>
+<li>Actualizar un objeto emite un <code>UPDATE</code> a la DB
+
+<ul>
+<li>Antes de estas acciones, se realizan las validaciones. Si alguna de las validaciones <strong>falla</strong> 
+entonces el objeto ser&#xE1; marcado como <strong>inv&#xE1;lido</strong> y ActiveRecord no realizar&#xE1; el
+<code>INSERT</code> o <code>UPDATE</code></li>
+</ul></li>
+<li>Hay muchas formas de cambiar el estado de un objeto en la DB. Algunos m&#xE9;todos
+realizar&#xE1;n validaciones, pero otros no, significando que podr&#xED;an guardarse
+datos <strong>inv&#xE1;lidos</strong> en la DB</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/5">
+<h1>&#xBF;Cu&#xE1;ndo ocurren las validaciones?</h1>
+
+<h2>M&#xE9;todos que realizan validaciones</h2>
+
+<pre class="sh_ruby"><code>create
+create!
+save # Puede recibir validate: false
+save!
+update
+update!</code></pre>
+
+<h2>M&#xE9;todos que NO realizan validaciones</h2>
+
+<pre class="sh_ruby"><code>decrement!
+decrement_counter
+increment!
+increment_counter
+toggle!
+touch
+update_all
+update_attribute
+update_column
+update_columns
+update_counters</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/6">
+<h1><code>#valid?</code> e <code>#invalid?</code></h1>
+
+<ul>
+<li>Independientemente de los m&#xE9;todos antes mencionados que lanzan las
+validaciones, puede utilizarse <code>valid?</code> e <code>invalid?</code> para lanzar las
+validaciones</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Person &lt; ActiveRecord::Base
+    validates :name, presence: true
+end
+
+Person.create(name: "John Doe").valid? # =&gt; true
+Person.create(name: nil).valid? # =&gt; false</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/7">
+<h1>Los errores</h1>
+
+<ul>
+<li>Una vez que se realizaron las validaciones, AR almacenar&#xE1; los errores en
+<code>errors.messages</code>, una colecci&#xF3;n de errores indexada por el campo con errores</li>
+<li>Por definici&#xF3;n un objeto ser&#xE1; valido si la colecci&#xF3;n de errores es vac&#xED;a luego
+de correr las validaciones</li>
+<li>Notar que un objeto creado con <code>new</code> que t&#xE9;cnicamente es err&#xF3;neo, no muestra
+errores porque a&#xFA;n no se han corrido las validaciones</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/8">
+<h1>Helper: acceptance</h1>
+
+<ul>
+<li>Se utiliza espec&#xED;ficamente en aplicaciones WEB donde se espera que un checkbox
+sea tildado por el usuario</li>
+<li>No es necesario que la base de datos tenga un atributo, sino que el helper
+crear&#xE1; un campo virtual para este prop&#xF3;sito</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Person &lt; ActiveRecord::Base
+  validates :terms_of_service, acceptance: true
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/9">
+<h1>Helper: validates_associated</h1>
+
+<ul>
+<li>Valida las asociaciones relacionadas al objeto</li>
+<li>No debe utilizarse en ambas partes de una asociaci&#xF3;n porque puede terminar en
+<strong>loop infinito</strong></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Library &lt; ActiveRecord::Base
+    has_many :books
+    validates_associated :books
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/10">
+<h1>Helper: confirmation</h1>
+
+<ul>
+<li>Se utiliza cuando dos campos de texto deben contener el mismo dato: por
+ejemplo que las direcciones de mail y su confirmaci&#xF3;n sean similares</li>
+<li>El campo de confirmaci&#xF3;n no debe existir, sino que crea un campo virtual
+llamado <code>_confirmation</code></li>
+<li>El chequeo es realizado s&#xF3;lo si el campo <code>_confirmation</code> no es nil, por lo que
+debe asegurarse su exsistencia</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Library &lt; ActiveRecord::Base
+    validates :email, confirmation: true
+    validates :email_confirmation, presence: true
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/11">
+<h1>Helper: exclusion/inclusion</h1>
+
+<ul>
+<li>Se utilizan para validar la (ex/in)clusi&#xF3;n de valores admisibles </li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Library &lt; ActiveRecord::Base
+    validates :subdomain, 
+        exclusion: { in: %w(www us ca jp)
+end
+
+class Coffee &lt; ActiveRecord::Base
+    validates :size, 
+        inclusion: { in: %w(small medium large),
+        message: "%{value} is not a valid size" }
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/12">
+<h1>Helper: format</h1>
+
+<ul>
+<li>Validan el formato con una expresi&#xF3;n regular que se especifica usando la
+opci&#xF3;n <code>with:</code></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Product &lt; ActiveRecord::Base
+    validates :legacy_code, format: { 
+        with: /\A[a-zA-Z]+\z/,
+        message: "only allows letters" }
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/13">
+<h1>Helper: length</h1>
+
+<ul>
+<li>Valida la longitud de un campo de diversas formas</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Person &lt; ActiveRecord::Base
+    validates :name, length: { minimum: 2 }
+    validates :bio, length: { maximum: 500 }
+    validates :password, length: { in: 6..20 }
+    validates :registration_number, length: { is: 6 }
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/02_validaciones/14">
+<h1>Helper: numericality</h1>
+
+<ul>
+<li>Valida que el campo contenga s&#xF3;lo valores num&#xE9;ricos</li>
+<li>Por defecto aceptar&#xE1; un signo opcional seguido de un entero o punto flotante</li>
+<li>Para validar s&#xF3;lo enteros, puede usarse la opci&#xF3;n <code>only_integer</code>
+
+<ul>
+<li>Adem&#xE1;s se admiten muchas otras opciones: <code>:greater_than</code>, <code>:greater_than_or_equal_to</code>, <code>:equal_to</code>, <code>:less_than</code>, <code>:less_than_or_equal_to</code>, <code>:odd</code>, <code>:even</code></li>
+</ul></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Player &lt; ActiveRecord::Base
+    validates :points, numericality: true
+    validates :games_played, 
+        numericality: { only_integer: true }
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/02_validaciones/15">
+<h1>Helper: presence/absence</h1>
+
+<ul>
+<li>Valida que el atributo est&#xE9; o no presente (est&#xE9; vac&#xED;o) usando <code>blank?</code> para
+verificar si un valor es <code>nil</code> o un string blanco (esto es vac&#xED;o o consiste de
+espacios)
+
+<ul>
+<li>Incluso prmite validar que una asociaci&#xF3;n est&#xE9; presente</li>
+</ul></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Person &lt; ActiveRecord::Base
+    validates :name, :login, :email, presence: true
+end
+
+# Es importante para usar el siguiente ejemplo que la 
+# asociaci&#xF3;n use inverse_of
+class LineItem &lt; ActiveRecord::Base
+    belongs_to :order
+    validates :order, presence: true
+end
+
+class Order &lt; ActiveRecord::Base
+    has_many :line_items, inverse_of: :order
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/02_validaciones/16">
+<h1>Helper: presence/absence</h1>
+
+<ul>
+<li>Dado que <code>false.blank?</code> es <code>true</code>, hay que tener especial cuidado con campos
+booleanos</li>
+<li>En el siguiente ejemplo se muestra de qu&#xE9; forma es posible eliminar la
+posibilidad que el campo sea <code>nil</code>
+
+<ul>
+<li>Para el caso de <code>absence</code> es necesario algo como: <code>validates :field_name,
+exclusion: { in: [true, false]</code> considerando que <code>false.present?</code> devuelve
+<code>false</code></li>
+</ul></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>validates :boolean_field_name, inclusion: { in: [true, false] }
+validates :boolean_field_name, exclusion: { in: [nil] }</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/02_validaciones/17">
+<h1>Helper: uniqueness</h1>
+
+<ul>
+<li>Valida la unicidad de un campo antes que sea guardado</li>
+<li>No considera unicidad en la base de datos
+
+<ul>
+<li>Por lo que dos conexiones diferentes podr&#xED;an crear el mismo dato que
+esperamos sea &#xFA;nico</li>
+<li>Para evitar esto, es aconsejable agregar una restricci&#xF3;n a nivel motor de la
+DB</li>
+</ul></li>
+<li>Exite la posibilidad de explicitar un alcance de la unicidad de forma de
+combinar con otros campos</li>
+<li>Es posible especificar otra opci&#xF3;n <code>case_sesitive</code> para verificar la unicidad
+considerando este factor o no</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<pre class="sh_ruby"><code>class Account &lt; ActiveRecord::Base
+    validates :email, uniqueness: true
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/18">
+<h1>Helper: uniqueness</h1>
+
+<h2>M&#xE1;s ejemplos</h2>
+
+<pre class="sh_ruby"><code>class Holiday &lt; ActiveRecord::Base
+    validates :name, uniqueness: {
+        scope: :year,
+        message: "should happen once per year" }
+end
+
+class Person &lt; ActiveRecord::Base
+    validates :name, 
+        uniqueness: { case_sensitive: false }
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/02_validaciones/19">
+<h1>Validaciones condicionales</h1>
+
+<ul>
+<li>Algunas situaciones ameritan validar si un predicado es verdadero</li>
+<li>Esto es posible con las opciones <code>:if</code> y <code>:unless</code> que reciben:
+<code>Proc</code>, un string o arreglo
+
+<ul>
+<li><strong>Un s&#xED;mbolo:</strong> invocar&#xE1; un m&#xE9;todo del modelo</li>
+<li><strong>Un string:</strong> se interpreta como c&#xF3;digo rubu como por ejemplo <code>validates
+:surname, presence: true, if: "name.nil?"</code></li>
+<li><strong>Un Proc:</strong> permite escribir c&#xF3;digo inline en vez de delegarlo a un m&#xE9;todo</li>
+<li><strong>Un arreglo</strong>: combina multiples condiciones. Por ejemplo: <code>if:
+["market.retail?", :desktop?]</code></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content center" ref="13-activerecord/03_asociaciones/1">
+<h1>Active Record: asociaciones</h1>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/03_asociaciones/2">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li>Las asociaciones simplifican la interacci&#xF3;n entre modelos relacionados</li>
+</ul>
+
+<h2>Asumamos los siguientes modelos</h2>
+
+<pre class="sh_ruby"><code>class Customer &lt; ActiveRecord::Base
+end
+
+class Order &lt; ActiveRecord::Base
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/03_asociaciones/3">
+<h1>Introducci&#xF3;n</h1>
+
+<ul>
+<li>Si Los clientes pueden tener varias &#xF3;rdenes, sin asociaciones, la forma de
+relacionarlos ser&#xED;a:</li>
+</ul>
+
+<h2>El problema</h2>
+
+<pre class="sh_ruby"><code>@order = Order.create(
+    order_date: Time.now, 
+    customer_id: @customer.id)
+
+# Para eliminar un cliente con sus ordenes:
+@orders = Order.where(customer_id: @customer.id)
+@orders.each do |order|
+    order.destroy
+end
+@customer.destroy</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/03_asociaciones/4">
+<h1>La soluci&#xF3;n</h1>
+
+<pre class="sh_ruby"><code>class Customer &lt; ActiveRecord::Base
+    has_many :orders, dependent: :destroy
+end
+
+class Order &lt; ActiveRecord::Base
+    belongs_to :customer
+end
+
+# Crear una orden:
+@order = @customer.orders.create(order_date: Time.now)
+
+# Eliminar un cliente:
+@customer.destroy</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/5">
+<h1>Tipos de asociaciones</h1>
+
+<ul>
+<li>Las asociaciones podr&#xE1;n ser alguna de:
+
+<ul>
+<li><code>belongs_to</code></li>
+<li><code>has_one</code></li>
+<li><code>has_many</code></li>
+<li><code>has_many :through</code></li>
+<li><code>has_one :through</code></li>
+<li><code>has_and_belongs_to_many</code></li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/6">
+<h1>Asociaci&#xF3;n <code>belongs_to</code></h1>
+
+<ul>
+<li>Arma una relaci&#xF3;n <strong>uno a uno</strong> con otro modelo</li>
+<li>En general se usa combinado con una asociaci&#xF3;n <code>has_many</code> o <code>has_one</code> desde el otro modelo</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<p>Clientes con m&#xFA;ltiples &#xF3;rdenes, donde cada orden es de un cliente</p>
+
+<p><img src="./file/13-activerecord/belongs_to.png" alt="belongs_to"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="13-activerecord/03_asociaciones/7">
+<h1>Asociaci&#xF3;n <code>belongs_to</code></h1>
+
+<ul>
+<li>Es importante destacar que las asociaciones <code>belongs_to</code> deben usar t&#xE9;rminos
+en singular.
+
+<ul>
+<li>En el ejemplo anterior si se hubiese utilizado <code>cutomers</code> en la asociaci&#xF3;n,
+entonces surgir&#xED;a un error indicando que <code>Order::Customers</code> es una constante
+no inicializada</li>
+<li>Esto se debe a que rails infiere el nombre de la clase a partir del nombre
+de la asociaci&#xF3;n. </li>
+</ul></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/8">
+<h1>Migraci&#xF3;n correspondiente al <code>belongs_to</code></h1>
+
+<pre class="sh_ruby"><code>class CreateOrders &lt; ActiveRecord::Migration
+    def change
+        create_table :customers do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :orders do |t|
+            t.belongs_to :customer, index: true
+            t.datetime :order_date
+            t.timestamps null: false
+        end
+    end
+end </code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/03_asociaciones/9">
+<h1>Asociaci&#xF3;n <code>has_one</code></h1>
+
+<ul>
+<li>Arma una relaci&#xF3;n <strong>uno a uno</strong> con otro modelo pero con una sem&#xE1;ntica diferente a la de <code>belongs_to</code></li>
+<li>Esta asociaci&#xF3;n se utiliza para denotar relaciones uno a uno &#xFA;nicamente</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<p>Proveedores con una cuenta</p>
+
+<p><img src="./file/13-activerecord/has_one.png" alt="has_one"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/10">
+<h1>Migraci&#xF3;n correspondiente al <code>has_one</code></h1>
+
+<pre class="sh_ruby"><code>class CreateSuppliers &lt; ActiveRecord::Migration
+    def change
+        create_table :suppliers do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :accounts do |t|
+            t.belongs_to :supplier, index: true
+            t.string :account_number
+            t.timestamps null: false
+        end
+    end
+end</code></pre>
+
+<ul>
+<li>Notar que <code>has_one</code> se coloca en la clase opuesta donde existe la clave for&#xE1;nea</li>
+<li>Esto es porque su uso es similar a la asociaci&#xF3;n <code>has_many</code> pero se utilizar&#xE1; 
+en casos de relaciones uno a uno en vez de uno a muchos</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/03_asociaciones/11">
+<h1>Asociaci&#xF3;n <code>has_many</code></h1>
+
+<ul>
+<li>Arma una relaci&#xF3;n <strong>uno a muchos</strong> con otro modelo: este modelo puede tener 
+cero o m&#xE1;s instancias del modelo mencionado</li>
+<li>Generalmente se encontrar&#xE1; en <em>el otro lado</em> de una asociaci&#xF3;n <code>belongs_to</code></li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<p>En el ejemplo de las &#xF3;rdenes y clientes</p>
+
+<p><img src="./file/13-activerecord/has_many.png" alt="has_many"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/12">
+<h1>Migraci&#xF3;n correspondiente al <code>has_many</code></h1>
+
+<pre class="sh_ruby"><code>class CreateOrders &lt; ActiveRecord::Migration
+    def change
+        create_table :customers do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :orders do |t|
+            t.belongs_to :customer, index: true
+            t.datetime :order_date
+            t.timestamps null: false
+        end
+    end
+end </code></pre>
+
+<p>Es similar a la migraci&#xF3;n del ejemplo del <code>belongs_to</code></p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/13">
+<h1>Asociaci&#xF3;n <code>has_many :through</code></h1>
+
+<ul>
+<li>Generalmente usada en relaciones <strong>muchos a muchos</strong> con otro modelo</li>
+<li>Esta asociaci&#xF3;n indica que el modelo que la declara puede disponer de cero o
+m&#xE1;s instancias del otro modelo, a trav&#xE9;s de un tercer modelo</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/14">
+<h1>Asociaci&#xF3;n <code>has_many :through</code></h1>
+
+<h2>Ejemplo</h2>
+
+<p>Turnos m&#xE9;dicos que son solicitados por pacientes para ser atendidos por m&#xE9;dicos</p>
+
+<p><img src="./file/13-activerecord/has_many_through.png" alt="has_many_through"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets small" ref="13-activerecord/03_asociaciones/15">
+<h1>Asociaci&#xF3;n <code>has_many :through</code></h1>
+
+<pre class="sh_ruby"><code>class Physician &lt; ActiveRecord::Base
+    has_many :appointments
+    has_many :patients, through: :appointments
+end
+
+class Appointment &lt; ActiveRecord::Base
+    belongs_to :physician
+    belongs_to :patient
+end
+
+class Patient &lt; ActiveRecord::Base
+    has_many :appointments
+    has_many :physicians, through: :appointments
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/16">
+<h1>Migraci&#xF3;n correspondiente al <code>has_many :through</code></h1>
+
+<pre class="sh_ruby"><code>class CreateAppointments &lt; ActiveRecord::Migration
+    def change
+        create_table :physicians do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :patients do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :appointments do |t|
+            t.belongs_to :physician, index: true
+            t.belongs_to :patient, index: true
+            t.datetime :appointment_date
+            t.timestamps null: false
+        end
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/17">
+<h1>Asociaci&#xF3;n <code>has_one :through</code></h1>
+
+<ul>
+<li>Generalmente usada en relaciones <strong>uno a uno</strong> con otro modelo</li>
+<li>Esta asociaci&#xF3;n indica que el modelo que la declara puede disponer de una 
+instancia de otro modelo accesible a trav&#xE9;s de un tercer modelo</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/18">
+<h1>Asociaci&#xF3;n <code>has_one :through</code></h1>
+
+<h2>Ejemplo</h2>
+
+<p>Un proveedor tiene una cuenta y cada cuenta tiene asociado un hist&#xF3;rico de una la cuenta</p>
+
+<p><img src="./file/13-activerecord/has_one_through.png" alt="has_one_through"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/19">
+<h1>Ejemplo</h1>
+
+<pre class="sh_ruby"><code>class Supplier &lt; ActiveRecord::Base
+    has_one :account
+    has_one :account_history, through: :account
+end
+
+class Account &lt; ActiveRecord::Base
+    belongs_to :supplier
+    has_one :account_history
+end
+
+class AccountHistory &lt; ActiveRecord::Base
+    belongs_to :account
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="13-activerecord/03_asociaciones/20">
+<h1>Migraci&#xF3;n correspondiente al <code>has_one :through</code></h1>
+
+<pre class="sh_ruby"><code>class CreateAccountHistories &lt; ActiveRecord::Migration
+    def change
+        create_table :suppliers do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :accounts do |t|
+            t.belongs_to :supplier, index: true
+            t.string :account_number
+            t.timestamps null: false
+        end
+
+        create_table :account_histories do |t|
+            t.belongs_to :account, index: true
+            t.integer :credit_rating
+            t.timestamps null: false
+        end
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets" ref="13-activerecord/03_asociaciones/21">
+<h1>Asociaci&#xF3;n `has<em>and</em>belongs<em>to</em>many</h1>
+
+<ul>
+<li>Crea una relaci&#xF3;n directa <strong>muchos a muchos</strong> con otro modelo sin un modelo interviniente</li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/03_asociaciones/22">
+<h1>Asociaci&#xF3;n `has<em>and</em>belongs<em>to</em>many</h1>
+
+<h2>Ejemplo</h2>
+
+<p>Un montaje compuesto de muchas piezas, que puedan aparecer en muchos montajes</p>
+
+<p><img src="./file/13-activerecord/habtm.png" alt="habtm"/>
+</p>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="13-activerecord/03_asociaciones/23">
+<h1>Migraci&#xF3;n correspondiente al <code>has_and_belongs_to_many</code></h1>
+
+<pre class="sh_ruby"><code>class CreateAssembliesAndParts &lt; ActiveRecord::Migration
+    def change
+        create_table :assemblies do |t|
+            t.string :name
+            t.timestamps null: false
+        end
+
+        create_table :parts do |t|
+            t.string :part_number
+            t.timestamps null: false
+        end
+
+        create_table :assemblies_parts, id: false do |t|
+            t.belongs_to :assembly, index: true
+            t.belongs_to :part, index: true
+        end
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/03_asociaciones/24">
+<h1>Asociaciones polim&#xF3;rficas</h1>
+
+<ul>
+<li>Un modelo puede pertenecer a uno o m&#xE1;s modelos en una misma asociaci&#xF3;n</li>
+</ul>
+
+<h2>Ejemplo</h2>
+
+<p>Una imagen puede pertenecer a un empleado o un producto</p>
+
+<pre class="sh_ruby"><code>class Picture &lt; ActiveRecord::Base
+    belongs_to :imageable, polymorphic: true
+end
+
+class Employee &lt; ActiveRecord::Base
+    has_many :pictures, as: :imageable
+end
+
+class Product &lt; ActiveRecord::Base
+    has_many :pictures, as: :imageable
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="13-activerecord/03_asociaciones/25">
+<h1>Asociaciones polim&#xF3;rficas</h1>
+
+<ul>
+<li>Desde una instancia de empleado es posible obtener las im&#xE1;genes usando
+<code>@employee.pictures</code></li>
+<li>De igual forma es posible <code>@product.pictures</code></li>
+<li>Tambi&#xE9;n es posible <code>@picture.imageable</code></li>
+</ul>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="13-activerecord/03_asociaciones/26">
+<h1>Migraci&#xF3;n correspondiente a la asociaci&#xF3;n polim&#xF3;rfica</h1>
+
+<pre class="sh_ruby"><code>class CreatePictures &lt; ActiveRecord::Migration
+    def change
+        create_table :pictures do |t|
+            t.string  :name
+            t.integer :imageable_id
+            t.string  :imageable_type
+            t.timestamps null: false
+        end
+
+        add_index :pictures, :imageable_id
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="13-activerecord/03_asociaciones/27">
+<h1>Migraci&#xF3;n correspondiente a la asociaci&#xF3;n polim&#xF3;rfica</h1>
+
+<h2>Similarmente</h2>
+
+<pre class="sh_ruby"><code>class CreatePictures &lt; ActiveRecord::Migration
+    def change
+        create_table :pictures do |t|
+            t.string :name
+            t.references :imageable, polymorphic: true, 
+                    index: true
+            t.timestamps null: false
+        end
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets smaller" ref="13-activerecord/03_asociaciones/28">
+<h1>Asociaciones conmigo mismo</h1>
+
+<pre class="sh_ruby"><code>class Employee &lt; ActiveRecord::Base
+    has_many :subordinates, class_name: "Employee",
+                            foreign_key: "manager_id"
+
+    belongs_to :manager, class_name: "Employee"
+end</code></pre>
+
+<h2>Migraci&#xF3;n</h2>
+
+<pre class="sh_ruby"><code>class CreateEmployees &lt; ActiveRecord::Migration
+    def change
+        create_table :employees do |t|
+            t.references :manager, index: true
+            t.timestamps null: false
+        end
+    end
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="13-activerecord/99_referencias">
 <h1>Referencias</h1>
 
 <ul>
