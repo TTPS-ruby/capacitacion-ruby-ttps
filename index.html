@@ -8328,6 +8328,7 @@ proyecto</li>
 <li>Para mejorar el estilo visual
 
 <ul>
+<li><a href="https://github.com/twbs/bootstrap-sass">bootstrap-saas</a> - Bootstrap 2 y 3 con Sass</li>
 <li><a href="https://github.com/Compass/compass-rails">compass-rails</a> - simplifica el manejo de estilos para poder usar <a href="http://foundation.zurb.com/">Zurb Fundation</a> por ejemplo</li>
 <li><a href="https://github.com/zurb/foundation">zurb-foundation</a> - front-end framework</li>
 </ul></li>
@@ -8339,6 +8340,9 @@ la b&#xFA;squeda de errores</li>
 <li><a href="https://github.com/evrone/quiet_assets">quiet_assets</a> - elimina mensajes
 que distraen en los logs</li>
 <li><a href="https://github.com/RailsApps/rails_layout">rails_layout</a> - genera archivos para el layout de la aplicaci&#xF3;n usando Twitter Bootstrap o Zurb Fundation</li>
+<li><a href="https://github.com/guard/guard-livereload">guard-livereload</a> - simplifica
+el trabajo con las vistas autoactualizando el navegador cuando se modifica
+alguna vista</li>
 </ul></li>
 </ul>
 </div>
@@ -8364,7 +8368,8 @@ plataformas de deployment</li>
 <li>Mantienen la privacidad del proyecto de forma independiente</li>
 <li>La gema <strong><a href="https://github.com/laserlemon/figaro">figaro</a></strong> permite setear
 variables desde el shell o desde un archivo de configuraci&#xF3;n</li>
-<li>La gema <strong><a href="https://github.com/bkeepers/dotenv">dotenv</a></strong> permite setear</li>
+<li>La gema <strong><a href="https://github.com/bkeepers/dotenv">dotenv-rails</a></strong> permite setear
+variables desde un archivo <code>.env</code> en <code>ENV</code></li>
 </ul></li>
 </ul>
 </div>
@@ -8404,14 +8409,6 @@ Using rails (4.0.1)
 Installing figaro (0.7.0) 
 Using jbuilder (1.5.2) 
 ...</code></pre>
-
-<h2>Verificamos se instal&#xF3;</h2>
-
-<pre class="sh_bash"><code>$ bundle exec rails generate
-...
-Figaro:
-    figaro:install
-...</code></pre>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="14-rails/03-configuracion/4">
 <h1>Usando figaro</h1>
@@ -8428,12 +8425,12 @@ Figaro:
 </ul></li>
 </ul>
 </div>
-</div><div class="slide" data-transition="uncover"><div class="content smbullets" ref="14-rails/03-configuracion/5">
+</div><div class="slide" data-transition="uncover"><div class="content smbullets small" ref="14-rails/03-configuracion/5">
 <h1>Usando figaro</h1>
 
 <h2>Instalando figaro</h2>
 
-<pre class="sh_bash"><code>$ bundle exec rails generate figaro:install
+<pre class="sh_bash"><code>$ bundle exec figaro install
         create  config/application.yml
         append  .gitignore</code></pre>
 
@@ -8446,6 +8443,8 @@ development:
   GMAIL_PASSWORD: otherpassword</code></pre>
 
 <p><em>Podemos setear las variables seg&#xFA;n el entorno</em></p>
+
+<p>Ojo con spring!</p>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets" ref="14-rails/04-routing-y-static-pages/1">
 <h1>P&#xE1;ginas est&#xE1;ticas y ruteo</h1>
@@ -8844,7 +8843,7 @@ pero en plural y en min&#xFA;scula: <code>app/views/visitors</code></li>
 end</code></pre>
 
 <ul>
-<li>Notramos que el nombre del m&#xF3;dulo donde se define <strong>Application.routes</strong> es
+<li>Notamos que el nombre del m&#xF3;dulo donde se define <strong>Application.routes</strong> es
 <strong>LearnRails</strong>
 
 <ul>
@@ -8959,7 +8958,7 @@ vistas, por lo tanto se crea un directorio para cada controlador
 visitor</li>
 <li>La extensi&#xF3;n es <strong>erb</strong> porque usamos el motor ERB para armar nuestros
 templates</li>
-<li>En el ejemplo, y por defecto en rails, se utiliza ERB en rails, pero es posible utilizar gemas que
+<li>En el ejemplo, y por defecto en rails, se utiliza ERB, pero es posible utilizar gemas que
 proveen <a href="http://railsapps.github.io/rails-haml.html">Haml</a> o <a href="http://slim-lang.com/">Slim</a> como motores de templating. 
 
 <ul>
@@ -9113,7 +9112,7 @@ irb(main):002:0&gt; owner.name
 </ul></li>
 <li>En el ambiente de desarrollo, todo log escrito en el archivo es adem&#xE1;s enviado
 a la consola de donde se corre el comando <code>rails server</code></li>
-<li>Adem&#xE1;s de los logs por defecto de rails, podemos usar nosotros en <strong>logger</strong></li>
+<li>Adem&#xE1;s de los logs por defecto de rails, podemos usar nosotros <strong>logger</strong></li>
 </ul>
 </div>
 </div><div class="slide" data-transition="uncover"><div class="content bullets smaller" ref="14-rails/07-resolviendo-problemas/5">
