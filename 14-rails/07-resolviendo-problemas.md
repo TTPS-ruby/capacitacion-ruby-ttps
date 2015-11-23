@@ -40,7 +40,7 @@
 	* **log/production.log**
 * En el ambiente de desarrollo, todo log escrito en el archivo es además enviado
   a la consola de donde se corre el comando `rails server`
-* Además de los logs por defecto de rails, podemos usar nosotros en **logger**
+* Además de los logs por defecto de rails, podemos usar nosotros **logger**
 
 !SLIDE bullets transition=uncover smaller
 # Rails logger

@@ -39,6 +39,7 @@ de los desarrollos las utilizan y por ello se consideran
     proyecto
   * [simple_form](https://github.com/plataformatec/simple_form) - simplifica el uso de forms
 * Para mejorar el estilo visual
+  * [bootstrap-saas](https://github.com/twbs/bootstrap-sass) - Bootstrap 2 y 3 con Sass
   * [compass-rails](https://github.com/Compass/compass-rails) - simplifica el manejo de estilos para poder usar [Zurb Fundation](http://foundation.zurb.com/) por ejemplo
   * [zurb-foundation](https://github.com/zurb/foundation) - front-end framework
 * Para simplificar la labor de desarrollo
@@ -47,3 +48,6 @@ de los desarrollos las utilizan y por ello se consideran
   * [quiet_assets](https://github.com/evrone/quiet_assets) - elimina mensajes
     que distraen en los logs
   * [rails_layout](https://github.com/RailsApps/rails_layout) - genera archivos para el layout de la aplicación usando Twitter Bootstrap o Zurb Fundation
+  * [guard-livereload](https://github.com/guard/guard-livereload) - simplifica
+    el trabajo con las vistas autoactualizando el navegador cuando se modifica
+    alguna vista

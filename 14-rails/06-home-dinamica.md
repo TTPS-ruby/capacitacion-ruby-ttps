@@ -55,7 +55,7 @@ Crearemos primero el ruteo antes de implementar el model y controller
 		root to: 'visitors#new'
 	end
 
-* Notramos que el nombre del módulo donde se define **Application.routes** es
+* Notamos que el nombre del módulo donde se define **Application.routes** es
   **LearnRails**
 	* Esto se debe al nombre de la aplicación que creamos con el comando `rails
 	  new learn_rails`
@@ -149,7 +149,7 @@ y conoce como conectarse con la base de datos
   visitor
 * La extensión es **erb** porque usamos el motor ERB para armar nuestros
   templates
-* En el ejemplo, y por defecto en rails, se utiliza ERB en rails, pero es posible utilizar gemas que
+* En el ejemplo, y por defecto en rails, se utiliza ERB, pero es posible utilizar gemas que
   proveen [Haml](http://railsapps.github.io/rails-haml.html) o [Slim](http://slim-lang.com/) como motores de templating. 
 	* Si usaramos por ejemplo haml, la vista sería **new.html.haml**
 * En la vista, podemos ver que el markup de ERB utiliza los tags `<%=` y

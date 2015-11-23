@@ -13,7 +13,8 @@
   * Mantienen la privacidad del proyecto de forma independiente
   * La gema **[figaro](https://github.com/laserlemon/figaro)** permite setear
     variables desde el shell o desde un archivo de configuración
-  * La gema **[dotenv](https://github.com/bkeepers/dotenv)** permite setear
+  * La gema **[dotenv-rails](https://github.com/bkeepers/dotenv)** permite setear
+    variables desde un archivo `.env` en `ENV`
 
 !SLIDE smbullets transition=uncover small
 # Cómo usar las variables de entorno
@@ -54,15 +55,6 @@
 	...
 	
 
-## Verificamos se instaló
-
-	@@@bash
-	$ bundle exec rails generate
-	...
-	Figaro:
-		figaro:install
-	...
-
 !SLIDE smbullets transition=uncover 
 # Usando figaro
 * Esta gema setea las variables de entorno antes de hacer cualquier otra cosa
@@ -72,12 +64,12 @@
   `.gitignore` que se ignore esta configuracion
   * *De esta forma, los valores quedarán privados y no en el repositorio de git*
 
-!SLIDE smbullets transition=uncover 
+!SLIDE smbullets small transition=uncover 
 #Usando figaro
 ## Instalando figaro
 
 	@@@bash
-	$ bundle exec rails generate figaro:install
+	$ bundle exec figaro install
 			create	config/application.yml
 			append	.gitignore
 	
@@ -90,3 +82,5 @@
 	  GMAIL_PASSWORD: otherpassword
 
 *Podemos setear las variables según el entorno*
+
+Ojo con spring!
